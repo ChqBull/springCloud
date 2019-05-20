@@ -1,0 +1,159 @@
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+
+<link rel="stylesheet" href="/layui/css/layui.css" />
+<script src="/layui/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/layui/layui.all.js"></script>
+<body>
+<center>
+<div style="width: 200px;">
+    <div class="layui-upload">
+        <label class="layui-form-label" style="width: 100px">营业执照:</label>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="dem1" width="150px"/>
+        <input type="file" name="goodsImg" id="wen1"/>
+        <button type="button" class="layui-btn site-demo-active" id="shang1" data-type="setPercent" >上传</button>
+        </div>
+    </div>
+
+    <div class="layui-upload" >
+    <label class="layui-form-label" style="width: 100px">负责人身份证:</label>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="dem4" width="150px"/>
+            <input type="file" name="goodsImg" id="wen4"/>
+            <button type="button" class="layui-btn" id="shang4" data-type="loading">上传</button>
+        </div>
+    </div>
+    <div class="layui-upload" >
+        <label class="layui-form-label" >税务登记证:</label>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="dem3" width="150px"/>
+            <input type="file" name="goodsImg" id="wen3"/>
+            <button type="button" class="layui-btn" id="shang3" data-type="loading">上传</button>
+        </div>
+    </div>
+
+
+    <div class="layui-upload">
+        <label class="layui-form-label" style="width: 100px">道路运输许可证:</label>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="dem2" width="150px"/>
+            <input type="file" name="goodsImg" id="wen2"/>
+            <button type="button" class="layui-btn" id="shang2" data-type="loading">上传</button>
+        </div>
+    </div>
+</div>
+</center>
+</body>
+<script>
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#wen1'
+            ,url: 'imgUpload'
+            ,auto: false
+            //,multiple: true
+            ,choose: function(obj){
+                console.log(obj)
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#dem1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,bindAction: '#shang1'
+            ,done: function(res){
+                console.log(res)
+                return layer.msg(res.msg,{icon: res.status,time: 2000});
+            }
+        });
+
+    });
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#wen2'
+            ,url: 'imgUpload'
+            ,auto: false
+            //,multiple: true
+            ,choose: function(obj){
+                console.log(obj)
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#dem2').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,bindAction: '#shang2'
+            ,done: function(res){
+                console.log(res)
+                return layer.msg(res.msg,{icon: res.status,time: 2000});
+            }
+        });
+
+    });
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#wen3'
+            ,url: 'imgUpload'
+            ,auto: false
+            //,multiple: true
+            ,choose: function(obj){
+                console.log(obj)
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#dem3').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,bindAction: '#shang3'
+            ,done: function(res){
+                console.log(res)
+                return layer.msg(res.msg,{icon: res.status,time: 2000});
+            }
+        });
+
+    });
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#wen4'
+            ,url: 'imgUpload'
+            ,auto: false
+            //,multiple: true
+            ,choose: function(obj){
+                console.log(obj)
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#dem4').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,bindAction: '#shang4'
+            ,done: function(res){
+                console.log(res)
+                return layer.msg(res.msg,{icon: res.status,time: 2000});
+            }
+        });
+
+    });
+
+
+</script>
+</html>

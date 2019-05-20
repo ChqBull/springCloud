@@ -1,0 +1,332 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+</head>
+<link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918" />
+<link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css" />
+<link rel="stylesheet" href="/layui/css/layui.css" />
+
+
+<script src="/layui/jquery-3.3.1.js"></script>
+
+
+
+<script type="text/javascript" src="/layui/layui.all.js"></script>
+
+
+<body>
+<div style="margin-left: 350px">
+<form class="layui-form layui-form-pane" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司全称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="companyName" id="gsname" placeholder="请准确填写公司全称" autocomplete="off" class="layui-input"   lay-verify="required"/>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司简介</label>
+        <div class="layui-input-inline">
+            <input type="text" name="gsjian" id="gsjian" placeholder="4或5个汉字" autocomplete="off" class="layui-input"  lay-verify="jianjie"/>
+        </div>
+
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">接单电话</label>
+        <div class="layui-input-inline">
+            <input type="text" name="gsphone"  id="gsphone" placeholder="区号-号码" autocomplete="off" class="layui-input"  lay-verify="required" />
+        </div>
+        注：默认为账号手机，可修改，支持固定电话
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="gspople" id="gspople" placeholder="业务负责人" autocomplete="off" class="layui-input" lay-verify="required" />
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">官方网站</label>
+        <div class="layui-input-inline">
+            <input type="text" id="gsweb" name="gsweb" placeholder="http://www.lvmae.com" autocomplete="off" class="layui-input" lay-verify="required" />
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">始发地：</label>
+    <div class="layui-input-inline" style="width: 100px">
+        <select name="" lay-filter="sheng" id="sheng">
+            <option value="">请选择省</option>
+        </select>
+    </div>
+    <div class="layui-input-inline" style="width: 100px">
+        <select name="" lay-filter="shi" id="shi">
+            <option value="">市</option>
+        </select>
+    </div>
+    <div class="layui-input-inline" style="width: 100px">
+        <select name="gsadrivs" lay-filter="xian" id="xian">
+            <option value="" selected="">区</option>
+
+        </select>
+    </div>
+   </div>
+
+
+    <div class="layui-input-inline">
+        <input type="text" name="address" width="30%" autocomplete="off" class="layui-input" placeholder="详细地址，精确到门牌号" />
+
+    </div>
+        <div class="layui-upload">
+        <input type="file" name="goodsImg" id="test8" >
+        <!--<button type="button" class="layui-btn layui-btn-normal" >选择文件</button>-->
+        <button type="button" class="layui-btn" id="test9">开始上传</button>
+            <input type="hidden" name="goodsImg" id="hiden" >
+    </div>
+    <div class="layui-upload-list">
+        <img class="layui-upload-img" id="demo2" width="150px"/>
+    </div>
+
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">服务宗旨</label>
+            <div class="layui-input-inline">
+                <input type="text" name="gszong" id="gszong" autocomplete="off" class="layui-input" lay-verify="required"/>
+            </div>
+
+        </div>
+
+
+
+    <div class="layui-form-item layui-form-text" >
+        <label class="layui-form-label" style="width: 400px;">公司介绍</label>
+         <div class="layui-input-block">
+            <textarea placeholder="请输入其他说明" style="width: 400px;height: 200px" id="gsjieshao" name="gsjieshao" class="layui-textarea" lay-verify="required"></textarea>
+        </div>
+,
+    </div>
+    <label class="layui-form-label" style="height:30px" >优势服务行业</label>
+
+    <div class="layui-form-item" pane="" style="width: 1500px;height: 30px" >
+
+
+        <input type="checkbox" name="serve" value="1" lay-skin="primary" title="普货"/>
+        <input type="checkbox"   name="serve" value="2" lay-skin="primary" title="电子产品"/>
+        <input type="checkbox"   name="serve" value="3" lay-skin="primary" title="冷链"/>
+        <input type="checkbox"   name="serve" value="4" lay-skin="primary" title="机械设备"/>
+        <input type="checkbox" name="serve" value="5" lay-skin="primary" title="危险品"/>
+        <input type="checkbox"  name="serve" value="6" lay-skin="primary" title="快消品"/>
+        <input type="checkbox"  name="serve" value="7" lay-skin="primary" title="饮料"/>
+        <input type="checkbox"  name="serve" value="8" lay-skin="primary" title="食品"/>
+        <input type="checkbox" name="serve" value="9" lay-skin="primary" title="服装"/>
+        <input type="checkbox"  name="serve" value="10" lay-skin="primary" title="塑料制品"/>
+        <input type="checkbox"  name="serve" value="11" lay-skin="primary" title="电器"/>
+        <input type="checkbox"  name="serve" value="12" lay-skin="primary" title="手机"/>
+
+
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block" >
+
+            <button class="layui-btn" lay-submit="" lay-filter="formDemo" type="button">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            注：修改后要经过审核才可生效
+        </div>
+
+    </div>
+
+</form>
+</div>
+</body>
+<script  type="text/javascript">
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#test8'
+            ,url: 'imgUpload'
+            ,auto: false
+            //,multiple: true
+            ,choose: function(obj){
+                console.log(obj)
+                $("#hiden").val($("#test8").val())
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo2').attr('src', result); //图片链接（base64）
+                    $('#demo2').attr('value', result); //图片链接（base64）
+                    $("#hiden").val($("#test8").val())
+                });
+            }
+            ,bindAction: '#test9'
+            ,done: function(res){
+                console.log(res)
+                return layer.msg(res.msg,{icon: res.status,time: 2000});
+            }
+        });
+
+    });
+
+    layui.use('form',function () {
+      var  form =layui.form;
+        form.render();
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    $("#sheng").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+
+                }
+                form.render("select");
+            },
+            "json"
+        )
+
+        //追加发货地的市
+        form.on('select(sheng)', function (data) {
+            $("#shi").empty();//当省发生改变把以前市区的数据清空
+            $("#shi").append($("<option value='0'>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian").empty();//一起把以前县的数据清空
+            $("#xian").append($("<option value='0'> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#shi").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(shi)', function (data) {
+            $("#xian").empty();//当市区发生该变把以前县的数据清空
+            $("#xian").append($("<option value='0'> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#xian").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        })
+
+      //判断是否上门提货
+      form.on('radio(aaa)',function (data) {
+         /* alert(this.value)*/
+          if($('input[name ="sex"]:checked').val()=="0"){
+              $(".count").hide();
+          }else{
+              $(".count").show();
+          }
+
+      })
+        //判断是否送货上门
+        form.on('radio(c)',function (data) {
+            /* alert(this.value)*/
+            if($('input[name ="sex3"]:checked').val()=="0"){
+                $(".tian").hide();
+            }else{
+                $(".tian").show();
+            }
+
+        })
+        //判断是否填选填信息
+        form.on('radio(bbb)',function (data) {
+            /* alert(this.value)*/
+            if($('input[name ="sex2"]:checked').val()=="0"){
+                $(".countt").hide();
+            }else{
+                $(".countt").show();
+            }
+
+        })
+
+
+
+        //验证
+        form.verify({
+
+
+            hone: [/^1[3|4|5|7|8]\d{9}$/, '手机必须11位，只能是数字！']
+
+
+
+        });
+
+
+
+
+        form.on('submit(formDemo)', function(data){
+            var gsname= $("#gsname").val();
+         var gsjian =$("#gsjian").val();
+         var gsphone= $("#gsphone").val();
+         var gspople=$("#gspople").val();
+         var gsweb=$("#gsweb").val();
+         var gszong= $("#gszong").val();
+         var gsjieshao =$("#gsjieshao").val();
+         var address= $("#address").val();
+
+
+                var arr =$("[name='serve']:checked")
+
+                var str= "";
+                arr.each(function(){
+
+                    str+=","+this.value;
+
+                })
+                var checked=str.substr(1);
+                $.ajax({
+                url:"addgongsi.do?check="+checked,
+                data:data.field,
+                type:"post",
+                success:function (msg) {
+                    alert("成功建立");
+                    location.reload();
+                    location.href="zhaopian";
+                },error:function () {
+
+                }
+            })
+
+
+        });
+ })
+
+
+        $("#test").on('click',function () {
+
+             alert(checked);
+        })
+
+
+</script>
+
+</html>
