@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入jquery -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script src="/js/echarts-4.0.js"></script>
+<script src="/js/echarts-util.js"></script>
+<body>
+
+<div id="dom" style="width:600px;height: 300px"></div>
+</body>
+<script>
+    //获取财务报表图
+    function getEchar(){
+        var dom = document.getElementById('dom');
+       var myChart= echarts.init(dom);
+          $.ajax({
+              url:"/getFinancialStatement",
+              type:"post",
+              success:function (data) {
+                  var option = {
+                      title: {
+                          text: '我是主题',//标题
+                          left: 'center'
+                      },
+                      tooltip: {
+                          show: true,
+                          trigger: 'axis'//根据名称，item根据数量
+                      },
+                      legend: {
+                          show: true,
+                          left: 'left',
+                          data: ['数量']//左边的小方块
+                      },
+                      xAxis: {
+                          type: 'category',
+                          data: data.category
+                      },
+                      yAxis: {
+                          type: 'value'
+                      },
+                      series: [
+                          {
+                              name: '数量',
+                              type: 'bar',
+                              data: data.values
+                          }
+                      ]
+                  }
+                  myChart.setOption(option,true);
+                  myChart.on('click',function(object) {
+                      // 销毁之前的echarts实例
+                      echarts.dispose(dom);
+                      // 初始化一个新的实例
+                      var myChart = echarts.init(dom);
+                      $.ajax({
+                          url:"/getecharts",
+                          type:"post",
+                          data:{"typename":object.name},
+                          success:function (data) {
+                              var option = {
+                                  title: {
+                                      text: '我是主题',//标题
+                                      left: 'center'
+                                  },
+                                  tooltip: {
+                                      show: true,
+                                      trigger: 'axis'//根据名称，item根据数量
+                                  },
+                                  legend: {
+                                      show: true,
+                                      left: 'left',
+                                      data: ['数量']//左边的小方块
+                                  },
+                                  xAxis: {
+                                      type: 'category',
+                                      data: data.names
+                                  },
+                                  yAxis: {
+                                      type: 'value'
+                                  },
+                                  series: [
+                                      {
+                                          name: '数量',
+                                          type: 'bar',
+                                          data: data.values
+                                      }
+                                  ]
+                              }
+                              myChart.setOption(option,true);
+                          },error:function () {
+
+                          }
+                      });
+                  });
+              },error:function () {
+                  alert("请求失败");
+              }
+          });
+    }
+    $(function () {
+        getEchar();
+    })
+
+
+</script>
+</html>

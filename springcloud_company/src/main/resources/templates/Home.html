@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>恒大物流有限责任公司</title>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+</head><style type="text/css">
+</style>
+<body>
+<form class="layui-form" id="charFormId">
+<table align="center">
+    <tr>
+        <td><font size="3">当前账户余额:</font></td>
+        <td><font size="3" color="red"><span th:text="${f.accountbBalance}" id="accountbBalance"></span></font>元</td>
+    </tr>
+    <tr>
+        <td><font size="3">当前待审核提现金额:</font></td>
+        <td><font size="3" color="red"><span th:text="${f.sumAmount}" id="sumAmount"></span></font>元</td>
+    </tr>
+    <tr>
+        <td><font size="3">当前可提现金额:</font></td>
+        <td><font size="3" color="red"><span th:text="${f.availableAmount}" id="availableAmount"></span></font>元</td>
+    </tr>
+    <tr>
+        <td><font color="red">*</font><font size="5">请输入本次提现金额:</font></td>
+        <td>
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="number" onchange="ManAmount()" name="amount" id="AmountId" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid"><font size="3">元</font></div>
+            </div>
+        </td>
+        <td>
+            <font color="red"><span id="TipsId"></span></font>
+        </td>
+    </tr>
+    <tr>
+        <td><font size="3">本次提现手续费:</font></td>
+        <td><font size="3" color="red"><span id="Handling"></span></font></td>
+    </tr>
+    <tr>
+        <td><font size="3">实际到账金额:</font></td>
+        <td><font size="3" color="red"><span id="accountId"></span></font></td>
+    </tr>
+    <tr>
+        <td>选择要收账的银行卡：</td>
+        <td>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <select id="bankCardsId" lay-filter="aihao" name="bankCards">
+                        <option value="">--请选择--</option>
+                    </select>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><font color="red">*</font><font size="3"></font>提现密码：</td>
+        <td>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="password" name="withdrawalPassword" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <div style="width: 216px; margin: 0;">
+                <!-- layui 2.2.5 新增 -->
+                <button type="button" class="layui-btn layui-btn-fluid" onclick="subbMit()">&#x1005;提交申请</button>
+            </div>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form;
+        form.render();
+    });
+    ManAmount = function(){
+        if($("#AmountId").val() > 2){
+            var i = $("#AmountId").val() * 0.01;
+            var o = $("#AmountId").val() - $("#AmountId").val() * 0.01;
+            $("#Handling").text(i+"元");
+            $("#accountId").text(o+"元");
+            $("#TipsId").text("")
+        }else {
+            $("#TipsId").text("❗提现金额必须大于2.00元");
+        }
+        }
+    $(function(){
+        getInquireAboutBankCards();
+    })
+    getInquireAboutBankCards = function(){
+        $.ajax({
+            url:"getInquireAboutBankCards",
+            success:function(data){
+                var op = "<option>--请选择--</option>";
+                for(var i=0;i<data.length;i++){
+                    op += "<option value='"+data[i].bankCardsNumber+"'>"+data[i].bankCardsNumber+"</option>";
+                }
+
+                $("#bankCardsId").html(op);
+                layui.form.render("select");
+            }
+        })
+    }
+    subbMit = function(){
+        var form = new FormData($("#charFormId")[0]);
+        $.ajax({
+            url:"addCash",
+            type:"post",
+            data:form,
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(data){
+                alert(data);
+                location.herf="/goCash";
+            },
+            error:function(){
+                alert("注册失败！程序有问题！");
+            }
+        })
+    }
+</script>
+</html>

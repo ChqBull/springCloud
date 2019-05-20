@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务报表</title>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script src="/echarts/echarts-4.0.js"></script>
+    <script src="/echarts/echarts-util.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>筛选条件</legend>
+</fieldset>
+    <form class="layui-form" id="FinancialForm">
+        <div class="layui-form-item">
+            <div class="ayui-inline">
+                <label class="layui-form-label">交易号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="tradingNumber" id="tradingNumber" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">交易日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="tradingDate" id="tradingDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收支类型</label>
+            <div class="layui-input-block">
+                <input type="radio" name="budgetType" value="0" title="全部" checked="">
+                <input type="radio" name="budgetType" value="1" title="支出">
+                <input type="radio" name="budgetType" value="2" title="收入">
+                <input type="radio" name="budgetType" value="3" title="禁用" disabled="">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <button class="layui-btn" type="button" data-type="reload" id="find"><i class="layui-icon" >&#xe6b2;筛选</i></button>
+            <button class="layui-btn layui-btn-sm" id="reset"><i class="layui-icon">&#xe64f;重置</i></button>
+            <button class="layui-btn layui-btn-sm" type="button" id="ExcelDownloadsId"><i class="layui-icon">&#xe674;导出</i></button>
+        </div>
+    </form>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>搜索结果</legend>
+</fieldset>
+<div>
+    <table class="layui-hide" id="FinancialTable"></table>
+    <div id="Paging"></div>
+</div>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>直观图</legend>
+</fieldset>
+<center>
+<div id="ChartId" style="width:600px;height: 300px"></div>
+</center>
+</body>
+<script>
+    function getEchar(){
+        var ChartId = document.getElementById('ChartId');
+        var myChart= echarts.init(ChartId);
+        $.ajax({
+            url:"/getWithdrawal",
+            type:"post",
+            success:function (data) {
+                var option = {
+                    color: ['#3398DB'],
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : data.appDate,
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'直接访问',
+                            type:'bar',
+                            barWidth: '60%',
+                            data:data.values
+                        }
+                    ]
+                };
+                myChart.setOption(option,true);
+            },error:function () {
+                alert("请求失败");
+            }
+        });
+    }
+    $(function () {
+        getEchar();
+    })
+</script>
+<script>
+    function find(){
+        $('#FinancialTable').datagrid('reload', myserialize($("#FinancialForm")));
+    }
+    //拼接条件查询
+    function myserialize (obj) {
+        var o = {};
+        var a = obj.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        console.log(o);
+        return o;
+    };
+    layui.use(['table','form', 'laydate'], function(){
+        var table = layui.table
+            ,form = layui.form
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#tradingDate'
+        });
+        form.render();
+        table.render({
+            elem: '#FinancialTable'
+            ,url:'/getFinancialStatement'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,id:'testReload'
+            ,limits : [2,4,6,8]
+            ,limit : 2
+            ,page:true
+            ,cols: [
+                [
+                ,{type:'numbers'}
+                ,{type: 'checkbox'}
+                ,{field:'tradingNumber', title: '交易号', sort: true}
+                ,{field:'tradingDate', title: '交易日期', sort: true}
+                ,{field:'transactionAmount', title: '交易金额', sort: true}//minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'transactionType', title: '交易类型', sort: true}
+                ,{field:'budgetType', title: '收支类型', sort: true}
+                ,{field:'note', title: '备注'}
+            ]
+            ]
+            ,done: function(res, curr, count){
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                //console.log(res);
+                //得到当前页码
+                //console.log(curr);
+                //得到数据总量
+                //console.log(count);
+                $(".layui-table-box").find("[data-field='cId']").css("display","none");
+                $("[data-field='budgetType']").children().each(function(){
+                    if($(this).text()=='1'){
+                        $(this).text("支出")
+                    }else if($(this).text()=='2'){
+                        $(this).text("收入")
+                    }
+                });
+            }
+        });
+        var $ = layui.$, active = {
+            reload: function(){
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        budgetType: $("input[name='budgetType']:checked").val()
+                        ,tradingNumber:$("#tradingNumber").val()
+                        ,tradingDate:$("#tradingDate").val()
+                    }
+                });
+            }
+        };
+        $('#find').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+    $("#ExcelDownloadsId").click(function () {
+        location.href="fianExcelDownloadsPoi";
+    })
+
+</script>
+</html>
