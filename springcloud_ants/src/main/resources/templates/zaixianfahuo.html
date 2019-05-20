@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918" />
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css" />
+
+
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/layui/city-picker.css"/>
+
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/layui/city-picker.data.js"></script>
+    <script src="/layui/city-picker.js"></script>
+
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+
+<div  data-options="iconCls:'icon-add',modal:true,closed:true,
+    buttons:[{
+        text:'关闭',
+        handler:function(){
+       buy();
+        }
+    }]
+   " style="width:900px;height:800px"  class="easyui-dialog" id="myDialog" >
+    <table  id="operatorTable"></table>
+
+</div>-->
+
+
+
+
+
+
+<!--最上层欢迎信息-->
+<div class="top">
+    <div class="wrap">
+        <div class="top-left" id="userstatus">您好，欢迎使用绿蚂蚁干线物流B2B平台！<a href="http://www.lvmae.com/member/login.php"
+                                                                     rel="nofollow">登录</a><a
+                href="http://www.lvmae.com/member/register.php" rel="nofollow">注册</a></div>
+        <div class="top-right">
+            <ul class="item-list">
+                <li class="item">当前城市：</li>
+                <li class="item top-area dropdown">
+                    <div class="top-area-content dropdown-box">
+                        <span class="main-color" id="selectArea">深圳</span>
+                    </div>
+                </li>
+                <li class="item"><span class="icon icons-position"></span></li>
+                <li class="item tel-app dropdown">
+                    <div class="tel-app-content dropdown-box">
+                        &nbsp;&nbsp;<span class="icons-photo"></span>&nbsp;<span>手机APP</span>&nbsp;<span
+                            class="icons-arrow-down"></span>&nbsp;&nbsp;
+                    </div>
+
+                </li>
+                <li class="item dropdown top-wx">
+                    <div class="dropdown-box">
+                        &nbsp;&nbsp;<span class="icons-wx"></span>&nbsp;微信号&nbsp;<span class="icons-arrow-down"></span>&nbsp;&nbsp;
+                    </div>
+
+                </li>
+                <li class="item"><a
+                        href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA1NjQwNF8zNjU3MzlfODAwMDU2NDA0XzJf"
+                        class="icons-qq" onclick="" target="_blank" title="点击这里给我发消息">&nbsp;</a></li>
+                <li class="item"><a
+                        href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA1NjQwNF8zNjU3MzlfODAwMDU2NDA0XzJf"
+                        target="_blank">客户服务</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header-content">
+    <div class="wrap">
+        <div class="logo icons-logo fl"><a href="http://www.lvmae.com/" title="上绿蚂蚁发货，说走就走">上绿蚂蚁发货，说走就走</a></div>
+        <div class="icons-wuli fr" style="background-image:none;">
+            <script type="text/javascript" src="http://www.lvmae.com/file/script/A47.js"></script>
+        </div>
+    </div>
+</div>
+
+<ul class="layui-nav layui-bg-green" align="center">
+    <li class="layui-nav-item"><a href="">首页</a></li>
+    <li class="layui-nav-item"><a href="">物流专线</a></li>
+    <li class="layui-nav-item"><a href="">在线发货</a></li>
+    <li class="layui-nav-item"><a href="">国际海运</a></li>
+    <li class="layui-nav-item"><a href="">物流公司</a></li>
+    <li class="layui-nav-item"><a href="">物流新闻</a></li>
+    <li class="layui-nav-item"><a href="">物流招标</a></li>
+    <li class="layui-nav-item"><a href="">在线购买</a></li>
+    <li class="layui-nav-item"><a href="">个人中心</a></li>
+</ul>
+<div class="substation-box">
+    <div class="substation">
+        <div class="sub-title">分站</div>
+        <a class="sub-link-01" href="http://bj.lvmae.com/" target="_blank">北京</a>
+        <a class="sub-link-01" href="http://sh.lvmae.com/" target="_blank">上海</a>
+        <a class="sub-link-01" href="http://tj.lvmae.com/" target="_blank">天津</a>
+        <a class="sub-link-01" href="http://gd.lvmae.com/" target="_blank">广东</a>
+        <a class="sub-link-01" href="http://hb.lvmae.com/" target="_blank">河北</a>
+        <a class="sub-link-01" href="http://shanxi.lvmae.com/" target="_blank">山西</a>
+        <a class="sub-link-01" href="http://ln.lvmae.com/" target="_blank">辽宁</a>
+        <a class="sub-link-01" href="http://jl.lvmae.com/" target="_blank">吉林</a>
+        <a class="sub-link-01" href="http://js.lvmae.com/" target="_blank">江苏</a>
+        <a class="sub-link-01" href="http://zj.lvmae.com/" target="_blank">浙江</a>
+        <a class="sub-link-01" href="http://ah.lvmae.com/" target="_blank">安徽</a>
+        <a class="sub-link-01" href="http://fj.lvmae.com/" target="_blank">福建</a>
+        <a class="sub-link-01" href="http://jx.lvmae.com/" target="_blank">江西</a>
+        <a class="sub-link-01" href="http://sd.lvmae.com/" target="_blank">山东</a>
+        <a class="sub-link-01" href="http://henan.lvmae.com/" target="_blank">河南</a>
+        <a class="sub-link-01" href="http://hubei.lvmae.com/" target="_blank">湖北</a>
+        <a class="sub-link-01" href="http://hunan.lvmae.com/" target="_blank">湖南</a>
+        <a class="sub-link-01" href="http://gx.lvmae.com/" target="_blank">广西</a>
+        <a class="sub-link-01" href="http://hainan.lvmae.com/" target="_blank">海南</a>
+        <a class="sub-link-01" href="http://zq.lvmae.com/" target="_blank">重庆</a>
+        <a class="sub-link-01" href="http://sc.lvmae.com/" target="_blank">四川</a>
+        <a class="sub-link-01" href="http://gz.lvmae.com/" target="_blank">贵州</a>
+        <a class="sub-link-01" href="http://yn.lvmae.com/" target="_blank">云南</a>
+        <a class="sub-link-01" href="http://xc.lvmae.com/" target="_blank">西藏</a>
+        <a class="sub-link-01" href="http://sx.lvmae.com/" target="_blank">陕西</a>
+        <a class="sub-link-01" href="http://gs.lvmae.com/" target="_blank">甘肃</a>
+        <a class="sub-link-01" href="http://qh.lvmae.com/" target="_blank">青海</a>
+        <div class="sub-more">更多
+            <div class="sub-more-body"><a class="sub-link-01" href="http://nx.lvmae.com/" target="_blank">宁夏</a>
+                <a class="sub-link-01" href="http://hlj.lvmae.com/" target="_blank">黑龙江</a>
+                <a class="sub-link-01" href="http://nmg.lvmae.com/" target="_blank">内蒙古</a>
+                <a class="sub-link-01" href="http://xj.lvmae.com/" target="_blank">新疆</a>
+                <a class="sub-link-01" href="http://hk.lvmae.com/" target="_blank">香港</a>
+                <a class="sub-link-01" href="http://tw.lvmae.com/" target="_blank">台湾</a>
+                <a class="sub-link-01" href="http://am.lvmae.com/" target="_blank">澳门</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-main">
+    <div class="bz-box step-1">
+        <div class="line-gray"></div>
+        <div class="line-orage"></div>
+        <span class="icons-f0 icons-s1"></span>
+        <span class="icons-f0 icons-s2"></span>
+        <span class="icons-f0 icons-s3"></span>
+        <span class="icons-f0 icons-s4"></span>
+        <span class="icons-f1 icons-f-1 icons-s1"></span>
+        <span class="icons-f1 icons-f-2 icons-s2"></span>
+        <span class="icons-f1 icons-f-3 icons-s3"></span>
+        <span class="icons-f1 icons-f-4 icons-s4"></span>
+        <div class="text-1">填写订单</div>
+        <div class="text-2">提交订单,等待处理</div>
+        <div class="text-3">物流公司处理</div>
+        <div class="text-4">完成</div>
+    </div>
+    <div class="title-2">
+        <strong>发货方</strong>
+        <span>填写完整、准确的信息，物流跟进更及时</span>
+    </div>
+    <form class="layui-form layui-form-pane" id=dingdanForm"">
+       <div class="layui-input-inline">
+            <div class="layui-form-item"  >
+                <label class="layui-form-label" >出发地：</label>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="shengId"  lay-filter="sheng1" id="sheng1">
+                        <option value="">请选择省</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="shiId"  lay-filter="shi1" id="shi1">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="statrsquId" lay-filter="xian1" id="xian1">
+                        <option value="" selected>区</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item  count" >
+                <label class="layui-form-label" >到达地：</label>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="shengId"  lay-filter="sheng2" id="sheng2">
+                        <option value="">请选择省</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="shiId"  lay-filter="shi2" id="shi2">
+                        <option value="">市</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 100px">
+                    <select name="endquId" lay-filter="xian2" id="xian2">
+                        <option value="" selected>区</option>
+
+                    </select>
+                </div>
+            </div>
+         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系人</label>
+            <div class="layui-input-inline">
+                <input type="text"  id="consigner" name="consigner"  placeholder="请输入" autocomplete="off" class="layui-input"    lay-verify="required"/>
+            </div>
+
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="phone" id="phone" placeholder="请输入手机号" autocomplete="off" class="layui-input"    lay-verify="phone"/>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">货物名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="cargoName" id="cargoName" placeholder="请输入货物名称" autocomplete="off" class="layui-input" lay-verify="required"/>
+            </div>
+
+
+            <div class="layui-form-mid">
+                <h6><a href="http://info.56.hc360.com/2016/03/2211501201.shtml" target="_blank">禁用品说明</a></h6>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">货物信息</label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="cargoWeight" id="cargoWeight" autocomplete="off" class="layui-input"
+                           placeholder="请输入重量"/>
+                </div>
+                <div class="layui-form-mid layui-word-aux">公斤</div>
+
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="cargoBulk" autocomplete="off" id="cargoBulk" class="layui-input" placeholder="请输入立方米"/>
+
+                </div>
+                <div class="layui-form-mid layui-word-aux">立方米</div>
+                <div class="layui-form-mid">
+                    <span class="gray fl">&nbsp;&nbsp;&nbsp;&nbsp;注：用于估算运费&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </div>
+                <div class="layui-form-mid">
+                    <a href="https://zhidao.baidu.com/question/2080138432968266028.html" target="_blank"><span
+                            style="color:blue">什么是重货轻货？</span></a>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">单价</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cargoPrice" id="cargoPrice" onblur="jisuan()" autocomplete="off"
+                           class="layui-input"/>
+                </div>
+
+            </div>
+        </div>
+   <HR align="center" width="600" color="#987cb9" SIZE="1" />
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">其他说明</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入其他说明" class="layui-textarea" id="fahuoExplain" name="fahuoExplain"></textarea>
+            </div>
+        </div>
+        <div class="mt20">预估总额：
+            <span class="bold color-1"  id="paycount"
+                  style="font-size:20px;margin-right:10px">0元</span>(未包括提货和送货价格)
+            <input   type="hidden"  name="paycount" id="aa" />
+        </div>
+        <div class="color-1">注：此价格与时效仅供参考，准确报价以物流承运商实际费用为准</div>
+
+        <div lass="layui-form-item">
+            <div class="layui-input-block"  id="dialog">
+                <button class="layui-btn" type="button"  onclick="tijiao()">提交订单</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+
+    function jisuan() {
+        var cargoWeight = $("#cargoWeight").val();
+        var cargoPrice = $("#cargoPrice").val();
+        var jieguo = cargoWeight * cargoPrice;
+
+
+        var span = document.getElementById("paycount")
+        span.innerHTML = jieguo;
+
+        $("#aa").val(jieguo)
+    }
+
+
+
+    function  tijiao() {
+        var consigner = $('#consigner').val();
+        var phone = $('#phone').val();
+        var cargoName = $('#cargoName').val();
+        var cargoWeight = $('#cargoWeight').val();
+        var cargoBulk =  $('#cargoBulk').val();
+        var fahuoExplain =  $('#fahuoExplain').val();
+        var xian1 = $('#xian1').val();
+        var xian2 = $('#xian2').val();
+       var paycount=$("#aa").val();
+        var from=   $("#dingdanForm").serialize();
+        alert($("#cargoBulk").val());
+        $.ajax({
+            url:"/addDingdan",
+            data:{
+               consigner:consigner,
+                phone:phone,
+                cargoName:cargoName,
+                cargoWeight:cargoWeight,
+                cargoBulk:cargoBulk,
+                fahuoExplain:fahuoExplain,
+                statrsquId:xian1,
+                endquId:xian2,
+                paycount:paycount,
+            },
+            type:"post",
+            success:function (msg) {
+               /* opendialog();*/
+
+                    opendialog();
+
+            },error:function () {
+
+            }
+
+        })
+
+    }
+
+    function opendialog(){
+
+
+    layer.open({
+        area: ['800px', '800px'],
+        title: "详细数据",
+        fixed: true, //不固定
+        maxmin: true,
+        shade: 0.3,
+        skin: 'layui-layer-rim',
+        type: 2,
+        shadeClose: true,
+        content: '/toOperatorDialog' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+    });
+    return false;
+
+    }
+
+
+
+    //出发地
+  layui.use('form', function () {
+        var form = layui.form;
+
+      //验证
+      form.verify({
+
+
+          hone: [/^1[3|4|5|7|8]\d{9}$/, '手机必须11位，只能是数字！']
+
+
+      });
+        form.render();
+
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    $("#sheng1").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+
+                }
+                form.render("select");
+            },
+            "json"
+        )
+
+        //追加发货地的市
+        form.on('select(sheng1)', function (data) {
+            $("#shi1").empty();//当省发生改变把以前市区的数据清空
+            $("#shi1").append($("<option value='0'>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian1").empty();//一起把以前县的数据清空
+            $("#xian1").append($("<option value='0'> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#shi1").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(shi1)', function (data) {
+            $("#xian1").empty();//当市区发生该变把以前县的数据清空
+            $("#xian1").append($("<option value='0'> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#xian1").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        })
+
+//到达查询
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    $("#sheng2").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+
+                }
+                form.render("select");
+            },
+            "json"
+        )
+
+        //追加发货地的市
+        form.on('select(sheng2)', function (data) {
+            $("#shi2").empty();//当省发生改变把以前市区的数据清空
+            $("#shi2").append($("<option value='0'>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian2").empty();//一起把以前县的数据清空
+            $("#xian2").append($("<option value='0'> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#shi2").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(shi2)', function (data) {
+            $("#xian2").empty();//当市区发生该变把以前县的数据清空
+            $("#xian2").append($("<option value='0'> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#xian2").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        })
+
+
+    })
+
+
+
+
+</script>
+</html>

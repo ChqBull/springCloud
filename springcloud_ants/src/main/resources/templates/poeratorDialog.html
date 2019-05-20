@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+
+</head>
+<body>
+<!--&lt;!&ndash;数据表格的开始&ndash;&gt;
+<fieldset class="layui-elem-field">
+    <legend>运营商查询</legend>
+    <div class="layui-field-box">
+        <table class="layui-hide" id="opeartorTable" lay-filter="test"></table>
+    </div>
+</fieldset>-->
+<!--数据表格的结束-->
+<table class="layui-hide" id="test" lay-filter="test"></table>
+</body>
+<script type="text/html" id="usernameTpl">
+
+    <a href='javascript:;'  class="layui-table-link" target="_blank" onclick=showContent('{{d.companyName}}') >{{d.companyName}}</a>
+</script>
+<script>
+
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'findOperator'
+            ,cols: [
+                [
+                {field:'companyName', width:100, title: '用户名',templet: '#usernameTpl'}
+                ,{field:'basicPrice', width:100, title: '起步价'}
+                ,{field:'haveyPrice', width:100, title: '重货',templet:function (d) {
+                        return d.haveyPrice+"元/公斤"
+                    }}
+
+                ,{field:'lightPrice', width:100, title: '轻货',templet:function (d) {
+                        return d.lightPrice+"元/m³"
+                    }}
+                ,{field:'transtime', width:125, title: '时效',templet:function (d) {
+                        return d.transtime+"小时"
+                    }}
+
+            ]
+            ]
+            ,page: true
+
+
+        });
+
+
+    });
+           function showContent(name) {
+               location.href="tocargodetails?name="+name;
+
+           }
+
+
+
+
+
+</script>
+</html>

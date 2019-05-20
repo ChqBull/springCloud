@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.CargoMapper">
+    <insert id="saveCargo">
+      insert into lineTable (consigner,phone,cargoName,cargoWeight,cargoBulk,cargoPrice,fahuoExplain,shouhuo,shphone,shlxphone,paycount,quhuoWay,shGoods,zhifuWay,dzxq,shengId,shiId,quId,ddid,companyId)
+      values(#{consigner},#{phone},#{cargoName},#{cargoWeight},#{cargoBulk},#{cargoPrice},#{fahuoExplain},#{shouhuo},#{shphone},#{shlxphone},#{paycount},#{quhuoWay},#{shGoods},#{zhifuWay},#{dzxq},#{shengId},#{shiId},#{quId},#{ddid},#{companyId})
+  </insert>
+    <insert id="addDingdan">
+        insert  into lineTable(ddid,consigner,phone,cargoName,cargoWeight,cargoBulk,fahuoExplain,statrsquId,endquId,paycount)
+        values (#{ddid},#{consigner},#{phone},#{cargoName},#{cargoWeight},#{cargoBulk},#{fahuoExplain},#{statrsquId},#{endquId},#{paycount})
+    </insert>
+
+   <select   id="findcargoByRoleId" resultType="com.jk.bean.OrderBean">
+    SELECT  a.*,b.*  from lineTable  a  LEFT JOIN
+      t_company b  on a.companyId = b.companyId
+  where id = (select max(id) from lineTable)
+    </select>
+
+    <select   id="findOperator" resultType="com.jk.bean.OrderBean">
+   SELECT a.*,b.companyName  FROM lineTable a LEFT JOIN
+      t_company  b on a.companyId=b.companyId
+      limit #{page},#{limit}
+
+    </select>
+   <!-- <select id="getAre" resultType="com.jk.bean.AreCitPro">
+        select * from areas a,cities c,provinces p where
+        a.cityid = c.cityid and c.provinceid = p.provinceid
+        and a.areaid = #{o}
+    </select>-->
+</mapper>
