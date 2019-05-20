@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud_register" />
+        <module name="springcloud_config" />
+        <module name="springcloud_antsam" />
+        <module name="springcloud_company" />
+        <module name="springcloud_ants" />
+        <module name="proandcounties (1)" />
+        <module name="proandcounties" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="proandcounties" target="1.8" />
+      <module name="proandcounties (1)" target="1.8" />
+      <module name="springcloud_ants" target="1.8" />
+      <module name="springcloud_antsam" target="1.8" />
+      <module name="springcloud_company" target="1.8" />
+      <module name="springcloud_config" target="1.8" />
+      <module name="springcloud_register" target="1.8" />
+      <module name="springcloud_register (1)" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="proandcounties (1)" options="" />
+      <module name="springcloud_antsam" options="" />
+      <module name="springcloud_register (1)" options="" />
+    </option>
+  </component>
+</project>

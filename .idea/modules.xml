@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/proandcounties/proandcounties.iml" filepath="$PROJECT_DIR$/proandcounties/proandcounties.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/springColud.iml" filepath="$PROJECT_DIR$/.idea/springColud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_ants/springcloud_ants.iml" filepath="$PROJECT_DIR$/springcloud_ants/springcloud_ants.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_antsam/springcloud_antsam.iml" filepath="$PROJECT_DIR$/springcloud_antsam/springcloud_antsam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_company/springcloud_company.iml" filepath="$PROJECT_DIR$/springcloud_company/springcloud_company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_config/springcloud_config.iml" filepath="$PROJECT_DIR$/springcloud_config/springcloud_config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_register/springcloud_register.iml" filepath="$PROJECT_DIR$/springcloud_register/springcloud_register.iml" />
+    </modules>
+  </component>
+</project>
