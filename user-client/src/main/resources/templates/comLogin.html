@@ -23,12 +23,13 @@
     <script src="/layui/jquery-1.8.0.js"></script>
 </head>
 <body>
+<div>
     <form class="layui-form" action="" id="loginForm">
+        <input type="text" name="usertype" autocomplete="off" class="layui-input" th:value="${userBean.usertype}">
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-inline">
                 <input type="text" name="phoneNumber"  placeholder="请输入用户名" autocomplete="off" class="layui-input"    lay-verify="required"/>
-                <input th:value="${usertype}"  type="text" id="phoneNumberId">
             </div>
         </div>
         <div class="layui-form-item">
@@ -39,10 +40,11 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input   type="button" onclick="comLogin()" value="登录"/>
+                <button class="layui-btn"  type="button" lay-filter="formDemo" onclick="comLogin()">登录</button>
             </div>
         </div>
     </form>
+</div>
 </body>
 <script>
     function comLogin() {
@@ -54,12 +56,14 @@
             success:function(data){
                /* alert(data);*/
                 if(data.code != 0){
-                    $.messager.alert('提示',data.msg,'error');
+                    layer.msg(data.msg);
                 }else{
                     window.location.href="/main";
                 }
             }
         })
     }
+
+
 </script>
 </html>

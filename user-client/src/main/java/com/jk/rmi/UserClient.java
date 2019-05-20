@@ -32,12 +32,15 @@ public interface UserClient {
    @RequestMapping("reg")
    HashMap<String, Object> saveUser(@RequestBody UserBean userBean,@RequestParam("phonecode") String phonecode);
 
-   // 前台登录+记住密码     usertype 1发货方,2物流公司
+   // 前台登录,后台登录+记住密码     usertype 1发货方,2物流公司
    @RequestMapping("login")
-   /*@TimedInterrupt(value = 300L, unit = TimeUnit.SECONDS)*/
-    HashMap<String, Object> login(@RequestBody UserBean userBean);
+   UserBean login(@RequestBody UserBean userBean);
 
-   //后台登录+记住密码   usertype 1发货方,2物流公司
+   /*手机登录*/
+   @RequestMapping("phoneLogin")
+   HashMap<String, Object> phoneLogin(@RequestBody UserBean userBean,@RequestParam("phonecode") String phonecode);
+
+ /*  //后台登录+记住密码   usertype 1发货方,2物流公司
    @RequestMapping("comLogin")
-   HashMap<String, Object> comLogin(@RequestBody UserBean userBean);
+   HashMap<String, Object> comLogin(@RequestBody UserBean userBean);*/
 }

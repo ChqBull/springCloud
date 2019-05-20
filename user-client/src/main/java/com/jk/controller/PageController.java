@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.pojo.UserBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ public class PageController {
     /*蚂蚁前台登录去的页面*/
     @RequestMapping("main")
     public String mian(){
-        return "main";
+        return "wuLiuMain";
     }
 
 
@@ -22,8 +23,8 @@ public class PageController {
 
     /*后台登录*/
     @RequestMapping("comLoginList")
-    public String comLogin(Model model,Integer usertype){
-        model.addAttribute("usertype",usertype);
+    public String comLogin(Model model, UserBean userBean){
+        model.addAttribute("userBean",userBean);
         return "comLogin";
     }
 
@@ -38,5 +39,10 @@ public class PageController {
     public String regsFaHuo(Model model,Integer usertype){
         model.addAttribute("usertype",usertype);
         return "faHuoAndwuLiu";
+    }
+    /*手机登录*/
+    @RequestMapping("toPhoneLogin")
+    public String toPhoneLogin(){
+        return "phoneLogin";
     }
 }
