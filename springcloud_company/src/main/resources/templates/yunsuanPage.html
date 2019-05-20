@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>受理订单</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" >
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+    <script src="/layui/jquery-1.8.0.js"></script>
+
+</head>
+<!--显示待受理的订单数据以及预估运费总额-->
+<div>
+    <!--待受理的订单-->
+    <i class="layui-icon layui-icon-rate-solid" style="font-size: 30px; color: black"></i><font size="5px">待受理的订单(<span th:text="${count}"></span>)</font>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="5px">
+</div>
+
+<!--筛选条件开始-->
+
+<!--筛选开始-->
+
+<div class="demoTable">
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>筛选条件</legend>
+    </fieldset>
+    <!--订单号发货人姓名发货人手机查询-->
+    <select name="chaxunshu" lay-verify="" id="select1">
+        <option value="0">选择条件查询</option>
+        <option value="1">订单号</option>
+        <option value="2">发货人姓名</option>
+        <option value="3">发货人手机号</option>
+    </select><input type="text" name="chaxunreal" placeholder="请输入标题" id="chaxun1">
+    是否上门提货： <select name="quehuoWay" id="select2" lay-verify="">
+    <option value="0">全部订单</option>
+    <option>需要上门取货</option>
+    <option>无需上门取货</option>
+</select>
+    支付状态：<select name="zhifuWay" id="select3" lay-verify="">
+    <option value="0">全部订单</option>
+    <option>已付款</option>
+    <option>代付款</option>
+    <option>运费到付</option>
+</select>
+    </br>
+    <!--第二行条件查询-->
+    <!--三级联动-->
+    <select name="diqu" lay-verify="" id="seleDiqu">
+        <option value="0">请选择</option>
+        <option value="1">按发货地</option>
+        <option value="2">按收货地</option>
+    </select>
+    <!--三级联动开始-->
+    <form class="layui-form" action="" lay-filter="example">
+        <div class="layui-form-item">
+
+            <div class="layui-input-inline">
+                <select lay-filter="sheng" id="sheng" >
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select lay-filter="shi" id="shi">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select lay-filter="xian" id="xian">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <!--三级联动结束-->
+
+    <!--开始了时间验证-->
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">下单时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="test1" name="startDate" placeholder="yyyy-MM-dd">
+                </div>
+                <label class="layui-form-label">截止下单:</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="test2" name="endDate" placeholder="yyyy-MM-dd">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--日期样式结束-->
+
+    <!--提交按钮开始-->
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <!--<button class="layui-btn" lay-submit="" lay-filter="demo1">筛选</button>-->
+            <button class="layui-btn" data-type="reload" lay-filter="demo1" id="button1">筛选</button>
+            <button  class="layui-btn layui-btn-primary" id="reset">重置</button>
+        </div>
+    </div>
+    <!--提交按钮结束-->
+</div>
+<!--排序规则开始-->
+<fieldset class="layui-elem-field">
+    <legend>排序规则</legend>
+    <div class="layui-field-box">
+        <span style="font-family:'Arial Normal', 'Arial';">按下单时间排序</span>&nbsp;&nbsp;
+        <span style="font-family:'Arial Normal', 'Arial';">按线路排序</span>&nbsp;&nbsp;
+        <span style="font-family:'Arial Normal', 'Arial';">按运费金额排序</span>&nbsp;&nbsp;
+        <span style="font-family:'Arial Normal', 'Arial';">按支付状态排序</span>&nbsp;&nbsp;
+        <span style="font-family:'Arial Normal', 'Arial';">按是否上门提货排序</span>
+    </div>
+</fieldset>
+<!--排序规则结束-->
+
+<!--筛选结束-->
+<hr class="layui-bg-blue">
+<!--数据表格的开始-->
+<fieldset class="layui-elem-field">
+    <legend>搜索结果</legend>
+    <div class="layui-field-box">
+        <table class="layui-hide" id="layuitable" lay-filter="test"></table>
+    </div>
+</fieldset>
+<!--数据表格的结束-->
+</body>
+<!--时期格式-->
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        //常规用法
+        laydate.render({
+            elem: '#test1'
+        });
+        var laydate = layui.laydate;
+        //常规用法
+        laydate.render({
+            elem: '#test2'
+        });
+    });
+</script>
+<!--时期格式结束-->
+<!--数据表格的是开始-->
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        table.on('tool(test)', function(obj){ //注：tool是监听表格，test是table原始容器的属性 lay-filter="对应的值"
+            if(obj.event =="edit"){
+                var data = obj.data; //获得当前行数据
+                var kk=data['id'];  //获取属性uid的值
+
+                layer.open({
+                    area: ['700px', '450px'],
+                    title: "详细数据",
+                    fixed: false, //不固定
+                    maxmin: true,
+                    shade: 0.3,
+                    skin: 'layui-layer-rim',
+                    type: 2,
+                    shadeClose: true,
+                    content: '/toyunsuanPage?id='+kk //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                });
+
+
+            }
+        });
+        table.render({
+            elem: '#layuitable'
+            ,url:'queryOrder'
+            ,cols: [
+                [
+                    {field:'id', width:80, title: '订单号', sort: true}
+                    ,{field:'ddid', width:80, title: '订单号', sort: true}
+                    ,{field:'xiadanDate', width:80, title: '下单时间'}
+                    ,{field:'fahuodiqu', width:80, title: '发货地'}
+                    ,{field:'shouhuodiqu', width:80, title: '收货地'}
+                    ,{field:'consigner', width:80,title: '发货人'}
+                    ,{field:'phone', width:80, title: '电话'}
+                    ,{field:'cargoZweight', width:80, title: '重量', sort: true}
+                    ,{field:'cargoBulk', width:80, title: '总体积'}
+                    ,{field:'quhuoWay', width:80, title: '上门提货'}
+                    ,{field:'paycount', width:80, title: '付费金额',sort:true}
+                    ,{field:'zhifuWay', width:80, title: '付费方式',}
+                    ,{field:'ispay', width:80, title: '是否付款'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width:120}
+                ]
+            ]
+            ,id:"testReload"
+            ,page: true
+            ,limits: [1,5,10]  //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
+            ,limit: 5 //每页默认显示的数量
+            ,method:'post'  //提交方式
+        });
+        var $ = layui.$, active = {
+            reload: function(){
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        chaxunshu: $("#select1").val()
+                        ,chaxunreal:$("#chaxun1").val()
+                        ,quhuoWay:$("#select2").val()
+                        ,zhifuWay:$("#select3").val()
+                        ,startDate:$("#test1").val()
+                        ,endDate:$("#test2").val()
+                        ,diqu:$("#seleDiqu").val()
+                        ,pid:$("#sheng").val()
+                        ,cid:$("#shi").val()
+                        ,aid:$("#xian").val()
+
+                    }
+                });
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+    /*重置按钮*/
+    $("#reset").click(function(){
+        location.reload();
+    });
+    /*三级联动*/
+    layui.use('form', function() {
+        var form = layui.form;
+        form.render();
+
+        $.post(
+            "city/findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    $("#sheng1").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                    $("#sheng").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                }
+                form.render("select");
+            },
+            "json"
+        )
+
+        //追加发货地的市
+        form.on('select(sheng)', function (data) {
+            $("#shi").empty();//当省发生改变把以前市区的数据清空
+            $("#shi").append($("<option value='0'>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian").empty();//一起把以前县的数据清空
+            $("#xian").append($("<option value='0'> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "city/findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#shi").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(shi)', function (data) {
+            $("#xian").empty();//当市区发生该变把以前县的数据清空
+            $("#xian").append($("<option value='0'> 请选择</option>"));
+            $.post(
+                "city/findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#xian").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        });
+    })
+    /*三级联动结束*/
+
+
+
+
+
+</script>
+<!--操作的按钮-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" >详细信息</a>
+</script>
+<!--操作按钮结束-->
+<!--数据表格的结束-->
+<script>
+
+
+
+
+</script>
+
+
+
+
+</html>
