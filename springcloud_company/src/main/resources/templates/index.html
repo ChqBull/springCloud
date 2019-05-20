@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>QAQ</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js"></script>
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">5组牛逼</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item" style="font-size: 20px;">绿蚂蚁物流交易平台●承运商TMS</li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test" id="memus"></ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 动态选项卡 -->
+        <div id="tabzu" class="layui-tab layui-tab-card layui-tab-brief" lay-filter="tabDemo" lay-allowclose="true">
+            <ul class="layui-tab-title"></ul>
+            <div class="layui-tab-content"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    function checkLastItem(arr, i) {
+        return arr.length == (i + 1);
+    }
+
+    function getAhtml(obj){
+        return "<a href=\"javascript:;\" onclick=\"addTab('" + obj.name + "','" + obj.url + "')\" >" + obj.name + "</a>";
+    }
+    //动态菜单
+    layui.use('element', function() {
+        function checkLastItem(arr, i) {
+            return arr.length == (i + 1);
+        }
+
+        function getAhtml(obj){
+            return "<a href=\"javascript:;\" onclick=\"addTab('" + obj.name + "','" + obj.url + "')\" >" + obj.name + "</a>";
+        }
+        //动态菜单
+        layui.jquery.ajax({
+            url: "menu/getMenu",
+            method: 'POST',
+            success: function(res) {
+                var html = "";
+                for(var i = 0; i < res.length; i++) {
+                    var strli = "<li class=\"layui-nav-item lay-unselect \" >";
+                    if (res[i].url =='#'){
+                        strli = strli + "<a href=\"javascript:;\">" + res[i].name + "</a>";
+                    }else{
+                        strli = strli + getAhtml(res[i]);
+                    }
+                    if(res[i].pid == "0" && !checkLastItem(res, i) && res[i + 1].pid != "0") {
+                        strli = strli + "<dl class=\"layui-nav-child\" >";
+                        for(; !checkLastItem(res, i) && res[i + 1].pid != "0"; i++) {
+                            strli = strli + "<dd>"+getAhtml(res[i+1])+"</dd>";
+                        }
+                        strli = strli + "</dl>";
+                    }
+                    strli = strli + "</li>";
+                    html = html + strli;
+                }
+                layui.jquery("#memus").html(html);
+                layui.element.init(); //一定初始化一次
+            }
+        })
+    });
+    //添加选项卡
+    function addTab(name, url) {
+        if(layui.jquery(".layui-tab-title li[lay-id='" + name + "']").length > 0) {
+            //选项卡已经存在
+            layui.element.tabChange('tabDemo', name);
+            layer.msg('切换-' + name)
+        } else {
+            //动态控制iframe高度
+            var tabheight = layui.jquery(window).height() - 95;
+            contentTxt = '<iframe src="' + url + '" scrolling="no" width="100%" height="' + (tabheight) + 'PX"></iframe>';
+            //新增一个Tab项
+            layui.element.tabAdd('tabDemo', {
+                title: name,
+                content: contentTxt,
+                id: name
+            })
+            //切换刷新
+            layui.element.tabChange('tabDemo', name)
+            layer.msg('新增-' + name)
+        }
+    }
+</script>
+
+</body>
+</html>

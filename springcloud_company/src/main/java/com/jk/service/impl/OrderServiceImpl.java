@@ -129,4 +129,10 @@ public class OrderServiceImpl implements OrderService {
       public void updatejiesuan(Integer id, Integer status) {
             mapper.updatejiesuan(id,status);
       }
+
+      @Override
+      public List<OrderBean> getpoiOrder() {
+
+            return mapper.getpoiOrder();
+      }
 }

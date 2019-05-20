@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QAQ</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+    <fieldset class="layui-elem-field site-demo-button">
+        <legend style="font-size: 14px;margin-bottom: 10px;">排序规则</legend>
+        <button class="layui-btn layui-btn-xs" style="margin-bottom: 10px;margin-left: 25px;">按下单时间排序</button>
+        <button class="layui-btn layui-btn-xs" style="margin-bottom: 10px;margin-left: 25px;">按结算状态排序</button>
+        <button class="layui-btn layui-btn-xs" style="margin-bottom: 10px;margin-left: 25px;">按运费金额排序</button>
+    </fieldset>
+    <fieldset class="layui-elem-field site-demo-button">
+        <legend style="font-size: 14px;margin-bottom: 10px;">搜索结果</legend>
+        <table id="demo" lay-filter="test"></table>
+    </fieldset>
+    <script type="text/html" id="zizeng">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    <script type="text/html" id="time">
+        {{layui.util.toDateString(d.ordertime, 'yyyy-MM-dd HH:mm')}}
+    </script>
+
+</body>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        //第一个实例
+        table.render({
+             elem: '#demo'
+            ,height: 312
+            ,url: 'freight/findFreightAll' //数据接口
+            ,totalRow: true //开启合计行
+            ,page: true //开启分页
+            ,limits: [3,6,9]
+            ,limit: 3
+            ,cols: [ [ //表头
+                 {type: 'checkbox', fixed: 'left'}
+                ,{field: '', title: '序号', width:80, templet:'#zizeng'}
+                ,{field: 'orderNum', title: '订单号', width:150}
+                ,{field: 'orderTime', title: '下单时间', width:200, templet:"#time"}
+                ,{field: 'estimateFreight', title: '预估费用', width:150}
+                ,{field: 'serviceCharge', title: '服务费', width: 150}
+                ,{field: 'settlementAmount', title: '结算金额', width: 150}
+                ,{field: 'status', title: '结算状态', width: 150, templet: function (item) {
+                        if (item.status == '1') {
+                            return "待结算";
+                        } else if (item.status == '2') {
+                            return "已结算";
+                        }
+                    }
+                }
+
+            ] ]
+
+
+        });
+
+    });
+</script>
+</html>

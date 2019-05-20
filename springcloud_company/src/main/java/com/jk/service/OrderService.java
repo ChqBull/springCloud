@@ -31,4 +31,6 @@ public interface OrderService {
     void updateddshouqu(Integer id, Integer status);
     //是否结算的方法
     void updatejiesuan(Integer id, Integer status);
+
+    List<OrderBean> getpoiOrder();
 }

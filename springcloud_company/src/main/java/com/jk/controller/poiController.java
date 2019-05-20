@@ -1,4 +1,4 @@
-/*
+
 package com.jk.controller;
 
 import com.jk.bean.OrderBean;
@@ -28,7 +28,7 @@ public class poiController {
 
         //创建表头
         setTitle(workbook, sheet);
-        List<OrderBean> answers = service.getOrder();
+        List<OrderBean> answers = service.getpoiOrder();
 
 
         //新增数据行，并且设置单元格数据
@@ -56,13 +56,6 @@ public class poiController {
         os.close();
     }
 
-
-    */
-/***
-     * 设置表头
-     * @param workbook
-     * @param sheet
-     *//*
 
     private void setTitle(HSSFWorkbook workbook, HSSFSheet sheet){
         HSSFRow row = sheet.createRow(0);
@@ -101,4 +94,4 @@ public class poiController {
         cell.setCellStyle(style);
     }
 }
-*/
+

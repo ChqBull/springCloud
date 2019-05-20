@@ -32,4 +32,6 @@ public interface OrderMapper {
  void updateddshouqu(@Param("id") Integer id, @Param("status") Integer status);
 // 结算时间
  void updatejiesuan(@Param("id") Integer id, @Param("status") Integer status);
+@Select("select * from lineTable")
+    List<OrderBean> getpoiOrder();
 }
