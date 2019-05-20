@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/layui/css/layui.css" >
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+    <script src="/layui/jquery-1.8.0.js"></script>
+</head>
+<body>
+
+<div>
+    <i class="layui-icon layui-icon-spread-left" style="font-size: 10px; color: black"></i><font size="2px">订单号：<span th:text="${o.ddid}"></span></font>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2px">下单时间:<span  th:text="${o.xiadanDate}"></span></font>
+    出发地: <i class="layui-icon layui-icon-release" style="font-size: 10px; color: black"></i><span th:text="${o.fahuodiqu}"></span>
+    收货地：<i class="layui-icon layui-icon-release" style="font-size: 10px; color: black"></i><span th:text="${o.shouhuodiqu}"></span>
+    <div id="div1">
+        <input type="hidden" th:value="${o.id}" id="text1">
+        <button class="layui-btn layui-btn-primary layui-btn-radius" onclick="ceshi()" style="background: #00FF00">已结算</button>
+    </div>
+    <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+        <button data-method="notice" class="layui-btn layui-btn-danger" onclick="jujue()">待结算</button>
+    </div>
+
+</div>
+<!--发货人信息-->
+<div style="float: left;margin-left: 100px">
+    <fieldset class="layui-elem-field">
+        <legend>发货人信息</legend>
+        <div class="layui-field-box">
+            发货单位：未填写</br>
+            联系人：<span  th:text="${o.consigner}"></span></br>
+            电话：<span  th:text="${o.phone}"></span></br>
+            提货地址：<span  th:text="${o.fahuodiqu}"></span></br>
+        </div>
+    </fieldset>
+</div>
+<!--发货人信息结束-->
+<!--收货人信息-->
+<div style="float: left">
+    <fieldset class="layui-elem-field">
+        <legend>收货人信息</legend>
+        <div class="layui-field-box">
+            发货单位：未填写</br>
+            联系人：<span  th:text="${o.shouhuo}"></span></br>
+            电话：<span  th:text="${o.shphone}"></span></br>
+            提货地址：<span  th:text="${o.shouhuodiqu}"></span></br>
+        </div>
+    </fieldset>
+</div>
+<!--收货人信息结束-->
+<!--货物信息开始-->
+<br>
+<fieldset class="layui-elem-field">
+    <legend>货物信息</legend>
+    <div class="layui-field-box">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>货物名称</th>
+                <th>件数</th>
+                <th>包装类型</th>
+                <th>单件重量</th>
+                <th>单件体积</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span  th:text="${o.cargoName}"></span></td>
+                <td><span  th:text="${o.cargoCount}"></span></td>
+                <td><span  th:text="${o.cargoType}"></span></td>
+                <td><span  th:text="${o.cargoWeight}"></span></td>
+                <td><span  th:text="${o.cargoBulk}"></span></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</fieldset>
+<input type="hidden" th:value="${o.cargoCount}" id="hidden1">
+<input type="hidden" th:value="${o.cargoWeight}" id="hidden2">
+<input type="hidden" th:value="${o.cargoBulk}" id="hidden3">
+总重量：<input id="weight" type="text" size="2px" style="border:0"/> 总体积：<input id="bulk" type="text" size="2px" style="border:0"/>
+总件数：<input  type="text" size="2px" th:value="${o.cargoCount}"style="border:0"/></br>
+货物照片：<img  width='50' height='50'  src="${o.img}"/></br>
+发货说明：未填写
+</div>
+<!--货物信息结束-->
+<!--增值服务-->
+<div>
+    <fieldset class="layui-elem-field">
+        <legend>增值服务</legend>
+        <div class="layui-field-box">
+            正本回单：1份    代收货款：20000.00   货物保价：20000.00
+
+        </div>
+    </fieldset>
+</div>
+<!--增值服务结束-->
+
+<!--运费信息开始-->
+<div>
+    <fieldset class="layui-elem-field">
+        <legend>运费信息</legend>
+        <div class="layui-field-box">
+            预估运费：<span  th:text="${o.paycount}"></span> ，<span  th:text="${o.zhifuWay}" style="color: green"></span>
+        </div>
+    </fieldset>
+</div>
+<!--运费信息结束-->
+<!--动态信息开始-->
+<div>
+    <fieldset class="layui-elem-field">
+        <legend>动态信息</legend>
+        <div class="layui-field-box">
+
+            <ul class="layui-timeline">
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">受理订单</h3>
+                        <p>
+                            ：<span  th:text="${o.shoulishijian}"></span>
+                        </p>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">确认收货</h3>
+                        <p>
+                            :<span th:text="${o.shouhuoshijian}"></span>
+                        </p>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">运费结算</h3>
+                        <p>
+                            : <span th:text="${o.jiesuanshijian}"></span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </fieldset>
+</div>
+<!--动态信息结束-->
+
+</body>
+
+<script>
+    /*在文本框里面填值*/
+    $(function () {
+        var cargoCount1 = $("#hidden1").val();
+        var cargoCount2 = $("#hidden2").val();
+        var sumweight = cargoCount1 * cargoCount2 ;
+        sumweight = sumweight +"kg";
+        $("#weight").val(sumweight);
+        var cargoCount3 = $("#hidden3").val();
+        var sumBulk = cargoCount1 * cargoCount3 ;
+        sumBulk = sumBulk +"m³";
+        $("#bulk").val(sumBulk);
+    })
+    /*在文本框里面结束*/
+
+    function ceshi(){
+        var id = $("#text1").val();
+        //alert(id);
+        $.ajax({
+            //修改订单状态
+            url:"updatejiesuan?id="+id+"&status="+1,
+            type:"post",
+            success:function () {
+                layer.msg('已经成功结算', {
+                    icon: 1,
+                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                }, function(){
+                    //do something
+                });
+            }
+        })
+
+    }
+
+</script>
+<!--拒绝受理的按钮开始-->
+<script>
+
+    function jujue(){
+        var id = $("#text1").val();
+        layui.use('layer', function(){ //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+            //询问框
+            layer.confirm('确定此时不结算吗!', {
+                btn: ['确认不结算'] //按钮
+            }, function(){
+
+                $.ajax({
+                    //修改订单状态
+                    url:"updatejiesuan?id="+id+"&status="+2,
+                    type:"post",
+                    success:function () {
+                        layer.msg('已经拒绝结算,系统将在俩天后自动结算', {icon: 1});
+                    }
+                })
+
+            });
+
+            $('#layerDemo .layui-btn').on('click', function(){
+                var othis = $(this), method = othis.data('method');
+                active[method] ? active[method].call(this, othis) : '';
+            });
+
+        });
+    }
+</script>
+
+<!--拒绝受理的按钮结束-->
+
+
+</html>

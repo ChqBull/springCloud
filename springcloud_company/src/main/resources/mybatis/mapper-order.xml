@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.OrderMapper">
+    <select id="getOrder" resultType="OrderBean">
+         select * from lineTable where 1=1
+       <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
+            and ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='2'.toString() and b.chaxunshu!=null">
+            and consigner =  #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='3'.toString() and b.chaxunshu!=null">
+            and phone= #{b.chaxunreal}
+        </if>
+
+        <if test="b.zhifuWay != '0'.toString() and b.zhifuWay != null">
+            and zhifuWay like '%${b.zhifuWay}%'
+        </if>
+
+        <if test="b.quhuoWay != '0'.toString() and b.quhuoWay !=null">
+            and quhuoWay like '%${b.quhuoWay}%'
+        </if>
+
+        <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+        <if test="b.diqu=='1'.toString() and b.diqu!=null">
+            and faid =#{b.aid}
+        </if>
+        <if test="b.diqu=='2'.toString() and b.diqu!=null">
+            and said =#{b.aid}
+        </if>
+
+    </select>
+
+    <select id="getOrderByCondition" resultType="OrderBean">
+        select * from lineTable  where 1=1
+        <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
+          and ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='2'.toString() and b.chaxunshu!=null">
+            and consigner =  #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='3'.toString() and b.chaxunshu!=null">
+            and phone= #{b.chaxunreal}
+        </if>
+
+        <if test="b.zhifuWay != '0'.toString() and b.zhifuWay != null">
+            and zhifuWay like '%${b.zhifuWay}%'
+        </if>
+
+        <if test="b.quhuoWay != '0'.toString() and b.quhuoWay !=null">
+            and quhuoWay like '%${b.quhuoWay}%'
+        </if>
+
+       <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+        <if test="b.diqu=='1'.toString() and b.diqu!=null">
+            and faid =#{b.aid}
+        </if>
+        <if test="b.diqu=='2'.toString() and b.diqu!=null">
+            and said =#{b.aid}
+        </if>
+          limit #{page},#{limit}
+    </select>
+
+    <select id="getMoney" resultType="Long">
+        select sum(paycount) from lineTable
+    </select>
+    <select id="getOrdercount" resultType="OrderBean">
+        select * from lineTable
+    </select>
+
+    <select id="getOrderById" resultType="OrderBean">
+        select * from lineTable where id = #{id}
+    </select>
+    <select id="getJuTiDiZhi" resultType="com.jk.bean.AreCitPro">
+        select * from areas a,cities c,provinces p where
+        a.cityid = c.cityid and c.provinceid = p.provinceid
+         and a.areaid = #{o}
+    </select>
+
+<update id="updateddstatus">
+     update lineTable set status1 =#{status} , shoulishijina= sysdate()  where id= #{id}
+
+</update>
+
+    <update id="updateddshouqu">
+     update lineTable set status2 =#{status} , shouhuoshijian= sysdate()  where id= #{id}
+
+</update>
+    <update id="updatejiesuan">
+/*     update lineTable set status3 =#{status} , jiesuanshijian= shouhuoshijina   where id= #{id}*/
+        <if test="#{status==1}">
+            update lineTable set status3 =#{status}, jiesuanshijian = sysdate() where id=#{id};
+        </if>
+        <if test="#{status==2}">
+update lineTable set status3 =#{status}, jiesuanshijian = date_add(shouhuoshijina,interval 2 day) where id=#{id};
+        </if>
+
+</update>
+
+</mapper>
