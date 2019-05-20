@@ -20,4 +20,6 @@ public interface UserMapper {
     /*判断用户名密码是否正确*/
     @Select("select * from t_user where phoneNumber=#{phoneNumber} and password=#{password}")
     UserBean getUserByPasPhone(UserBean userBean);
+
+   /* UserBean findPhoeNumberByUserType(String phoneNumber);*/
 }

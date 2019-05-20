@@ -53,24 +53,24 @@ public class UserController {
     public HashMap<String,Object> saveUser(@RequestBody UserBean userBean,String phonecode){
         return userService.saveUser(userBean,phonecode);
     }
+
     // 前台登录+记住密码     usertype 1发货方,2物流公司
     @RequestMapping("login")
     @ResponseBody
-    public HashMap<String, Object> login(@RequestBody UserBean userBean) {
-        return userService.login(userBean);
-    }
+        public UserBean login(@RequestBody UserBean userBean){
+            return userService.login(userBean);
+        }
 
     //后台登录+记住密码   usertype 1发货方,2物流公司
     @RequestMapping("comLogin")
     @ResponseBody
-    public HashMap<String, Object> comLogin(@RequestBody UserBean userBean) {
-        HashMap<String, Object> hashmap = new HashMap<>();
-        if(userBean.getUsertype()== 1){
-            hashmap.put("code",1);
-            hashmap.put("msg","您没有权限登录");
-            return hashmap;
-        }
-        //调前台登录的方法
+    public UserBean comLogin(@RequestBody UserBean userBean){
         return userService.login(userBean);
+    }
+    /*手机登录*/
+    @RequestMapping("phoneLogin")
+    @ResponseBody
+    public  HashMap<String,Object> phoneLogin(@RequestBody UserBean userBean, String phonecode){
+        return userService.phoneLogin(userBean,phonecode);
     }
 }

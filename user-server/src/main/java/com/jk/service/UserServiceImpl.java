@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSON;
 import com.jk.ConstantConf;
 import com.jk.dao.UserMapper;
 import com.jk.pojo.PhoneCount;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import javax.servlet.http.Cookie;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
             phoneCount.setId(UUID.randomUUID().toString());
             phoneCount.setPhoneNumber(phoneNumber);
             phoneCount.setStatus(1);//状态1 为黑名单
+            /*手机号三次存入黑名单*/
             mongoTemplate.insert(phoneCount);
             hash.put("code", 1);
             hash.put("msg", "该手机号今天已经发送三次");
@@ -164,45 +165,51 @@ public class UserServiceImpl implements UserService {
 
     // 前后台登录+记住密码     type1发货方,2物流公司
     @Override
-    public HashMap<String, Object> login(UserBean user) {
+    public UserBean login(UserBean userBean) {
         Jedis redis = jedisPool.getResource();
         HashMap<String, Object> hashMap= new HashMap<>();
         String uuid = UUID.randomUUID().toString();
         //判断用户名和密码是否正确
-        String password = user.getPassword();
+        String password = userBean.getPassword();
         String md516 = Md5Util.getMd516(password);
-        user.setPassword(md516);
-        UserBean userFromDb = userMapper.getUserByPasPhone(user);
-        if (userFromDb != null) {
-            //如果密码正确判断是否选择了记住密码
-            if (user.getRemPwd() != null) {
-                //如果选择了记住密码  存入cookie中
-                Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, userFromDb.getPhoneNumber() + ConstantConf.splitC + userFromDb.getPassword());
-                cookie.setMaxAge(604800);//过期时间为一周
-                /*  response.addCookie(cookie);*/
-                redis.set(ConstantConf.COOKIEUUID+uuid,cookie.toString());
-                redis.expire(ConstantConf.COOKIEUUID+uuid,604800);
-            } else {
-                //如果没有勾选记住密码,清除cookie
-                Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, "");
-                cookie.setMaxAge(0);//
-                /*response.addCookie(cookie);*/
-                redis.set(ConstantConf.COOKIEUUID+uuid,cookie.toString());
-                redis.expire(ConstantConf.COOKIEUUID+uuid,0);
-            }
-        } else {
-            Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, "");
-            cookie.setMaxAge(0);
-            redis.set(ConstantConf.COOKIEUUID+uuid,cookie.toString());
-            redis.expire(ConstantConf.COOKIEUUID+uuid,0);
-            hashMap.put("code", 1);
-            hashMap.put("msg", "密码或者账号输入错误");
+        userBean.setPassword(md516);
+        UserBean userFromDb = userMapper.getUserByPasPhone(userBean);
+        if(userFromDb !=null){
+            String str = JSON.toJSONString(userFromDb);
+            redis.set(ConstantConf.COOKIEUUID+uuid,str);
+            redis.expire(ConstantConf.COOKIEUUID+uuid,604800);
+        }
+        return userFromDb;
+    }
+
+    /*手机登录*/
+    @Override
+    public HashMap<String, Object> phoneLogin(UserBean userBean, String phonecode) {
+        Jedis redis = jedisPool.getResource();
+        HashMap<String, Object> hashMap = new HashMap<>();
+
+        UserBean user2 = userMapper.findUserByPhone(userBean.getPhoneNumber());
+        if(user2 == null){
+            hashMap.put("code",1);
+            hashMap.put("msg","该手机号未注册，请先注册");
             return hashMap;
         }
-        hashMap.put("uuid",uuid);
-        hashMap.put("type", userFromDb.getUsertype());
-        hashMap.put("code", 0);
-        hashMap.put("msg", "登录成功");
+        String s = redis.get(userBean.getPhoneNumber());
+        if(!s.equals(phonecode)){
+            hashMap.put("code", 1);
+            hashMap.put("msg", "短信验证码错误");
+            return hashMap;
+        }
+        hashMap.put("code",0);
+        hashMap.put("msg","登录成功");
         return hashMap;
     }
+
+
+    /*根据手机号查询类型*//*
+    @Override
+    public UserBean findPhoeNumberByUserType(String phoneNumber) {
+        return userMapper.findPhoeNumberByUserType(phoneNumber);
+    }*/
+
 }

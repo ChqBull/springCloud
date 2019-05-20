@@ -22,4 +22,8 @@
       insert into t_user(phoneNumber,password,companyName,referrer,money,createTime,usertype)
       values(#{phoneNumber},#{password},#{companyName},#{referrer},#{money},#{createTime},#{usertype})
     </insert>
+    <!--根据手机号查询用户类型-->
+    <!--<select id="findPhoeNumberByUserType" parameterType="string" resultType="com.jk.pojo.UserBean">
+      select tu.usertype from t_user tu where tu.phoneNumber = #{phoneNumber}
+    </select>-->
 </mapper>

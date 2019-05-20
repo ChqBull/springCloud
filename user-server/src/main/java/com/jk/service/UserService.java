@@ -16,5 +16,9 @@ public interface UserService {
 
     HashMap<String,Object> saveUser(UserBean userBean,String phonecode);
 
-    HashMap<String, Object> login(UserBean userBean);
+    UserBean login(UserBean userBean);
+
+    HashMap<String, Object> phoneLogin(UserBean userBean, String phonecode);
+
+    /*UserBean findPhoeNumberByUserType(String phoneNumber);*/
 }
