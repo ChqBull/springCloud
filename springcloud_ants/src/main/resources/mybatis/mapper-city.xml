@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.CityMapper">
+    <select id="cityGroup" resultType="cities" parameterType="java.lang.String">
+        select * from cities where true
+        <if test="str=='hn'">
+            and provinceid in (350000,440000,450000)
+        </if>
+        <if test="str=='hd'">
+            and provinceid in (310000,320000,330000)
+        </if>
+        <if test="str=='hz'">
+            and provinceid in (360000,420000,430000)
+        </if>
+        <if test="str=='hb'">
+            and provinceid in (110000,120000,130000)
+        </if>
+        <if test="str=='xn'">
+            and provinceid in (510000,520000)
+        </if>
+        <if test="str=='db'">
+            and provinceid in (210000,230000,220000)
+        </if>
+        <if test="str=='xb'">
+            and provinceid in (610000,620000,640000)
+        </if>
+    </select>
+
+    <select id="findHualingTrack"  parameterType="java.lang.String" resultType="hualingTrack">
+        select ht.id,c.city as startCity,d.city as endCity,
+        ht.startCity_id,ht.endCity_id,
+        ht.startTime,ht.endTime,ht.price,tc.companyName
+        from hualing_track ht,t_company tc,cities c ,
+        (select * from cities) d,
+        (select * from provinces) f,
+        provinces p
+        where ht.company_id=tc.companyId
+        and ht.startCity_id=c.cityid
+        and ht.endCity_id=d.cityid
+        and c.provinceid=p.provinceid
+        <if test="str=='hn'">
+            and p.provinceid in (350000,440000,450000)
+        </if>
+        <if test="str=='hd'">
+            and p.provinceid in (310000,320000,330000)
+        </if>
+        <if test="str=='hz'">
+            and p.provinceid in (360000,420000,430000)
+        </if>
+        <if test="str=='hb'">
+            and p.provinceid in (110000,120000,130000)
+        </if>
+        <if test="str=='xn'">
+            and p.provinceid in (510000,520000)
+        </if>
+        <if test="str=='db'">
+            and p.provinceid in (210000,230000,220000)
+        </if>
+        <if test="str=='xb'">
+            and p.provinceid in (610000,620000,640000)
+        </if>
+        and d.provinceid=f.provinceid
+    </select>
+
+    <select id="findLineByCityid" resultType="hualingTrack">
+        select ht.startCity_id,ht.endCity_id,tc.companyName,c.city as startCity,d.city as endCity
+        from hualing_track ht,t_company tc,cities c,(select * from cities) d
+        where ht.company_id=tc.companyId
+        and ht.startCity_id=c.cityid
+        and ht.endCity_id=d.cityid
+        and ht.startCity_id=#{h.startCity_id}
+    </select>
+</mapper>
