@@ -4,4 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jk.dao.UserMapper">
+    <!--根据手机号查询用户类型-->
+    <select id="findPhoeNumberByUserType" parameterType="string" resultType="com.jk.pojo.UserBean">
+      select tu.usertype from t_user tu where tu.phoneNumber = #{phoneNumber}
+    </select>
 </mapper>

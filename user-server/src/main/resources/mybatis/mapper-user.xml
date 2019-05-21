@@ -8,10 +8,6 @@
     <select id="findUserByPhone" parameterType="string" resultType="com.jk.pojo.UserBean">
         select * from t_user where phoneNumber = #{value}
     </select>
-    <!--判断用户注册类型-->
-    <select id="findRegType" resultType="com.jk.pojo.RegType">
-        select * from regType rt
-    </select>
     <!--注册   发货方-->
     <insert id="saveOneUser" parameterType="com.jk.pojo.UserBean">
       insert into t_user(phoneNumber,password,types,referrer,sex,money,createTime,usertype)
@@ -22,8 +18,8 @@
       insert into t_user(phoneNumber,password,companyName,referrer,money,createTime,usertype)
       values(#{phoneNumber},#{password},#{companyName},#{referrer},#{money},#{createTime},#{usertype})
     </insert>
-    <!--根据手机号查询用户类型-->
-    <!--<select id="findPhoeNumberByUserType" parameterType="string" resultType="com.jk.pojo.UserBean">
-      select tu.usertype from t_user tu where tu.phoneNumber = #{phoneNumber}
-    </select>-->
+    <!--根据账号 密码查用户-->
+    <select id="getUserByPasPhone" parameterType="com.jk.pojo.UserBean" resultType="com.jk.pojo.UserBean">
+    select * from t_user where phoneNumber=#{phoneNumber}  and password=#{password}
+    </select>
 </mapper>

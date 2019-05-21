@@ -57,6 +57,7 @@
     .findPwd ul.Findform li.item a.btn-1{background-color:#7abd54;}
     .send-color{background-color:#ccc;}
 </style>
+<p class="regis_Add">您可以选择普通登录 <a href="/loginList">普通登录</a></p>
 <form method="post" action="" onsubmit="return check();" id="dform">
     <input type="hidden" name="action" value="">
     <input type="hidden" name="option" value="mobile">
@@ -128,7 +129,6 @@
     })
 
     $("#logBtn").click(function () {
-
         var username=$('#username').val();
         var phonecode=$('#phonecode').val();
         if(username.length != 11) {

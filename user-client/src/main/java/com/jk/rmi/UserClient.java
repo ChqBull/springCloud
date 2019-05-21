@@ -1,6 +1,5 @@
 package com.jk.rmi;
 
-import com.jk.pojo.RegType;
 import com.jk.pojo.UserBean;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
-import java.util.List;
 
 @FeignClient("USERSERVER")//调用生产者注入到注册中心的值
 public interface UserClient {
@@ -24,10 +22,6 @@ public interface UserClient {
    @RequestMapping("phoneTest")
    public HashMap<String, Object> phoneTest(@RequestParam("phoneNumber") String phoneNumber);
 
-   //用户注册类型
-   @RequestMapping("findRegType")
-   List<RegType> findRegType();
-
    //发货方 物流 注册
    @RequestMapping("reg")
    HashMap<String, Object> saveUser(@RequestBody UserBean userBean,@RequestParam("phonecode") String phonecode);
@@ -40,7 +34,4 @@ public interface UserClient {
    @RequestMapping("phoneLogin")
    HashMap<String, Object> phoneLogin(@RequestBody UserBean userBean,@RequestParam("phonecode") String phonecode);
 
- /*  //后台登录+记住密码   usertype 1发货方,2物流公司
-   @RequestMapping("comLogin")
-   HashMap<String, Object> comLogin(@RequestBody UserBean userBean);*/
 }

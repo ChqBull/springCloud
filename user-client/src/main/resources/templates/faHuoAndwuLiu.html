@@ -75,7 +75,7 @@
         <ul class="my-tab-1 clearfix" id="tabTitle1">
             <li id="a_personal" class="tab-item fl   tab-active" style="border-right:none"><a href="/regsFaHuo">发货方</a></li>
             <li id="a_bussiness" th:class="${usertype}==1?'tab-item fl':'tab-item fl   tab-active'"><a href="/regsWuLiu">物流公司</a></li>
-            <li class="login">我已经注册，现在就<a href="/comLoginList">登录</a></li>
+            <li class="login">我已经注册，现在就<a href="/loginList">登录</a></li>
         </ul>
         <div class="tab-content tab-active" style="height: 510px">
             <form id="regForm" method="post">
@@ -166,7 +166,7 @@
                                     alert(data.msg);
                                 }else if (data.code == 0) {
                                     alert(data.msg);
-                                    window.location.href="/comLoginList"//跳转到登录页面
+                                    window.location.href="/loginList"//跳转到前台登录页面
 
                                 }
                             }

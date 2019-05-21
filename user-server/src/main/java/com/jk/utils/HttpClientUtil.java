@@ -1,5 +1,5 @@
 package com.jk.utils;
-
+ 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 
- 
+
 
 public class HttpClientUtil {
 	
@@ -111,4 +111,5 @@ public class HttpClientUtil {
 			return null;
 		}
 	}
+
 }

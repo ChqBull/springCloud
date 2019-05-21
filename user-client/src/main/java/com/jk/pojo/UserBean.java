@@ -26,5 +26,4 @@ public class UserBean implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "GMT+8")
     private Date createTime;//注册日期
     private Integer remPwd;//记住密码
-
 }

@@ -1,6 +1,4 @@
 package com.jk.controller;
-
-import com.jk.pojo.RegType;
 import com.jk.pojo.UserBean;
 import com.jk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 public class UserController {
 
     @Autowired
     UserService userService;
-   //登录完以后页面,点击退出按钮,退出
-   /* @RequestMapping("loginOut")
-    @ResponseBody
-    public String loginOut(HttpServletRequest request) {
-        HttpSession session = request.getSession();//获取session
-        session.removeAttribute(session.getId());//移出账号
-        return "login";//跳转到登录页面
-    }*/
 
    //判断手机号是否注册
     @RequestMapping("findUserByPhone")
@@ -40,13 +29,7 @@ public class UserController {
         return userService. phoneTest(phoneNumber);
     }
 
-    //用户注册类型
-    @RequestMapping("findRegType")
-    @ResponseBody
-    public List<RegType> findRegType(){
-        List<RegType> list = userService.findRegType();
-        return list;
-    }
+
     //发货方 物流 注册
     @RequestMapping("reg")
     @ResponseBody
@@ -57,9 +40,10 @@ public class UserController {
     // 前台登录+记住密码     usertype 1发货方,2物流公司
     @RequestMapping("login")
     @ResponseBody
-        public UserBean login(@RequestBody UserBean userBean){
-            return userService.login(userBean);
-        }
+    public UserBean login(@RequestBody UserBean userBean){
+        return userService.login(userBean);
+    }
+
 
     //后台登录+记住密码   usertype 1发货方,2物流公司
     @RequestMapping("comLogin")
@@ -67,6 +51,7 @@ public class UserController {
     public UserBean comLogin(@RequestBody UserBean userBean){
         return userService.login(userBean);
     }
+
     /*手机登录*/
     @RequestMapping("phoneLogin")
     @ResponseBody
