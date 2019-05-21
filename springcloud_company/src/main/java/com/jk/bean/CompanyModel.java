@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CompanyModel {
-    private Integer cId;
+    private Integer companyId;
     private String companyName;//公司名称
     private String companyPassword;//公司登录密码
     private String companyPhone;//公司电话号
@@ -22,4 +22,5 @@ public class CompanyModel {
     private  String    goodsImg;//上传图片
     private  String    gsadrivs;//办公地址
 
+    private  String gsquancheng;
 }

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918"/>
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css"/>
+
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+
+
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+
+
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+
+<!--最上层欢迎信息-->
+<div class="top">
+    <div class="wrap">
+        <div class="top-left" id="userstatus">您好，欢迎使用绿蚂蚁干线物流B2B平台！<a href="http://www.lvmae.com/member/login.php"
+                                                                     rel="nofollow">登录</a><a
+                href="http://www.lvmae.com/member/register.php" rel="nofollow">注册</a></div>
+        <div class="top-right">
+            <ul class="item-list">
+                <li class="item">当前城市：</li>
+                <li class="item top-area dropdown">
+                    <div class="top-area-content dropdown-box">
+                        <span class="main-color" id="selectArea">深圳</span>
+                    </div>
+                </li>
+                <li class="item"><span class="icon icons-position"></span></li>
+                <li class="item tel-app dropdown">
+                    <div class="tel-app-content dropdown-box">
+                        &nbsp;&nbsp;<span class="icons-photo"></span>&nbsp;<span>手机APP</span>&nbsp;<span
+                            class="icons-arrow-down"></span>&nbsp;&nbsp;
+                    </div>
+
+                </li>
+                <li class="item dropdown top-wx">
+                    <div class="dropdown-box">
+                        &nbsp;&nbsp;<span class="icons-wx"></span>&nbsp;微信号&nbsp;<span class="icons-arrow-down"></span>&nbsp;&nbsp;
+                    </div>
+
+                </li>
+                <li class="item"><a
+                        href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA1NjQwNF8zNjU3MzlfODAwMDU2NDA0XzJf"
+                        class="icons-qq" onclick="" target="_blank" title="点击这里给我发消息">&nbsp;</a></li>
+                <li class="item"><a
+                        href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA1NjQwNF8zNjU3MzlfODAwMDU2NDA0XzJf"
+                        target="_blank">客户服务</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header-content">
+    <div class="wrap">
+        <div class="logo icons-logo fl"><a href="http://www.lvmae.com/" title="上绿蚂蚁发货，说走就走">上绿蚂蚁发货，说走就走</a></div>
+        <div class="icons-wuli fr" style="background-image:none;">
+            <script type="text/javascript" src="http://www.lvmae.com/file/script/A47.js"></script>
+        </div>
+    </div>
+</div>
+
+<ul class="layui-nav layui-bg-green" align="center">
+    <li class="layui-nav-item"><a href="">首页</a></li>
+    <li class="layui-nav-item"><a href="">物流专线</a></li>
+    <li class="layui-nav-item"><a href="">在线发货</a></li>
+    <li class="layui-nav-item"><a href="">国际海运</a></li>
+    <li class="layui-nav-item"><a href="">物流公司</a></li>
+    <li class="layui-nav-item"><a href="">物流新闻</a></li>
+    <li class="layui-nav-item"><a href="">物流招标</a></li>
+    <li class="layui-nav-item"><a href="">在线购买</a></li>
+    <li class="layui-nav-item"><a href="">个人中心</a></li>
+</ul>
+<div class="substation-box">
+    <div class="substation">
+        <div class="sub-title">分站</div>
+        <a class="sub-link-01" href="http://bj.lvmae.com/" target="_blank">北京</a>
+        <a class="sub-link-01" href="http://sh.lvmae.com/" target="_blank">上海</a>
+        <a class="sub-link-01" href="http://tj.lvmae.com/" target="_blank">天津</a>
+        <a class="sub-link-01" href="http://gd.lvmae.com/" target="_blank">广东</a>
+        <a class="sub-link-01" href="http://hb.lvmae.com/" target="_blank">河北</a>
+        <a class="sub-link-01" href="http://shanxi.lvmae.com/" target="_blank">山西</a>
+        <a class="sub-link-01" href="http://ln.lvmae.com/" target="_blank">辽宁</a>
+        <a class="sub-link-01" href="http://jl.lvmae.com/" target="_blank">吉林</a>
+        <a class="sub-link-01" href="http://js.lvmae.com/" target="_blank">江苏</a>
+        <a class="sub-link-01" href="http://zj.lvmae.com/" target="_blank">浙江</a>
+        <a class="sub-link-01" href="http://ah.lvmae.com/" target="_blank">安徽</a>
+        <a class="sub-link-01" href="http://fj.lvmae.com/" target="_blank">福建</a>
+        <a class="sub-link-01" href="http://jx.lvmae.com/" target="_blank">江西</a>
+        <a class="sub-link-01" href="http://sd.lvmae.com/" target="_blank">山东</a>
+        <a class="sub-link-01" href="http://henan.lvmae.com/" target="_blank">河南</a>
+        <a class="sub-link-01" href="http://hubei.lvmae.com/" target="_blank">湖北</a>
+        <a class="sub-link-01" href="http://hunan.lvmae.com/" target="_blank">湖南</a>
+        <a class="sub-link-01" href="http://gx.lvmae.com/" target="_blank">广西</a>
+        <a class="sub-link-01" href="http://hainan.lvmae.com/" target="_blank">海南</a>
+        <a class="sub-link-01" href="http://zq.lvmae.com/" target="_blank">重庆</a>
+        <a class="sub-link-01" href="http://sc.lvmae.com/" target="_blank">四川</a>
+        <a class="sub-link-01" href="http://gz.lvmae.com/" target="_blank">贵州</a>
+        <a class="sub-link-01" href="http://yn.lvmae.com/" target="_blank">云南</a>
+        <a class="sub-link-01" href="http://xc.lvmae.com/" target="_blank">西藏</a>
+        <a class="sub-link-01" href="http://sx.lvmae.com/" target="_blank">陕西</a>
+        <a class="sub-link-01" href="http://gs.lvmae.com/" target="_blank">甘肃</a>
+        <a class="sub-link-01" href="http://qh.lvmae.com/" target="_blank">青海</a>
+        <div class="sub-more">更多
+            <div class="sub-more-body"><a class="sub-link-01" href="http://nx.lvmae.com/" target="_blank">宁夏</a>
+                <a class="sub-link-01" href="http://hlj.lvmae.com/" target="_blank">黑龙江</a>
+                <a class="sub-link-01" href="http://nmg.lvmae.com/" target="_blank">内蒙古</a>
+                <a class="sub-link-01" href="http://xj.lvmae.com/" target="_blank">新疆</a>
+                <a class="sub-link-01" href="http://hk.lvmae.com/" target="_blank">香港</a>
+                <a class="sub-link-01" href="http://tw.lvmae.com/" target="_blank">台湾</a>
+                <a class="sub-link-01" href="http://am.lvmae.com/" target="_blank">澳门</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-main">
+
+    <div class="bz-box step-2">
+        <div class="line-gray"></div>
+        <div class="line-orage"></div>
+        <span class="icons-f0 icons-s1"></span>
+        <span class="icons-f0 icons-s2"></span>
+        <span class="icons-f0 icons-s3"></span>
+        <span class="icons-f0 icons-s4"></span>
+        <span class="icons-f1 icons-f-1 icons-s1"></span>
+        <span class="icons-f1 icons-f-2 icons-s2"></span>
+        <span class="icons-f1 icons-f-3 icons-s3"></span>
+        <span class="icons-f1 icons-f-4 icons-s4"></span>
+        <div class="text-1">填写订单</div>
+        <div class="text-2">提交订单,等待处理</div>
+        <div class="text-3">物流公司处理</div>
+        <div class="text-4">完成</div>
+    </div>
+
+<div class="title-2">
+    <strong>运单信息</strong>
+</div>
+
+    <button class="layui-btn"  type="button"   onclick="openjiqiren()" >有疑问？请点击</button>
+
+
+<form class="layui-form layui-form-pane"  id="findMax">
+    <div class="layui-form-item">
+        <label class="layui-form-label">绿蚂蚁订单号</label>
+        <div class="layui-input-block">
+            <input type="text" name="ddid"  disabled="true"  id="ddid" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">物流线路</label>
+        <div class="layui-input-block">
+            <span th:text="${cargo.zhuanXian}"></span>
+        </div>
+    </div>-->
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">物流公司</label>
+        <div class="layui-input-block">
+            <input type="text" th:value="${o.companyName}" id="nameId"  class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">发货人信息</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" id="phone" disabled="true" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+  <!--  <div class="layui-form-item">
+        <label class="layui-form-label">收货人信息</label>
+        <div class="layui-input-block">
+            <input type="text" name="shphone" id="shphone"  disabled="true" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>-->
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">货物名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="cargoName" id="cargoName" disabled="true" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+
+   <!-- <div class="layui-form-item">
+        <label class="layui-form-label">支付方式</label>
+        <div class="layui-input-block">
+            <input type="text" name="zhifuWay"  id="zhifuWay" disabled="true"  autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+-->
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">货物信息</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="cargoWeight" id="cargoWeight"  disabled="true" autocomplete="off" class="layui-input"
+                />
+            </div>
+            <div class="layui-form-mid layui-word-aux">公斤</div>
+
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="cargoBulk" id="cargoBulk" disabled="true" autocomplete="off"  class="layui-input" />
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">立方米</div>
+
+
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">绿蚂蚁预估总额</label>
+        <div class="layui-input-block">
+            <input type="text" name="paycount" id="paycount"  disabled="true" autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">其他说明</label>
+        <div class="layui-input-block">
+            <input type="text" name="fahuoExplain" id="fahuoExplain" disabled="true"  autocomplete="off" class="layui-input"/>
+        </div>
+    </div>
+
+
+</form>
+
+</div>
+</body>
+<script type="text/javascript">
+
+
+    function openjiqiren() {
+        location.href="tojiqiren";
+    }
+
+
+
+
+    $(function () {
+        findMax();
+    })
+
+    function  findMax() {
+        var from=   $("#findMax").serialize();
+        var name = $("#nameId").val();
+        alert(name);
+        $("#companyName").html(name);
+        $.ajax({
+            url:"findMax",
+            data:from,
+            type:"post",
+            success:function (msg) {
+
+                $('#ddid').val(msg.ddid);
+               /* $('#companyName').val(msg.companyName);*/
+                $('#companyName').val(msg.companyName);
+                $('#phone').val(msg.phone);
+                $('#cargoName').val(msg.cargoName);
+                $('#shphone').val(msg.shphone);
+                $('#zhifuWay').val(msg.zhifuWay);
+                $('#cargoWeight').val(msg.cargoWeight);
+                $('#cargoBulk').val(msg.cargoBulk);
+                $('#paycount').val(msg.paycount);
+                $('#fahuoExplain').val(msg.fahuoExplain);
+
+
+            },error:function () {
+
+            }
+
+        })
+
+    }
+
+   /* layui.use('form', function () {
+        var form = layui.form;
+        $.post(
+            "findMax",
+            function () {
+
+                form.render();
+            },
+            "json"
+        )
+
+    })*/
+</script>
+</html>

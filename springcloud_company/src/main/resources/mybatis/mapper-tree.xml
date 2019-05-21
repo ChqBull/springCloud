@@ -5,10 +5,10 @@
 
 <mapper namespace="com.jk.mapper.AnMapper">
 
+    <update id="addgongsi" parameterType="com.jk.bean.CompanyModel">
+         update   t_company  set  gsjian=#{gongso.gsjian},gsphone=#{gongso.gsphone},gspople=#{gongso.gspople},gsweb=#{gongso.gsweb},gszong=#{gongso.gszong},gsjieshao=#{gongso.gsjieshao},
+              address=#{gongso.address},serve=#{gongso.serve},gsadrivs=#{gongso.gsadrivs},goodsImg=#{gongso.goodsImg},gsquancheng=#{gongso.gsquancheng}  where companyId =#{gongso.companyId}
 
-    <insert id="addgongsi" parameterType="CompanyModel">
-         insert into t_company (companyName,gsjian,gsphone,gspople,gsweb,gszong,gsjieshao,address,serve,gsadrivs,goodsImg) values
-         (#{companyName},#{gsjian},#{gsphone},#{gspople},#{gsweb},#{gszong},#{gsjieshao},#{address},#{serve},#{gsadrivs},#{goodsImg})
-     </insert>
+ </update>
 
 </mapper>

@@ -11,7 +11,7 @@ public interface AnMapper {
 
 
 
-    void addgongsi(CompanyModel gongsi);
+    void addgongsi( @Param("gongso") CompanyModel gongsi);
 
     @Select("select * from provinces ")
     List<Provinces> fingprovinces();

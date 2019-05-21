@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
@@ -36,7 +37,8 @@ public class AbController {
 
     @RequestMapping("addgongsi")
     @ResponseBody
-    public void addgongsi(CompanyModel gongsi ,String check){
+    public void addgongsi(CompanyModel gongsi , String check, HttpSession session){
+        gongsi.setCompanyId(1);
         gongsi.setServe(check);
         anService.addgongsi(gongsi);
     }

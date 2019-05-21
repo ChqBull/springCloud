@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CompanyModel {
-    private Integer cId;
+    private Integer companyId;
     private String companyName;//公司名称
     private String companyPassword;//公司登录密码
     private String companyPhone;//公司电话号

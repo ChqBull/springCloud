@@ -1,0 +1,162 @@
+<html><head>
+    <title>手机登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/update.css"><link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/jquery.Jcrop.css"><link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/uploadify.css">
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/head_foot.css">
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/home_small.css">
+    <script src="http://push.zhanzhang.baidu.com/push.js"></script><script type="text/javascript">
+    var _HotLineScrollTop = "";
+    var basePath = "http://www.lvmae.com/";
+    var resourcePath = "http://img.lvmae.com/JAVA";
+    var baseLebpPath = "http://kuaidi.lvmae.com";
+    var userLogoPath = "http://img.lvmae.com/image/UserHeadPortrait/";
+</script>
+    <script type="text/javascript" src="http://www.lvmae.com/file/script/index/jquery.min.js" charset="UTF-8"></script>
+
+</head>
+<body>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+<!-- head 开始 -->
+<div class="header">
+    <div class="header_logo container">
+        <div class="ad_top">
+            <script type="text/javascript" src="/toLogin"></script><a href="/toLogin" target="_blank">
+        </div>
+        <a href="/toLogin"></a>
+    </div>
+
+</div><link href="http://www.lvmae.com/skin/default/member/style/common.css" rel="stylesheet">
+<!--公用样式表 end -->
+<!--字体图标样式表 start-->
+<link href="http://www.lvmae.com/skin/default/member/style/font-awesome.min.css" type="text/css" rel="stylesheet">
+<!--字体图标样式表 end -->
+<link href="http://www.lvmae.com/skin/default/member/style/findPwd.css" rel="stylesheet">
+<style type="text/css">
+    .findPwd ul.Findform{width:450px;}
+    .findPwd ul.Findform li.item a.btn-1{background-color:#7abd54;}
+    .send-color{background-color:#ccc;}
+</style>
+<p class="regis_Add">您可以选择普通登录 <a href="/loginList">普通登录</a></p>
+<form method="post" action="" onsubmit="return check();" id="dform">
+    <input type="hidden" name="action" value="">
+    <input type="hidden" name="option" value="mobile">
+    <div class="findPwd">
+        <ul class="Findform">
+
+            <li class="item">
+                <span class="label">手机号：</span><input type="text" name="phoneNumber" id="username" placeholder="请输入手机号"><a class="btn-1" href="javascript:void(0);" onclick="get_code()" id="btnSendSmsCode">获取验证码</a><i style="color:red;" id="dusername"></i>
+            </li>
+            <li class="item">
+                <span class="label">短信码：</span><input type="text" id="phonecode" name="code" placeholder="请输入短信码"> <i style="color:red;" id="dcode"></i>
+            </li>
+            <li class="item">
+                <input type="button" id="logBtn" value=" 登录 " class="btn-2" style="background-color:#7abd54;margin-left: 80px;border-radius: 3px;width:60px;color:#fff;">
+            </li>
+        </ul>
+
+    </div>
+</form>
+<script type="text/javascript">
+    var times=60;
+    function get_code(){
+
+        var username=$('#username').val();
+        if(username.length != 11) {
+            $('#dusername').html('请输入正确的手机号').show();
+            return false;
+        }else{
+            $('#dusername').html('').hide();
+        }
+        if($('#btnSendSmsCode').text()=='获取验证码'){
+            times=60;
+
+            $.ajax({
+                url: "/phoneTest",
+                data: {
+                    phoneNumber: $('#username').val()
+                },
+                success: function (data) {
+                    if (data.code != 0) {
+                        alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+        }else{
+            return;
+        }
+    }
+    function set_times(){
+        if(times>0){
+            times--;
+            $('#btnSendSmsCode').text(times+'秒后可再次获取验证');
+            $('#btnSendSmsCode').css('background-color','#ccc');
+            setTimeout(function () {
+                set_times(times);
+            }, 1000);
+        }else{
+            $('#btnSendSmsCode').text('获取验证码');
+            $('#btnSendSmsCode').css('background-color','#7abd54');
+            $(_this).attr('disabled',false);
+            return false;
+        }
+
+    }
+    $('a[class="imgYz"]').click(function(){
+        $('#captchapng').attr('src', '/api/captcha.png.php?action=image&refresh='+Math.random());
+    })
+
+    $("#logBtn").click(function () {
+        var username=$('#username').val();
+        var phonecode=$('#phonecode').val();
+        if(username.length != 11) {
+            $('#dusername').html('请填写正确的手机号');
+            return false;
+        }
+        if(phonecode.length< 6) {
+            $('#dcode').html('请填写正确的验证码');
+            return false;
+        }
+        $.ajax({
+            url:'/phoneLogin',
+            type:"post",
+            data:{
+                phoneNumber:username,
+                phonecode:phonecode
+            },
+            success:function(data){
+                alert(data);
+                if (data.code == 0 ){
+                    alert(data.msg);
+                    location.href="/mains"
+                }else{
+                    alert(data.msg);
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
