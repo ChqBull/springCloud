@@ -6,13 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springcloud_register" />
         <module name="springcloud_config" />
         <module name="springcloud_antsam" />
+        <module name="proandcounties" />
         <module name="springcloud_company" />
         <module name="springcloud_ants" />
         <module name="proandcounties (1)" />
-        <module name="proandcounties" />
+        <module name="springcloud_register" />
+        <module name="user-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,8 @@
       <module name="springcloud_config" target="1.8" />
       <module name="springcloud_register" target="1.8" />
       <module name="springcloud_register (1)" target="1.8" />
+      <module name="user-client" target="1.8" />
+      <module name="user-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/springcloud_company/springcloud_company.iml" filepath="$PROJECT_DIR$/springcloud_company/springcloud_company.iml" />
       <module fileurl="file://$PROJECT_DIR$/springcloud_config/springcloud_config.iml" filepath="$PROJECT_DIR$/springcloud_config/springcloud_config.iml" />
       <module fileurl="file://$PROJECT_DIR$/springcloud_register/springcloud_register.iml" filepath="$PROJECT_DIR$/springcloud_register/springcloud_register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-server/user-server.iml" filepath="$PROJECT_DIR$/user-server/user-server.iml" />
     </modules>
   </component>
 </project>

@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/springcloud_antsam/pom.xml" />
         <option value="$PROJECT_DIR$/springcloud_config/pom.xml" />
         <option value="$PROJECT_DIR$/proandcounties/pom.xml" />
+        <option value="$PROJECT_DIR$/user-server/pom.xml" />
       </list>
     </option>
   </component>
