@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud_company" />
+        <module name="springcloud_ants" />
+        <module name="springcloud_antsam" />
+        <module name="proandcounties" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="proandcounties" target="1.8" />
+      <module name="springcloud_ants" target="1.8" />
+      <module name="springcloud_antsam" target="1.8" />
+      <module name="springcloud_company" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
