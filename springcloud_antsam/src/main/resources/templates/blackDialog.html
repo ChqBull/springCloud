@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+</head>
+<body>
+<form class="layui-form layui-form-pane"  id="formBlack">
+
+<div class="layui-form-item">
+    <label class="layui-form-label">黑名单手机号</label>
+    <div class="layui-input-inline">
+        <input type="text" name="phoneNumber"  autocomplete="off" class="layui-input"/>
+    </div>
+
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label">状态</label>
+    <div class="layui-input-block" >
+        <input type="radio" name="status" title="黑名单正常" value="2" lay-filter="aaa"/>
+        <input type="radio" name="status" title="出现异常" value="1" lay-filter="aaa"/>
+
+    </div>
+</div>
+
+<div class="layui-form-item  sta" style="display:none;" >
+    <label class="layui-form-label">异常原因</label>
+    <div class="layui-input-inline">
+        <input type="text" name="ycCause"  autocomplete="off" class="layui-input"/>
+    </div>
+
+
+</div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn"   lay-filter="formDemo" onclick="tijiao2()">新增黑名单</button>
+
+        </div>
+    </div>
+</form>
+</body>
+<script>
+
+
+
+    function  tijiao2(id) {
+        var from=   $("#formBlack").serialize();
+        var index = layer.load();
+        layer.close(layer.index);
+        $.ajax({
+            url:"addBlack",
+            data:from,
+            type:"post",
+            success:function (msg) {
+
+                // location.href="tocargodetails1";
+
+            },error:function () {
+
+            }
+        })
+    }
+    layui.use('form', function () {
+        var form = layui.form;
+        //判断是否出现异常
+        form.on('radio(aaa)', function (data) {
+
+            if ($('input[name ="status"]:checked').val() == "2") {
+                $(".sta").hide();
+            } else {
+                $(".sta").show();
+            }
+
+        })
+        form.render();
+
+    })
+
+
+
+</script>
+</html>
