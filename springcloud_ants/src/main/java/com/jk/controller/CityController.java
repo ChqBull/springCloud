@@ -1,9 +1,6 @@
 package com.jk.controller;
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.HualingTrack;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 import com.jk.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +49,10 @@ public class CityController {
     @RequestMapping("findLineByCityid")
     public List<HualingTrack> findLineByCityid(HualingTrack hualingTrack){
         return cityService.findLineByCityid(hualingTrack);
+    }
+
+    @RequestMapping("findOrder")
+    public List<Order> findOrder(){
+        return cityService.findOrder();
     }
 }

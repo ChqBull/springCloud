@@ -1,9 +1,6 @@
 package com.jk.service.impl;
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.HualingTrack;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 import com.jk.mapper.CityMapper;
 import com.jk.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +47,10 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<HualingTrack> findLineByCityid(HualingTrack hualingTrack) {
         return cityMapper.findLineByCityid(hualingTrack);
+    }
+
+    @Override
+    public List<Order> findOrder() {
+        return cityMapper.findOrder();
     }
 }
