@@ -34,13 +34,15 @@ public class PageController {
     @RequestMapping("loginList")
     public String loginList(HttpServletRequest request, Model model){
         Cookie[] cookies = request.getCookies();//把存进cookies的值取出来
-        for (Cookie cookie : cookies) {//遍历取值
-            if (cookie.getName().equals(ConstantConf.cookieNamePaw)) {//如果cookies的值=前台传过来的值
-                String value = cookie.getValue();
-                if (value != null) {
-                    String[] split = value.split(ConstantConf.splitC);
-                    model.addAttribute("phoneNumber", split[0]);
-                    model.addAttribute("password", split[1]);
+        if(cookies != null){
+            for (Cookie cookie : cookies) {//遍历取值
+                if (cookie.getName().equals(ConstantConf.cookieNamePaw)) {//如果cookies的值=前台传过来的值
+                    String value = cookie.getValue();
+                    if (value != null) {
+                        String[] split = value.split(ConstantConf.splitC);
+                        model.addAttribute("phoneNumber", split[0]);
+                        model.addAttribute("password", split[1]);
+                    }
                 }
             }
         }

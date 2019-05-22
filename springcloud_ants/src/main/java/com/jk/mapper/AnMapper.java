@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AnMapper {
 
-    @Select("select * from patent where pid=#{id} ")
+    @Select("select * from patent where pid='1' ")
     patent getzhuanxian(@Param("id") Integer id);
 
     @Select("select * from lineTable_copy  where start=1")

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.FrontdeskMapper">
+<select id="findProvinces" resultType="com.jk.bean.Provinces">
+    select *  from provinces
+</select>
+<select id="findCity" resultType="com.jk.bean.Cities">
+    select *  from cities where provinceid = #{0}
+</select>
+
+<select id="findArea" resultType="com.jk.bean.Areas">
+    select *  from areas where cityid = #{0}
+</select>
+
+<select id="listData" resultType="com.jk.bean.OrderBean">
+    select *  from lineTable
+</select>
+<update id="add" parameterType="com.jk.bean.OrderBean">
+   update lineTable
+   <set>
+    <if test="basicPrice != null and basicPrice!='' ">
+        basicprice = #{basicPrice},
+    </if>
+    <if test="transtime != null and transtime!='' ">
+        transtime = #{transtime},
+    </if>
+    <if test="shengId!=null and shiId!=null and startplace != null and startplace!='' ">
+        startplace = #{startplace},
+    </if>
+    <if test="shengId2!=null and shiId2!=null and endplace != null and endplace!='' ">
+        endplace = #{endplace},
+    </if>
+    <if test="tiGoods != null and tiGoods!='' ">
+        tiGoods = #{tiGoods},
+    </if>
+    <if test="shGoods != null and shGoods!='' ">
+           shGoods = #{shGoods}
+    </if>
+   </set>
+   where id = #{id}
+</update>
+<select id="searchArea" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
+</select>
+
+<select id="searchArea2" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
+</select>
+<delete id="deleteData" parameterType="com.jk.bean.OrderBean">
+    delete from lineTable where id = #{0}
+</delete>
+<select id="findAll" resultType="com.jk.bean.OrderBean">
+   select * from lineTable
+</select>
+<select id="serviceArea" resultType="com.jk.bean.AreaData">
+select area from areas a,cities c where a.cityid=c.cityid and c.cityid =(
+SELECT c.cityid from areas a ,cities c where a.cityid=c.cityid and a.areaid=130302)
+</select>
+<select id="companyList" resultType="com.jk.bean.OrderBean">
+        SELECT *
+        FROM linetable l,t_company c where l.companyId=c.companyId
+</select>
+<select id="searchArea3" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= 130302
+</select>
+<select id="searchArea4" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
+</select>
+</mapper>

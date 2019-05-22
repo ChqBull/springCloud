@@ -1,4 +1,4 @@
-package com.jk.service.Impl;
+package com.jk.service.impl;
 
 import com.jk.bean.*;
 import com.jk.mapper.CargoMapper;
