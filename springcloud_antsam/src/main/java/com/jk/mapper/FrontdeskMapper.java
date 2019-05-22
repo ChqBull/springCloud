@@ -31,4 +31,5 @@ public interface FrontdeskMapper {
     List<OrderBean> findAll();
 
 
+    OrderBean queryOne(Integer id);
 }

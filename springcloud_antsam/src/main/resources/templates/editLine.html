@@ -253,13 +253,21 @@
         <tr>
             <td></td>
             <td colspan="3">
-                <div class="layui-form-item" pane="" style="margin-top: 20px;">
-                    <label class="layui-form-label"></label>
+
+                    <label class="layui-form-label" style="width: 125px">是否支持上门提货</label>
                     <div class="layui-input-block">
-                        <input type="checkbox" name="tiGoods" lay-skin="primary" value="1" th:value="${order?.tiGoods==1?checked:''}" title="支持上门提货" >
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <input type="checkbox" name="shGoods" lay-skin="primary"  value="1" th:value="${order?.shGoods==1?checked:''}" title="支持送货上门">
+                        <input type="radio" name="tiGoods" id="tiGoods1" value="1" title="是">
+                        <input type="radio" name="tiGoods" id="tiGoods2" value="0" title="否" >
                     </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">
+                <label class="layui-form-label" style="width: 125px">是否支持送货上门</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="shGoods" id="shGoods1" value="1" title="是">
+                    <input type="radio" name="shGoods" id="shGoods2" value="0" title="否" >
                 </div>
             </td>
         </tr>
@@ -297,6 +305,30 @@
             var form = layui.form,
                 $ = layui.jquery;
             form.render();
+
+
+            var id = $("input[name='id']").val();
+
+            var $ = layui.jquery, form = layui.form;
+            $.ajax({
+                type: "post",
+                url: "queryOne",
+                data: {id:id},
+                success: function (data) {
+                    $("#shGoods1").attr("checked", data.shGoods == 1 ? true : false);
+                    $("#shGoods2").attr("checked", data.shGoods == 0 ? true : false);
+
+                    $("#tiGoods1").attr("checked", data.tiGoods == 1 ? true : false);
+                    $("#tiGoods2").attr("checked", data.tiGoods == 0 ? true : false);
+
+                    form.render(); //更新全部
+                }
+            })
+
+
+
+
+
 
             form.on('submit(lineForm)', function(data){
                 var form = $("#lineForm").serialize();
@@ -450,6 +482,9 @@
             var id = $("input[name='id']").val();
             location.href="deleteData?id="+id;
         }
+
+
+
 
 
 </script>

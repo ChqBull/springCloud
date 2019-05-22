@@ -94,4 +94,10 @@ public class FrontdeskServiceImpl implements FrontdeskService {
         return frontdeskMapper.findAll();
     }
 
+    @Override
+    public OrderBean queryOne(Integer id) {
+      OrderBean orderBean=  frontdeskMapper.queryOne(id);
+      return orderBean;
+    }
+
 }
