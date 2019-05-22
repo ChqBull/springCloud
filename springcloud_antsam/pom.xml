@@ -20,6 +20,18 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
          <!--mongodb-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
