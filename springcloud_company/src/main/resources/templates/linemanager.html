@@ -125,36 +125,17 @@ $(function(){
                 ,{field:'transtime',  title: '运输时效'}
                 ,{field:'haveyPrice', title: '重货价格',
                     templet: function(d){
-                    if(d.cargoWeight>0 && d.cargoWeight<1000){
-                        return "1.2元/公斤"
+                        d.haveyPrice
+                        return  d.haveyPrice+"元/公斤"
                     }
-                    else if (d.cargoWeight>1000 && d.cargoWeight<3000){
-                        return "1.1元/公斤"
-                    }
-                    else if (d.cargoWeight>3000 && d.cargoWeight<5000){
-                            return "1.0元/公斤"
-                    }else {
-                        return "1.2元/公斤"
-                    }
-                }
+
                 }
                 ,{field:'lightPrice', title: '轻货价格', sort: true,
                     templet: function(d){
-                        if(d.cargoBulk>0 && d.cargoBulk<10){
-                            return "120元/立方"
+                            return d.lightPrice+"元/立方"
                         }
-                        else if (d.cargoBulk>10 && d.cargoBulk<20){
-                            return "110元/立方"
-                        }
-                        else if (d.cargoBulk>20 && d.cargoBulk<30){
-                            return "100元/立方"
-                        }else {
-                            return "120元/立方"
-                        }
-                    }
                 }
                 ,{field:'basicPrice', title: '最低一票价格', sort: true}
-                ,{field:'cargoWeight', title: '货物重量', sort: true}
                 ,{field:'tiGoods', title: '上门提货',
                     templet: function(d){
                         if(d.tiGoods==1){
@@ -204,7 +185,7 @@ $(function(){
             }
         };
         $('#find').on('click', function(){
-            var type = $(this).data('type');
+            var type = $(this).data('c');
             active[type] ? active[type].call(this) : '';
         });
     });
@@ -341,13 +322,22 @@ $(function(){
         }
         function pop (){
             layer.open({
-                title:'添加',
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['420px', '240px'], //宽高
-                content: ''
+                area: ['700px', '700px'],
+                title: "新增",
+                fixed: true, //不固定
+                maxmin: true,
+                shade: 0.2,
+                skin: 'layui-layer-rim',
+                type: 2,
+                shadeClose: true,
+                content: '/aa' ,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                end: function() {
+                    //刷新页面,
+                    location.reload();
+                },
             });
         }
+
 
 </script>
 

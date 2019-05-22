@@ -43,11 +43,11 @@
     <if test="transtime != null and transtime!='' ">
         transtime = #{transtime},
     </if>
-    <if test="shengId!=null and shiId!=null and startplace != null and startplace!='' ">
-        startplace = #{startplace},
+    <if test="shengId!=null and shiId!=null and statrsquId != null and statrsquId!='' ">
+        statrsquId = #{statrsquId},
     </if>
-    <if test="shengId2!=null and shiId2!=null and endplace != null and endplace!='' ">
-        endplace = #{endplace},
+    <if test="shengId2!=null and shiId2!=null and endquId != null and endquId!='' ">
+        endquId = #{endquId},
     </if>
     <if test="tiGoods != null">
         tiGoods = #{tiGoods},
@@ -74,6 +74,38 @@
 <select id="queryOne" resultType="com.jk.bean.OrderBean">
    select * from lineTable where id = #{0}
 </select>
-
-
+<select id="searchArea5" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
+</select>
+<update id="aaaaddLine" parameterType="com.jk.bean.OrderBean">
+update linetable
+<set>endquId
+    <if test="statrsquId!=null">
+        statrsquId = #{statrsquId},
+    </if>
+    <if test="endquId!=null">
+        endquId = #{endquId},
+    </if>
+    <if test="transtime!=null">
+        transtime = #{transtime},
+    </if>
+    <if test="haveyprice!=null">
+        haveyprice = #{haveyprice},
+    </if>
+    <if test="lightprice!=null">
+        lightprice = #{lightprice},
+    </if>
+    <if test="tiGoods != null">
+        tiGoods = #{tiGoods},
+    </if>
+    <if test="shGoods != null">
+        shGoods = #{shGoods}
+    </if>
+</set>
+where companyId = #{companyId}
+</update>
+<insert id="addLine" parameterType="com.jk.bean.OrderBean">
+    insert into linetable(statrsquId,endquId,transtime,haveyprice,lightprice,tiGoods,shGoods,companyId,basicprice)
+    values(#{statrsquId},#{endquId},#{transtime},#{haveyPrice},#{lightPrice},#{tiGoods},#{shGoods},#{companyId},#{basicPrice})
+</insert>
 </mapper>

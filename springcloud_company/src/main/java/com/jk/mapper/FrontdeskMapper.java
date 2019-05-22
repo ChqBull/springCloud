@@ -22,9 +22,9 @@ public interface FrontdeskMapper {
 
     void add(OrderBean orderBean);
 
-    AreaData searchArea(String startplace);
+    AreaData searchArea(Integer startplace);
 
-    AreaData searchArea2(String end);
+    AreaData searchArea2(Integer end);
 
     void deleteData(int id);
 
@@ -32,4 +32,8 @@ public interface FrontdeskMapper {
 
 
     OrderBean queryOne(Integer id);
+
+    AreaData searchArea5(Integer area1);
+
+    void addLine(OrderBean orderBean);
 }

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -25,7 +26,10 @@ public class frontdesk {
     @Autowired
     private FrontdeskService frontdeskService;
 
-
+    @RequestMapping("aa")
+    public String aa(){
+        return "pop";
+    }
 
     @RequestMapping("ee")
     public String ee(){
@@ -208,6 +212,19 @@ public class frontdesk {
     public OrderBean queryOne(Integer id){
         OrderBean orderBean= frontdeskService.queryOne(id);
         return orderBean;
+    }
+
+    @RequestMapping("address")
+    @ResponseBody
+    public String address(Integer area1,Integer area2){
+        String aa = frontdeskService.address(area1,area2);
+        return aa;
+    }
+    @RequestMapping("addLine")
+    @ResponseBody
+    public String addLine(OrderBean orderBean, HttpServletRequest request){
+        String aa = frontdeskService.addLine(orderBean,request);
+        return aa;
     }
 
 }

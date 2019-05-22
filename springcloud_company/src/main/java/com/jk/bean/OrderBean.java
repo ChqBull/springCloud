@@ -40,7 +40,8 @@ public class OrderBean implements Serializable {
                 private String companyName;
                 private String gsjian;
 
-
+                 private Integer statrsquId;
+                 private Integer endquId;
                private String tiGoods;//是否上门提货  0否，1是
                private String submitstate;//是否发布  0否，1是
                private String  shGoods;//是否送货上门  0否，1是
@@ -51,6 +52,23 @@ public class OrderBean implements Serializable {
                private  String  shiId;
                private  String  shengId2;
                private  String  shiId2;
+
+
+    public Integer getStatrsquId() {
+        return statrsquId;
+    }
+
+    public void setStatrsquId(Integer statrsquId) {
+        this.statrsquId = statrsquId;
+    }
+
+    public Integer getEndquId() {
+        return endquId;
+    }
+
+    public void setEndquId(Integer endquId) {
+        this.endquId = endquId;
+    }
 
     public String getCompanyName() {
         return companyName;
