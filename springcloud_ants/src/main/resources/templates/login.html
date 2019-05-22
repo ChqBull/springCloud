@@ -92,7 +92,8 @@
                     </tr>
                     </tbody></table>
             </form>
-            <p class="regis_Add">还没有绿蚂蚁账户？<a href="javascript:;" onclick="Go();">注册</a><a href="javascript:;" onclick="phoneLogin();"></a></p>
+            <p class="regis_Add">您可以选择手机的登录<a href="javascript:;" onclick="phoneLogin();">手机登录</a></p>
+            <p class="regis_Add">还没有绿蚂蚁账户？<a href="javascript:;" onclick="Go();">立即注册</a></p>
         </div>
         <div class="regis_ad">
 
@@ -120,6 +121,7 @@
             success:function(data) {
                 if (data.code == 0) {
                     alert(data.msg);
+                    location.href = "/main"
                 } else {
                     alert(data.msg);
                 }

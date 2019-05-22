@@ -1,66 +1,105 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <title>后台登录入口</title>
-    <link rel="stylesheet" href="/js/easyui1.5/themes/icon.css">
-    <link rel="stylesheet" href="/js/easyui1.5/themes/default/easyui.css">
-    <!-- 基于jquery所以先导jquery标签 -->
-    <script src="/js/easyui1.5/jquery.min.js"></script>
-    <!--， 主要包  不可少 调用easyui  方法--->
-    <script src="/js/easyui1.5/jquery.easyui.min.js"></script>
-    <!-- 导入easyui 语言包   locale:方言    必须在最下面-->
-    <script src="/js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
-    <link rel="stylesheet" href="/layui/css/layui.css" >
-    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
-    <link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918" />
-    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css" />
-    <link rel="stylesheet" href="/layui/css/layui.css" />
-    <script src="/layui/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="/layui/layui.all.js"></script>
-    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>后台登录入口</title>
+	<link rel="stylesheet" href="/js/easyui1.5/themes/icon.css">
+	<link rel="stylesheet" href="/js/easyui1.5/themes/default/easyui.css">
+	<!-- 基于jquery所以先导jquery标签 -->
+	<script src="/js/easyui1.5/jquery.min.js"></script>
+	<!--， 主要包  不可少 调用easyui  方法--->
+	<script src="/js/easyui1.5/jquery.easyui.min.js"></script>
+	<!-- 导入easyui 语言包   locale:方言    必须在最下面-->
+	<script src="/js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" href="/layui/css/layui.css" >
+	<link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918" />
+	<link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css" />
+	<link rel="stylesheet" href="/layui/css/layui.css" />
+	<script src="/layui/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/layui/layui.all.js"></script>
+	<script src="/layui/layui.all.js" charset="UTF-8"></script>
+	<script src="/layui/jquery-1.8.0.js"></script>
+<link rel="stylesheet" type="text/css" href="/Login/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/Login/css/demo.css" />
+<link rel="stylesheet" href="/Login/js/vendor/jgrowl/css/jquery.jgrowl.min.css">
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="/Login/css/component.css" />
+<!--[if IE]>
+    <script src="/Login/js/html5.js"></script>
+    <![endif]-->
+<style>
+	input::-webkit-input-placeholder{
+		color:rgba(0, 0, 0, 0.726);
+	}
+	input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+		color:rgba(0, 0, 0, 0.726);
+	}
+	input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+		color:rgba(0, 0, 0, 0.726);
+	}
+	input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+		color:rgba(0, 0, 0, 0.726);
+	}
+</style>
 </head>
 <body>
-
-<div>
-    <form class="layui-form" action="" id="loginForm">
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-inline">
-                <input type="text" name="phoneNumber"  placeholder="请输入用户名" autocomplete="off" class="layui-input"    lay-verify="required"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline">
-                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn"  type="button" lay-filter="formDemo" onclick="comLogin()">登录</button>
-            </div>
-        </div>
-    </form>
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<div class="logo_box">
+						<h3>后台登录</h3>
+						<form action="#" name="f" method="post" id="loginForm">
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id="phoneNumber" name="phoneNumber" class="text" style="color: #000000 !important" type="text" placeholder="请输入账户">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input id="password" name="password" class="text" style="color: #000000 !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+							</div>
+							<div id="LOGIN" class="mb2"><a class="act-but submit" onclick="comLogin()" style="color: #FFFFFF">登录</a></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="/Login/js/TweenLite.min.js"></script>
+		<script src="/Login/js/EasePack.min.js"></script>
+		<script src="/Login/js/jquery.js"></script>
+		<script src="/Login/js/rAF.js"></script>
+		<script src="/Login/js/demo-1.js"></script>
+		<script src="/Login/js/vendor/jgrowl/jquery.jgrowl.min.js"></script>
+		<script src="/Login/js/Longin.js"></script>
+		<div style="text-align:center;">
 </div>
-</body>
+	</body>
 <script>
-    function comLogin() {
-        var from = $("#loginForm").serialize();
-        $.ajax({
-            url:"/comLogin",
-            data:from,
-            type:"post",
-            success:function(data){
-               /* alert(data);*/
-                if(data.code != 0){
-                    layer.msg(data.msg);
-                }else{
-                    window.location.href="/main";
-                }
-            }
-        })
-    }
+	function comLogin() {
+		var from = $("#loginForm").serialize();
+		var phoneNumber = $("#phoneNumber").val();
+		var password = $("#password").val();
+		alert(phoneNumber+password)
+		$.ajax({
+			url:"/comLogin",
+			data:{
+				phoneNumber:phoneNumber,
+				password:password
+			},
+			type:"post",
+			success:function(data){
+				 alert(data.code);
+				if(data.code == 1){
+					alert(data.msg)
+				}else{
+					location.href="/main";
+				}
+			}
+		})
+	}
 </script>
 </html>

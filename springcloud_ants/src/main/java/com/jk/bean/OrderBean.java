@@ -2,11 +2,10 @@ package com.jk.bean;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class OrderBean implements Serializable {
+public class OrderBean  {
                 private  String   ddid;//订单号
                 private  String   xiadanDate;//下单日期
                 private  String   startplace;// 开始地点
@@ -46,7 +45,7 @@ public class OrderBean implements Serializable {
 
   //地区
               private  Integer shengId;
-              private Integer shiId;
+              private  String shiId;
               private  Integer quId;
              private  String provinceName;
              private  String cityName;
@@ -59,14 +58,32 @@ public class OrderBean implements Serializable {
            private Integer statrsquId;
            private Integer endquId;
 
-
             private String haveyPrice;//重货价格
             private String lightPrice;//轻货价格
             private String basicPrice;//最低一票价格
             private Integer transtime;//运输时效
                private  String  zfPrice;//支付方式  0发货人支付(现付)，1收货人支付(到付)
 
+                private String gsjian;
 
+                private String submitstate;//是否发布  0否，1是
+               private  String  cityId;//支付方式  0发货人支付(现付)，1收货人支付(到付)
 
+               private  String  shengId2;
+               private  String  shiId2;
+
+               //重货判断
+                private  String   weightStart1;// 重量开始1
+                private  String   weightEnd1;// 重量结束1
+                private  String   price1;// 重货价格1
+                private  String   weightStart2;// 重量开始2
+                private  String   weightEnd2;// 重量结束2
+                private  String   price2;// 重货价格2
+                private  String   weightStart3;// 重量开始3
+                private  String   weightEnd3;// 重量结束3
+                private  String   price3;// 重货价格3
+                private  String   weightStart4;// 重量开始4
+                private  String   weightEnd4;// 重量结束4
+                private  String   price4;// 重货价格4
 
 }

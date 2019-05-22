@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/layui/jquery-3.3.1.js"></script>
+<script src="/layui/layui.all.js"></script>
+<script src="/layui/layui.js"></script>
+
+<body>
+<form class="layui-form" id="lineForm" action="" >
+    <input type="hidden" name="id" th:value="${order?.id}">
+    <table >
+        <tr>
+            <td align="right">
+               <b>始发站：</b>
+            </td>
+            <td>
+    <div class="layui-field-box" style="margin-top: 10px;">
+        <div class="layui-form-item">
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="shengId" lay-filter="sheng" id="sheng" >
+                    <option value="">请选择省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select  name="shiId"  lay-filter="shi" id="shi">
+                    <option value="">市</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="startplace"   lay-filter="xian" id="xian">
+                    <option value="" selected>区</option>
+                </select>
+            </div>
+        </div>
+    </div>
+            </td>
+            <td align="right">
+                <b>终点站：</b>
+            </td>
+            <td>
+                <div class="layui-field-box" style="margin-top: 10px;">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline" style="width: 100px">
+                            <select name="shengId2" lay-filter="province" id="province">
+                                <option value="">请选择省</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 100px">
+                            <select name="shiId2" lay-filter="city" id="city">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 100px">
+                            <select name="endplace"  lay-filter="area" id="area">
+                                <option value="" selected>区</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <b>发车时刻表：</b>
+            </td>
+            <td colspan="3" >
+                <div class="layui-form-item">
+                <div class="layui-input-inline" style="margin-top: 17px;margin-left: 13px">
+                <input type="text" name="price_min" style="width: 100px" autocomplete="off" class="layui-input">
+                &nbsp;&nbsp;
+                </div>
+                    <button class="layui-btn">+添加发车时刻</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+               <b>时效：</b>
+            </td>
+            <td>
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="transtime" th:value="${order?.transtime}" autocomplete="off" class="layui-input" >
+                        </div>
+                        <label class="layui-form-label" style="width:50px ">小时</label>
+                    </div>
+                </div>
+
+
+            </td>
+             <td align="right">
+                <b>最低一票收费：</b>
+             </td>
+            <td>
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                    <div class="layui-input-inline">
+                        <input type="text"  name="basicPrice"   th:value="${order?.basicPrice}" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width:50px ">元</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+               <b>重货单价：</b>
+            </td>
+            <td>
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="weightStart1" placeholder="0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"   name="weightEnd1" placeholder="1000" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">公斤</label>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="price1" placeholder="1.2" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">元/公斤</label>
+                    </div>
+                </div>
+            </td>
+            <td align="right">
+                <b>轻货单价：</b>
+            </td>
+            <td>
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text" name="price_min" placeholder="0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text" name="price_max" placeholder="10" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">立方</label>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="price_max" placeholder="120" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">元/立方</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td> <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text"  name="weightStart2" placeholder="1000" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid">-</div>
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text"  name="weightEnd2" placeholder="3000" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width:70px ">公斤</label>
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text"   name="price2" placeholder="1.1" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width:70px ">元/公斤</label>
+                </div>
+            </div></td>
+            <td></td>
+            <td>
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="price_min" placeholder="10" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="price_max" placeholder="20" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">立方</label>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text"  name="price_max" placeholder="110" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">元/立方</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td valign="top" id="addleft"> <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text" name="weightStart3" placeholder="3000" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid">-</div>
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text" name="weightEnd3" placeholder="5000" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width:70px ">公斤</label>
+                    <div class="layui-input-inline" style="width: 70px;">
+                        <input type="text" name="price3" placeholder="1.0" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label" style="width:70px ">元/公斤</label>
+                    <div id="qqq">
+
+
+                    </div>
+                </div>
+            </div></td>
+            <td></td>
+            <td valign="top" id="addright">
+                <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px" id="killo">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text" name="price_min" placeholder="20" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text" name="price_max" placeholder="30" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">立方</label>
+                        <div class="layui-input-inline" style="width: 70px;">
+                            <input type="text" name="price_max" placeholder="100" autocomplete="off" class="layui-input">
+                        </div>
+                        <label class="layui-form-label" style="width:70px ">元/立方</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <div style="margin-left: 13px">
+                    <button type="button" class="layui-btn" onclick="addPrice()">
+                        <i class="layui-icon">&#xe608;</i> 添加阶梯价格
+                    </button>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <div style="margin-left: 13px">
+                    <button  type="button" class="layui-btn"  id="btn" onclick="addPrice2()">
+                        <i class="layui-icon">&#xe608;</i> 添加阶梯价格
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">
+                <div class="layui-form-item" pane="" style="margin-top: 20px;">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="tiGoods" lay-skin="primary" value="1" th:value="${order?.tiGoods==1?checked:''}" title="支持上门提货" >
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="checkbox" name="shGoods" lay-skin="primary"  value="1" th:value="${order?.shGoods==1?checked:''}" title="支持送货上门">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td colspan="3" >
+                <div  class="layui-form-item" style="margin-left: 13px;">
+                    <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="lineForm" type="button">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-primary" onclick="deleteData()">删除</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div style="margin-left: 13px;">
+                 <br><br>
+                编辑后，不影响已有订单的运费<br>删除后，不影响已有订单
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+<script>
+
+
+
+
+        layui.use('form',function () {
+            var form = layui.form,
+                $ = layui.jquery;
+            form.render();
+
+            form.on('submit(lineForm)', function(data){
+                var form = $("#lineForm").serialize();
+                $.ajax({
+                    url:"add",
+                    type:"post",
+                    data:form,
+                    success:function(data){
+                    location.href="ee"
+                    }
+                })
+
+            });
+
+
+
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    $("#sheng").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                    $("#province").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                }
+                form.render("select");
+            },
+            "json"
+        )
+
+        //追加发货地的市
+        form.on('select(sheng)', function (data) {
+            $("#shi").empty();//当省发生改变把以前市区的数据清空
+            $("#shi").append($("<option value=''>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian").empty();//一起把以前县的数据清空
+            $("#xian").append($("<option value=''> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#shi").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(shi)', function (data) {
+            $("#xian").empty();//当市区发生该变把以前县的数据清空
+            $("#xian").append($("<option value=''> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#xian").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        })
+
+        //2
+        //追加发货地的市
+        form.on('select(province)', function (data) {
+            $("#city").empty();//当省发生改变把以前市区的数据清空
+            $("#city").append($("<option value=''>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#area").empty();//一起把以前县的数据清空
+            $("#area").append($("<option value=''> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#city").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(city)', function (data) {
+            $("#area").empty();//当市区发生该变把以前县的数据清空
+            $("#area").append($("<option value=''> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#area").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                },
+                "json"
+            )
+        })
+    })
+
+        function addPrice(){
+            var killo = $("#addleft");
+            var html =
+            '    <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">'+
+            '        <div class="layui-inline">'+
+            '        <div class="layui-input-inline" style="width: 70px;">'+
+            '        <input type="text" name="weightStart4" placeholder="10" autocomplete="off" class="layui-input">'+
+            '        </div>'+
+            '        <div class="layui-form-mid">-</div>'+
+            '        <div class="layui-input-inline" style="width: 70px;">'+
+            '        <input type="text" name="weightEnd4" placeholder="20" autocomplete="off" class="layui-input">'+
+            '        </div>'+
+            '        <label class="layui-form-label" style="width:70px ">公斤</label>'+
+            '        <div class="layui-input-inline" style="width: 70px;">'+
+            '        <input type="text" name="price4"  autocomplete="off" class="layui-input">'+
+            '        </div>'+
+            '        <label class="layui-form-label" style="width:70px ">元/公斤</label>'+
+            '        </div>'+
+            '        </div>'
+            killo.append(html);
+        }
+        function addPrice2(){
+            var killo = $("#addright");
+            var html =
+                '    <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">'+
+                '        <div class="layui-inline">'+
+                '        <div class="layui-input-inline" style="width: 70px;">'+
+                '        <input type="text" name="price_min" placeholder="10" autocomplete="off" class="layui-input">'+
+                '        </div>'+
+                '        <div class="layui-form-mid">-</div>'+
+                '        <div class="layui-input-inline" style="width: 70px;">'+
+                '        <input type="text" name="price_max" placeholder="20" autocomplete="off" class="layui-input">'+
+                '        </div>'+
+                '        <label class="layui-form-label" style="width:70px ">立方</label>'+
+                '        <div class="layui-input-inline" style="width: 70px;">'+
+                '        <input type="text" name="price_max"  autocomplete="off" class="layui-input">'+
+                '        </div>'+
+                '        <label class="layui-form-label" style="width:70px ">元/立方</label>'+
+                '        </div>'+
+                '        </div>'
+            killo.append(html);
+        }
+
+        function deleteData(){
+            var id = $("input[name='id']").val();
+            location.href="deleteData?id="+id;
+        }
+
+
+</script>
+</html>

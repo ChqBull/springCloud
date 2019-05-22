@@ -10,7 +10,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
-@PropertySource(value= "classpath:bootstrap.properties")
+@PropertySource(value="classpath:application.properties")
 public class RedisConfig {
 
     private Logger log = (Logger) LoggerFactory.getLogger(RedisConfig.class);

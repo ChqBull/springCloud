@@ -24,12 +24,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //登录完以后页面,点击注销按钮,注销
-  /*  @RequestMapping("loginOut")
-   public String loginOut(HttpServletRequest request) {
-        return userClient.loginOut(request);
-   }*/
-
     //判断手机号是否注册
     @RequestMapping("findUserByPhone")
     @ResponseBody
@@ -58,32 +52,23 @@ public class UserController {
     @ResponseBody
     public HashMap<String,Object> login(UserBean userBean, HttpServletResponse response, HttpServletRequest request){
         UserBean user1 = userClient.login(userBean);
-        String password = userBean.getPassword();
         HashMap<String, Object> hashMap= new HashMap<>();
         if (user1 != null) {
             //如果密码正确判断是否选择了记住密码
             if (userBean.getRemPwd() != null) {
                 //如果选择了记住密码  存入cookie中
-//                Morse morse = new Morse();
-//                Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, user1.getPhoneNumber() + ConstantConf.splitC + morse.encryption(userBean.getPassword()));//TODO
-//                cookie.setMaxAge(604800);
-//                response.addCookie(cookie);
-
-                //如果选择了记住密码  存入cookie中
-                user1.setPassword(password);
-                Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, user1.getPhoneNumber() + ConstantConf.splitC  + user1.getPassword());
+                Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, user1.getPhoneNumber() + ConstantConf.splitC + user1.getPassword());
                 cookie.setMaxAge(604800);//过期时间为一周
                 response.addCookie(cookie);
 
-            } else {
-                //如果没有勾选记住密码,只记住账号
-               /* Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, userBean.getPhoneNumber());
-                cookie.setMaxAge(3600);
-                response.addCookie(cookie);*/
+            }else {
                 //如果没有勾选记住密码,清除cookie
                 Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, "");
                 cookie.setMaxAge(0);//
                 response.addCookie(cookie);
+               /* Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, userBean.getPhoneNumber());
+                cookie.setMaxAge(3600);
+                response.addCookie(cookie);*/
             }
         } else {
             Cookie cookie = new Cookie(ConstantConf.cookieNamePaw, userBean.getPhoneNumber());

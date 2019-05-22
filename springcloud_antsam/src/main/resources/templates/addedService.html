@@ -1,0 +1,162 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/layui/jquery-3.3.1.js"></script>
+<script src="/layui/layui.all.js"></script>
+<script src="/layui/layui.js"></script>
+<body>
+<form class="layui-form" action="">
+   <table >
+       <tr>
+           <td>
+               <div class="layui-form-item" pane="" style="margin-top: 20px;">
+                   <div class="layui-input-block">
+                       <input type="checkbox" name="like1[write]" lay-skin="primary" title="支持正本回单" checked="">
+                   </div>
+               </div>
+           </td>
+           <td colspan="3">
+               <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+
+                   <div class="layui-input-inline">
+                       <input type="text" name="username" lay-verify="required" placeholder="10" autocomplete="off" class="layui-input">
+                   </div>
+                   <label class="layui-form-label" style="width: 60px;">元/单</label>
+               </div>
+           </td>
+       </tr>
+       <tr>
+           <td>
+               <div class="layui-form-item" pane="" style="margin-top: 20px;">
+                   <div class="layui-input-block">
+                       <input type="checkbox" name="like1[write]" lay-skin="primary" title="支持货物保险" checked="">
+                   </div>
+               </div>
+           </td>
+           <td>
+           </td>
+           <td>
+               <div class="layui-form-item" pane="" style="margin-top: 20px;">
+                   <div class="layui-input-block">
+                       <input type="checkbox" name="like1[write]" lay-skin="primary" title="支持待收货款" checked="">
+                   </div>
+               </div>
+           </td>
+       </tr>
+       <tr>
+           <td align="right">
+                收费标准：
+           </td>
+           <td>
+               <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                   <div class="layui-input-inline">
+                       <input type="text" name="username" lay-verify="required" placeholder="1.5" autocomplete="off" class="layui-input">
+                   </div>
+                   <label class="layui-form-label" style="width: 10px;">‰</label>
+               </div>
+           </td>
+           <td align="right">
+               收费标准：
+           </td>
+           <td>
+               <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                   <div class="layui-input-inline">
+                       <input type="text" name="username" lay-verify="required" placeholder="0" autocomplete="off" class="layui-input">
+                   </div>
+                   <label class="layui-form-label" style="width: 10px;">‰</label>
+               </div>
+           </td>
+       </tr>
+       <tr>
+       <td align="right">
+           最低收费：
+       </td>
+       <td>
+           <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+               <div class="layui-input-inline">
+                   <input type="text" name="username" lay-verify="required" placeholder="5" autocomplete="off" class="layui-input">
+               </div>
+               <label class="layui-form-label" style="width: 60px;">元/单</label>
+           </div>
+       </td>
+       <td align="right">
+           最低收费：
+       </td>
+       <td>
+           <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+               <div class="layui-input-inline">
+                   <input type="text" name="username" lay-verify="required" placeholder="5" autocomplete="off" class="layui-input">
+               </div>
+               <label class="layui-form-label" style="width: 60px;">元/单</label>
+           </div>
+       </td>
+   </tr>
+       <tr>
+           <td align="right">
+               最高保额：
+           </td>
+           <td>
+               <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                   <div class="layui-input-inline">
+                       <input type="text" name="username" lay-verify="required" placeholder="100000" autocomplete="off" class="layui-input">
+                   </div>
+                   <label class="layui-form-label" style="width: 60px;">元/单</label>
+               </div>
+           </td>
+           <td align="right">
+               代收范围：
+           </td>
+           <td>
+               <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
+                   <div class="layui-inline">
+                       <div class="layui-input-inline" style="width: 100px;">
+                           <input type="text" name="price_min" placeholder="0" autocomplete="off" class="layui-input">
+                       </div>
+                       <div class="layui-form-mid">-</div>
+                       <div class="layui-input-inline" style="width: 100px;">
+                           <input type="text" name="price_max" placeholder="50000"  autocomplete="off" class="layui-input">
+                       </div>
+                       <label class="layui-form-label" style="width: 10px;">元</label>
+                   </div>
+               </div>
+
+           </td>
+       </tr>
+       <tr>
+           <td align="right">
+               是否强制:
+           </td >
+           <td colspan="3">
+               <div class="layui-form-item" pane="" style="margin-top: 20px;">
+                   <div class="layui-input-block">
+                       <input type="checkbox" name="like1[write]" lay-skin="primary" title=" 强制购买保险" checked="">
+                   </div>
+               </div>
+           </td>
+       </tr>
+       <tr>
+           <td>
+               <div style="margin-left: 150px;">
+                   <button class="layui-btn">
+                       <i class="layui-icon layui-icon-upload-drag"></i> 保存
+                   </button>
+               </div>
+           </td>
+           <td align="right">
+               编辑后，不影响已有订单的运费
+           </td>
+       </tr>
+   </table>
+</form>
+</body>
+<script>
+    layui.use('form',function () {
+        var form = layui.form;
+        form.render();
+    });
+</script>
+</html>

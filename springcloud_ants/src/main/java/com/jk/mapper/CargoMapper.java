@@ -24,7 +24,6 @@ public interface CargoMapper {
     @Select(" select * from areas where cityid=#{0} ")
     List<Areas> findArea(Integer cityid);
 
-
     OrderBean findcargoByRoleId();
 
     @Select(" select * from t_company  ")
@@ -36,10 +35,6 @@ public interface CargoMapper {
 
     @Select(" select count(*) from  lineTable ")
     Long findCountOperator();
-
-
-
-
 
     /*   AreCitPro getAre(@Param("o") Integer o);*/
 }

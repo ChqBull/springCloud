@@ -1,5 +1,4 @@
 package com.jk.controller;
-
 import com.jk.bean.UserBean;
 import com.jk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +14,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-   //登录完以后页面,点击退出按钮,退出
-   /* @RequestMapping("loginOut")
-    @ResponseBody
-    public String loginOut(HttpServletRequest request) {
-        HttpSession session = request.getSession();//获取session
-        session.removeAttribute(session.getId());//移出账号
-        return "login";//跳转到登录页面
-    }*/
 
    //判断手机号是否注册
     @RequestMapping("findUserByPhone")

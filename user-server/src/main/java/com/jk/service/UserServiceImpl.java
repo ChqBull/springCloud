@@ -3,10 +3,9 @@ package com.jk.service;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.jk.ConstantConf;
-import com.jk.dao.UserMapper;
+import com.jk.mapper.UserMapper;
 import com.jk.bean.PhoneCount;
 import com.jk.bean.UserBean;
-import com.jk.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
         SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
         String format = si.format(date);
         Long llen1 = redis.llen(phoneNumber + format);
-        if (llen1 >= 10) {
+        if (llen1 >= 3) {
             PhoneCount phoneCount = new PhoneCount();
             phoneCount.setId(UUID.randomUUID().toString());
             phoneCount.setPhoneNumber(phoneNumber);
@@ -143,8 +142,8 @@ public class UserServiceImpl implements UserService {
             Integer usertype = userBean.getUsertype();
             userBean.setCreateTime(new Date());
             userBean.setMoney(0.00);
-            String md516 = Md5Util.getMd516(userBean.getPassword());//密码加密
-            userBean.setPassword(md516);
+           /* String md516 = Md5Util.getMd516(userBean.getPassword());//密码加密
+            userBean.setPassword(md516);*/
             if (usertype == 1) {
                 userBean.setSex(1);
                 userMapper.saveOneUser(userBean);//注册发货方
@@ -164,8 +163,8 @@ public class UserServiceImpl implements UserService {
         String uuid = UUID.randomUUID().toString();
         //判断用户名和密码是否正确
         String password = userBean.getPassword();
-        String md516 = Md5Util.getMd516(password);
-        userBean.setPassword(md516);
+       /* String md516 = Md5Util.getMd516(password);
+        userBean.setPassword(md516);*/
         UserBean userFromDb = userMapper.getUserByPasPhone(userBean);
         if(userFromDb !=null){
             String str = JSON.toJSONString(userFromDb);

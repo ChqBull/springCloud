@@ -10,9 +10,6 @@ import java.util.HashMap;
 
 @FeignClient("userserver")//调用生产者注入到注册中心的值
 public interface UserClient {
-    //登录完以后页面,点击注销按钮,注销
-   /* @RequestMapping("loginOut")
-    public String loginOut(HttpServletRequest request);*/
 
    //判断手机号是否注册
    @RequestMapping("findUserByPhone")
