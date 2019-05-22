@@ -69,7 +69,6 @@ public class frontdesk {
 
     public String editLine(Model model,Integer id){
         OrderBean orderBean = frontdeskService.editLine(id);
-        String cargoWeight = orderBean.getCargoWeight();
         model.addAttribute("order",orderBean);
         return "editLine";
     }
@@ -111,14 +110,12 @@ public class frontdesk {
             row.createCell(0).setCellValue(answer.getId());
             row.createCell(1).setCellValue(answer.getStartplace());
             row.createCell(2).setCellValue(answer.getEndplace());
-            row.createCell(3).setCellValue(answer.getTranstime());
             row.createCell(4).setCellValue(answer.getHaveyPrice());
             row.createCell(5).setCellValue(answer.getLightPrice());
             row.createCell(6).setCellValue(answer.getBasicPrice());
             row.createCell(7).setCellValue(answer.getCargoWeight());
             row.createCell(8).setCellValue(answer.getShGoods());
             row.createCell(9).setCellValue(answer.getSubmitstate());
-
             rowNum++;
         }
         String fileName = "survey-answer.xls";
@@ -203,6 +200,12 @@ public class frontdesk {
         cell = row.createCell(10);
         cell.setCellValue("发布状态");
         cell.setCellStyle(style);
+    }
+    @RequestMapping("queryOne")
+    @ResponseBody
+    public OrderBean queryOne(Integer id){
+        OrderBean orderBean= frontdeskService.queryOne(id);
+        return orderBean;
     }
 
 }

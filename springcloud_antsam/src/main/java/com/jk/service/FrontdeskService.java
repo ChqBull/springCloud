@@ -25,4 +25,5 @@ public interface FrontdeskService {
     List<OrderBean> findAll();
 
 
+    OrderBean queryOne(Integer id);
 }

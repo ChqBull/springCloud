@@ -49,11 +49,11 @@
     <if test="shengId2!=null and shiId2!=null and endplace != null and endplace!='' ">
         endplace = #{endplace},
     </if>
-    <if test="tiGoods != null and tiGoods!='' ">
+    <if test="tiGoods != null">
         tiGoods = #{tiGoods},
     </if>
-    <if test="shGoods != null and shGoods!='' ">
-           shGoods = #{shGoods}
+    <if test="shGoods != null">
+        shGoods = #{shGoods}
     </if>
    </set>
    where id = #{id}
@@ -70,6 +70,9 @@
 </delete>
 <select id="findAll" resultType="com.jk.bean.OrderBean">
    select * from lineTable
+</select>
+<select id="queryOne" resultType="com.jk.bean.OrderBean">
+   select * from lineTable where id = #{0}
 </select>
 
 
