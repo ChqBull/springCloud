@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dab38348-731d-4972-b265-b90baf8bd275" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/controller/PageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/controller/PageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/mapper/AnMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/mapper/AnMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/service/Impl/CargoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/java/com/jk/service/Impl/CargoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/ant.html" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/ant.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/cargoShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/cargoShow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/zhuanxian.html" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/zhuanxian.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud_antsam/src/main/java/com/jk/control/frontdesk.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud_antsam/src/main/java/com/jk/control/frontdesk.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/springcloud_register/target/" />
     <ignored path="$PROJECT_DIR$/springcloud_ants/target/" />
@@ -260,141 +252,6 @@
             <path>
               <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
               <item name="springColud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="jk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="jk" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_ants" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="jk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springColud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springColud" type="462c0819:PsiDirectoryNode" />
-              <item name="springcloud_antsam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -656,11 +513,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558485448852</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="祝大哥">
+      <created>1558505882164</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1558505882164</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76744000" />
+    <option name="totallyTimeSpent" value="76991000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -672,8 +536,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info id="设计器" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -681,7 +544,7 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.5033113" side_tool="true" weight="0.21648793" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49673203" visible="true" weight="0.26918977" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" sideWeight="0.49673203" visible="true" weight="0.26918977" />
       <window_info id="Web" order="7" sideWeight="0.503268" side_tool="true" weight="0.21648793" />
       <window_info id="Structure" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="MyBatis Sql Log" order="0" />
@@ -700,7 +563,7 @@
       <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="15" sideWeight="0.4989339" weight="0.3286334" />
-      <window_info active="true" anchor="bottom" id="调试" order="16" sideWeight="0.9285714" visible="true" weight="0.35791758" />
+      <window_info anchor="bottom" id="调试" order="16" sideWeight="0.9285714" visible="true" weight="0.35791758" />
       <window_info anchor="right" id="调色板" order="0" />
       <window_info anchor="right" id="Palette" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -772,7 +635,8 @@
     <MESSAGE value="第十次提交" />
     <MESSAGE value="第十一次提交" />
     <MESSAGE value="不要" />
-    <option name="LAST_COMMIT_MESSAGE" value="不要" />
+    <MESSAGE value="祝大哥" />
+    <option name="LAST_COMMIT_MESSAGE" value="祝大哥" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/springcloud_ants/src/main/resources/templates/wuLiuMain.html">
