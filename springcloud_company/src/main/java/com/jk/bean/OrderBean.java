@@ -36,7 +36,7 @@ public class OrderBean implements Serializable {
                 private String lightPrice;//轻货价格
                 private String basicPrice;//最低一票价格
                 private Integer transtime;//运输时效
-                private Integer companyId;//运输时效
+                private Integer companyId;
                 private String companyName;
                 private String gsjian;
 

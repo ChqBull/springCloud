@@ -1,7 +1,10 @@
-package com.jk.control;
+package com.jk.controller;
 
 
-import com.jk.bean.*;
+import com.jk.bean.Areas;
+import com.jk.bean.Cities;
+import com.jk.bean.OrderBean;
+import com.jk.bean.Provinces;
 import com.jk.service.FrontdeskService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
@@ -41,7 +43,7 @@ public class frontdesk {
 
     @RequestMapping("lineSearch")
     @ResponseBody
-    public HashMap<String,Object> lineSearch(Integer page,Integer limit,OrderBean orderBean){
+    public HashMap<String,Object> lineSearch(Integer page, Integer limit, OrderBean orderBean){
 
         return frontdeskService.lineSearch(page,limit,orderBean);
 
