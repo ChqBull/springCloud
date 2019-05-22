@@ -1,9 +1,6 @@
 package com.jk.mapper;
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.HualingTrack;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -31,4 +28,11 @@ public interface CityMapper {
 
 
     List<HualingTrack> findLineByCityid(@Param("h") HualingTrack hualingTrack);
+
+    @Select("select l.phone,c.city as startCity,c.city as endCity\n" +
+            "from lineTable l,areas a,cities c,(select * from areas) d\n" +
+            "where a.cityid=c.cityid\n" +
+            "and l.statrsquId=a.areaid\n" +
+            "and l.endquId=d.areaid")
+    List<Order> findOrder();
 }

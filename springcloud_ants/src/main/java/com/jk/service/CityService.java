@@ -1,9 +1,6 @@
 package com.jk.service;
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.HualingTrack;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 
 import java.util.List;
 
@@ -21,4 +18,7 @@ public interface CityService {
     List<Cities> findCityById();
 
     List<HualingTrack> findLineByCityid(HualingTrack hualingTrack);
+
+    List<Order> findOrder();
+
 }

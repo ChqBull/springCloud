@@ -1,6 +1,8 @@
 package com.jk.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,8 +12,8 @@ public class HualingTrack {
     private int id;
     private String startCity_id;
     private String endCity_id;
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
     private String price;
     private int companyId;
 
