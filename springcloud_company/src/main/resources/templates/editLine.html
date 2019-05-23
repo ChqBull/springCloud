@@ -297,10 +297,6 @@
 
 </body>
 <script>
-
-
-
-
         layui.use('form',function () {
             var form = layui.form,
                 $ = layui.jquery;
@@ -324,12 +320,6 @@
                     form.render(); //更新全部
                 }
             })
-
-
-
-
-
-
             form.on('submit(lineForm)', function(data){
                 var form = $("#lineForm").serialize();
                 $.ajax({
@@ -342,9 +332,6 @@
                 })
 
             });
-
-
-
         $.post(
             "findProvinces",
             function (obj) {
@@ -482,10 +469,5 @@
             var id = $("input[name='id']").val();
             location.href="deleteData?id="+id;
         }
-
-
-
-
-
 </script>
 </html>

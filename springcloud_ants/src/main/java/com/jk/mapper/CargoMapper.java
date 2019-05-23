@@ -36,5 +36,7 @@ public interface CargoMapper {
     @Select(" select count(*) from  lineTable ")
     Long findCountOperator();
 
+    void addDingdan(@Param("id") Integer id, OrderBean orderBean);
+
     /*   AreCitPro getAre(@Param("o") Integer o);*/
 }

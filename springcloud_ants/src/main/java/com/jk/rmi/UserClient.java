@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 
-@FeignClient("userserver")//调用生产者注入到注册中心的值
+@FeignClient("USERSERVER")//调用生产者注入到注册中心的值
 public interface UserClient {
 
    //判断手机号是否注册

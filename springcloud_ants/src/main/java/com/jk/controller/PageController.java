@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.ConstantConf;
+import com.jk.MyLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +13,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PageController {
 
-    /*蚂蚁前台登录后去的页面(假的)*/
+    /*蚂蚁前台登录后去的页面(*/
+    @MyLog(value = "蚂蚁用户前台登录记录")
     @RequestMapping("main")
     public String main(){
-
         return "wuLiuMain";
     }
-
-
     //登录完以后页面,点击退出按钮,退出
     @RequestMapping("loginOut")
     public String loginOut(HttpServletRequest request) {
@@ -27,8 +26,6 @@ public class PageController {
         session.removeAttribute(session.getId());//移出账号
         return "login";//跳转到登录页面
     }
-
-
 
     /*蚂蚁前台登录*/
     @RequestMapping("loginList")
@@ -40,8 +37,12 @@ public class PageController {
                     String value = cookie.getValue();
                     if (value != null) {
                         String[] split = value.split(ConstantConf.splitC);
-                        model.addAttribute("phoneNumber", split[0]);
-                        model.addAttribute("password", split[1]);
+                        if(split.length > 1){
+                            model.addAttribute("phoneNumber", split[0]);
+                            model.addAttribute("password", split[1]);
+                        }else{
+                            model.addAttribute("phoneNumber", split[0]);
+                        }
                     }
                 }
             }
@@ -49,10 +50,6 @@ public class PageController {
         return "login";
     }
     /*后台登录*/
-    @RequestMapping("comLoginList")
-    public String comLogin(){
-        return "comLogin";
-    }
 
     /*点击注册两个按钮注册页面*/
     @RequestMapping("regs")

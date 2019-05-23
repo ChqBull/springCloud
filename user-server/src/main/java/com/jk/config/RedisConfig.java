@@ -10,7 +10,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
-@PropertySource(value="classpath:application.properties")
+@PropertySource(value= "classpath:bootstrap.properties")
 public class RedisConfig {
 
     private Logger log = (Logger) LoggerFactory.getLogger(RedisConfig.class);
@@ -21,11 +21,14 @@ public class RedisConfig {
     @Value("${spring.redis.port}")
     private int port;
 
+
+    @Value("${spring.redis.password}")
+    private String password;
     @Bean
     public JedisPool getJedisPool(){
         log.info("==>初始化jedis连接池");
         JedisPoolConfig config = new JedisPoolConfig();
-        JedisPool pool = new JedisPool(config, host, port);
+        JedisPool pool = new JedisPool(config, host, port,10000 ,password);
         return pool;
     }
 }

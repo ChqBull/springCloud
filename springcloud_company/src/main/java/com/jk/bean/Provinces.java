@@ -1,10 +1,10 @@
 package com.jk.bean;
-import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class Provinces implements Serializable {
+public class Provinces {
 
-    private Integer provinceid;
-    private String  province;
+    private int provinceid;
+    private String province;
 }

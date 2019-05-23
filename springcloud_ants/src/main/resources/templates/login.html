@@ -5,6 +5,7 @@
     <title>会员登录_</title>
     <meta name="robots" content="nofollow">
     <meta http-equiv="x-ua-compatible" content="IE=7">
+    <script src="/layui/jquery-3.3.1.js"></script>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="bookmark" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/index.css">
@@ -84,7 +85,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" id="submit" value="登 录 " class="btn_login">
+                            <input type="button" id="btn" value="登 录 " class="btn_login">
                         </td>
                     </tr>
                     <tr>
@@ -105,28 +106,28 @@
 <div class="clear"></div>
 <script type="text/javascript">
 
-    $('#submit').click(function () {
+    $('#btn').click(function () {
         var phoneNumber = $("#phoneNumberId").val();
         var password = $("#passwordId").val();
-        var remPwd = $("#remPwdId").val();
-
+        var remPwd = $("input[name=remPwd]:checked").val();
         $.ajax({
-            url:'/login',
-            type:"post",
+            type:"POST",
+            url:"/login",
             data:{
                 phoneNumber:phoneNumber,
                 password:password,
                 remPwd:remPwd
             },
-            success:function(data) {
+            dataType:"json",
+            success:function(data){  //function1()
                 if (data.code == 0) {
                     alert(data.msg);
-                    location.href = "/main"
+                    location.href = "/index2"
                 } else {
                     alert(data.msg);
                 }
             }
-        })
+        });
     });
 
     /*点击注册去注册页面*/
@@ -135,7 +136,7 @@
     }
     //手机登录
     function phoneLogin(){
-        location.href="/toPhoneLogin"
+        location.href="/toPhoneLogin";
     }
 </script>
 <div class="bottom">

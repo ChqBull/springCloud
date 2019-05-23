@@ -3,6 +3,7 @@ package com.jk.service;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.jk.ConstantConf;
+import com.jk.bean.CompanyModel;
 import com.jk.mapper.UserMapper;
 import com.jk.bean.PhoneCount;
 import com.jk.bean.UserBean;
@@ -47,6 +48,7 @@ public class UserServiceImpl implements UserService {
     /*短信验证码*/
     @Override
     public HashMap<String, Object> phoneTest(String phoneNumber) {
+
         Jedis redis = jedisPool.getResource();
         HashMap<String, Object> hash = new HashMap<>();
         Date date = new Date();
@@ -122,37 +124,52 @@ public class UserServiceImpl implements UserService {
     public HashMap<String, Object> saveUser(UserBean userBean,String phonecode) {
         Jedis redis = jedisPool.getResource();
         HashMap<String, Object> hash = new HashMap<>();
-        //判断手机号是否注册
-        UserBean user = userMapper.findUserByPhone(userBean.getPhoneNumber());
-        if (user != null) {
-            hash.put("code", 1);
-            hash.put("msg", "该手机已注册");
-            return hash;
-        } else {
-            hash.put("code", 0);
-            hash.put("msg", "注册成功");
-            //手机验证码
-            String s = redis.get(userBean.getPhoneNumber());
-            if (!s.equals(phonecode)) {
+        if(userBean.getUsertype() == 1){
+            //判断手机号是否注册
+            UserBean user = userMapper.findUserByPhone(userBean.getPhoneNumber());
+            if (user != null) {
                 hash.put("code", 1);
-                hash.put("msg", "短信验证码错误");
+                hash.put("msg", "该手机已注册");
                 return hash;
-            }
-            //判断用户选择的类型  1发货方 2物流
-            Integer usertype = userBean.getUsertype();
-            userBean.setCreateTime(new Date());
-            userBean.setMoney(0.00);
+            } else {
+                hash.put("code", 0);
+                hash.put("msg", "注册成功");
+                //手机验证码
+                String s = redis.get(userBean.getPhoneNumber());
+                if (!s.equals(phonecode)) {
+                    hash.put("code", 1);
+                    hash.put("msg", "短信验证码错误");
+                    return hash;
+                }
+                //判断用户选择的类型  1发货方 2物流
+                Integer usertype = userBean.getUsertype();
+                userBean.setCreateTime(new Date());
+                userBean.setMoney(0.00);
            /* String md516 = Md5Util.getMd516(userBean.getPassword());//密码加密
             userBean.setPassword(md516);*/
-            if (usertype == 1) {
-                userBean.setSex(1);
-                userMapper.saveOneUser(userBean);//注册发货方
-            } else {
-                userMapper.saveComUser(userBean);//注册物流
-            }
-            return hash;
-        }
+                    userBean.setSex(1);
+                    userMapper.saveOneUser(userBean);//注册发货方
 
+                return hash;
+            }
+        }else{
+            CompanyModel companyModel = userMapper.findCompanyByName(userBean.getCompanyName());
+            if(companyModel != null){
+                hash.put("code", 1);
+                hash.put("msg", "该公司已注册");
+                return hash;
+            }else{
+                CompanyModel companyModel2 = userMapper.findCompanyByPhone(userBean.getPhoneNumber());
+                if(companyModel2 != null){
+                    hash.put("code", 1);
+                    hash.put("msg", "该电话号已注册");
+                }
+                userMapper.saveComUser(userBean);
+                hash.put("code", 1);
+                hash.put("msg", "注册成功");
+                return hash;
+            }
+        }
     }
 
     // 前后台登录+记住密码     type1发货方,2物流公司
@@ -172,6 +189,12 @@ public class UserServiceImpl implements UserService {
             redis.expire(ConstantConf.COOKIEUUID+uuid,604800);
         }
         return userFromDb;
+    }
+
+    @Override
+    public CompanyModel comlogin(UserBean userBean) {
+        CompanyModel companyModel =  userMapper.comlogin(userBean);
+        return companyModel;
     }
 
     /*手机登录*/

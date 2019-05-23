@@ -21,7 +21,7 @@
 
 <i class="layui-icon layui-icon-spread-left" style="font-size: 30px; color: black;"></i>
 <font size="5">已发布线路</font><span id="lineCount"></span> &nbsp;&nbsp;
-<button type="button" class="layui-btn layui-btn-sm" onclick="listData()">
+<button type="button" class="layui-btn layui-btn-sm" onclick="pop()">
     <i class="layui-icon">&#xe608;</i>添加
 </button>
 </div>
@@ -339,10 +339,15 @@ $(function(){
             location.href="UserExcelDownloads";
             alert(" 导出成功 ")
         }
+        function pop (){
+            layer.open({
+                title:'添加',
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['420px', '240px'], //宽高
+                content: ''
+            });
+        }
 
 </script>
-
-
-
-
 </html>

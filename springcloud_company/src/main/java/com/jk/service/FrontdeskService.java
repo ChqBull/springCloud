@@ -1,6 +1,9 @@
 package com.jk.service;
 
-import com.jk.bean.*;
+import com.jk.bean.Areas;
+import com.jk.bean.Cities;
+import com.jk.bean.OrderBean;
+import com.jk.bean.Provinces;
 
 import java.util.HashMap;
 import java.util.List;

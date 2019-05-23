@@ -20,7 +20,7 @@ public interface CargoService {
 
     List<CompanyModel> findCompany();
 
-    void addDingdan(OrderBean orderBean);
+    void addDingdan(Integer id, OrderBean orderBean);
 
     HashMap<String, Object> findOperator(Integer page, Integer limit, OrderBean orderBean);
 

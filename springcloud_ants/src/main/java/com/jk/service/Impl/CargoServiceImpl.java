@@ -3,14 +3,12 @@ package com.jk.service.impl;
 import com.jk.bean.*;
 import com.jk.mapper.CargoMapper;
 import com.jk.service.CargoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class CargoServiceImpl implements CargoService {
@@ -90,9 +88,9 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
-    public void addDingdan(OrderBean orderBean) {
+    public void addDingdan(Integer id, OrderBean orderBean) {
         orderBean.setDdid(System.currentTimeMillis()+"");
-        cargoMapper.addDingdan(orderBean);
+        cargoMapper.addDingdan(id,orderBean);
     }
 
     @Override

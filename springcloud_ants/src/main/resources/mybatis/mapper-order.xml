@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.OrderMapper">
+    <!-- 获取我的订单的条件查询-->
+    <select id="queryMyOrder" resultType="OrderBean">
+        select * from linetable l,t_company t where l.companyId = t.companyId
+        <if test="b.chaxunshu != null and b.chaxunshu == 1">
+            and l.ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu != null and b.chaxunshu == 2">
+            and t.companyPhone = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu != null and b.chaxunshu == 3">
+            and t.companyName like '%${b.chaxunreal}%'
+        </if>
+        <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+        limit #{page},#{limit}
+    </select>
+    <!--  根据区id获取城市-->
+    <select id="queryCityByquId" resultType="String">
+        select c.city from areas a,cities c  where a.cityid= c.cityid
+         and a.areaid = #{statrsquId}
+    </select>
+</mapper>

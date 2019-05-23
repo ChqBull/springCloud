@@ -15,7 +15,7 @@ public class FrontdeskServiceImpl implements FrontdeskService {
     FrontdeskMapper frontdeskMapper;
 
     @Override
-    public HashMap<String, Object> lineSearch(Integer page, Integer limit,OrderBean orderBea) {
+    public HashMap<String, Object> lineSearch(Integer page, Integer limit, OrderBean orderBea) {
         Integer count =frontdeskMapper.count();
         List<OrderBean> orderBeans = frontdeskMapper.list(page,limit,orderBea);
         String start ="";
