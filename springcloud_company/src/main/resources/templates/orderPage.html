@@ -196,7 +196,7 @@
                 ,{field:'quhuoWay', width:80, title: '上门提货'}
                 ,{field:'paycount', width:80, title: '付费金额',sort:true}
                     ,{field:'zhifuWay', width:80, title: '付费方式',}
-                ,{field:'ispay', width:80, title: '是否付款'}
+               /* ,{field:'ispay', width:80, title: '是否付款'}*/
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width:120}
                 ]
                     ]
@@ -235,6 +235,7 @@
             active[type] ? active[type].call(this) : '';
         });
     });
+
     /*重置按钮*/
     $("#reset").click(function(){
         location.reload();
@@ -297,8 +298,12 @@
 /*三级联动结束*/
 
    function daochu(){
-    location.href="userExcelDownloads";
+
+  location.href="userExcelDownloads";
    }
+
+
+
 </script>
 <!--操作的按钮-->
 <script type="text/html" id="barDemo">
@@ -307,5 +312,13 @@
 <!--操作按钮结束-->
 <!--数据表格的结束-->
 <script>
+
+
+
+
 </script>
+
+
+
+
 </html>

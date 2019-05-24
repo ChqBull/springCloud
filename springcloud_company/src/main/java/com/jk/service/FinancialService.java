@@ -8,21 +8,21 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface FinancialService {
-    HashMap<String, Object> getFinancialStatement(String id, FinanciaModel financiaModel, Integer page, Integer limit);
+    HashMap<String, Object> getFinancialStatement(Integer id, FinanciaModel financiaModel, Integer page, Integer limit);
 
-    CashModel goCash(String id);
+    CashModel goCash(Integer id);
 
-    HashMap<String, Object> getWithdrawalRecords(String id, CashModel cashModel, Integer page, Integer limit);
+    HashMap<String, Object> getWithdrawalRecords(Integer id, CashModel cashModel, Integer page, Integer limit);
 
-    List<BankCards> getInquireAboutBankCards(String id);
+    List<BankCards> getInquireAboutBankCards(Integer id);
 
-    String addCash(CashModel cashModel, String id);
+    String addCash(CashModel cashModel, Integer id);
 
-    HashMap<String , Object>  getWithdrawalRecordsEchars(String id, CashModel cashModel);
+    HashMap<String , Object>  getWithdrawalRecordsEchars(Integer id, CashModel cashModel);
 
-    HashMap<String, Object> getWithdrawalEchars(String id);
+    HashMap<String, Object> getWithdrawalEchars(Integer id);
 
-    List<CashModel> getWithdrawalRecordsIop(String id);
+    List<CashModel> getWithdrawalRecordsIop(Integer id);
 
-    List<FinanciaModel> getWithdrawalRecordsFinaIop(String id);
+    List<FinanciaModel> getWithdrawalRecordsFinaIop(Integer id);
 }

@@ -15,11 +15,23 @@
     </insert>
     <!--注册   物流公司-->
     <insert id="saveComUser" parameterType="com.jk.bean.UserBean">
-      insert into t_user(phoneNumber,password,companyName,referrer,money,createTime,usertype)
-      values(#{phoneNumber},#{password},#{companyName},#{referrer},#{money},#{createTime},#{usertype})
+      insert into t_company (companyPhone,companyPassword,companyName,companyBalance,zhucetime)
+      values(#{phoneNumber},#{password},#{companyName},#{money},#{createTime})
     </insert>
     <!--根据账号 密码查用户-->
     <select id="getUserByPasPhone" parameterType="com.jk.bean.UserBean" resultType="com.jk.bean.UserBean">
     select * from t_user where phoneNumber=#{phoneNumber}  and password=#{password}
+    </select>
+    <!--判断该公司名是否注册-->
+    <select id="findCompanyByName"  resultType="com.jk.bean.CompanyModel">
+    select * from t_company c where c.companyName = #{companyName}
+    </select>
+    <!--根据账号 密码查用户-->
+    <select id="comlogin" parameterType="com.jk.bean.UserBean" resultType="com.jk.bean.CompanyModel">
+      select * from t_company where companyPhone = #{phoneNumber}  and  companyPassword=#{password}
+    </select>
+    <!--判断该手机号是否被占用-->
+    <select id="findCompanyByPhone"  resultType="com.jk.bean.CompanyModel">
+    select * from t_company c where c.companyPhone = #{phoneNumber}
     </select>
 </mapper>

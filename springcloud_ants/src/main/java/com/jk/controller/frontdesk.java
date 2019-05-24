@@ -5,6 +5,7 @@ import com.jk.bean.*;
 import com.jk.service.FrontdeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,46 +17,25 @@ public class frontdesk {
     @Autowired
     private FrontdeskService frontdeskService;
 
-    @RequestMapping("dd")
-    public String dd(){
-        return "ant";
-    }
-
-    @RequestMapping("findProvinc")
-    @ResponseBody
-    public List<Provinces> findProvinces(){
-        return frontdeskService.findProvinces();
-    }
-
-    @RequestMapping("findCit")
-    @ResponseBody
-    public List<Cities> findCity(int provinceid){
-        return frontdeskService.findCity(provinceid);
-    }
-
-    @RequestMapping("findAre")
-    @ResponseBody
-    public List<Areas> findArea(int cityid){
-        return frontdeskService.findArea(cityid);
-    }
-
-    @RequestMapping("listData")
-    @ResponseBody
-    public List listData (){
-        List list = frontdeskService.listData();
-        return  list;
+    @RequestMapping("cc")
+    public String cc(Integer startquid, Integer endquid, Model model){
+        Areas areas = new Areas();
+        areas.setStartquid(startquid);
+        areas.setEndquid(endquid);
+        model.addAttribute("a",areas);
+        return "antfront";
     }
 
     @RequestMapping("serviceArea")
     @ResponseBody
-    public  List<AreaData> serviceArea(){
-        List<AreaData> list =frontdeskService.serviceArea();
+    public  List<AreaData> serviceArea(Integer statrsquId){
+        List<AreaData> list =frontdeskService.serviceArea(statrsquId);
         return list;
     }
     @RequestMapping("companyList")
     @ResponseBody
-    public List<OrderBean> companyList(){
-        List<OrderBean> list =frontdeskService.companyList();
+    public List<Wuliuxianlu> companyList(Integer statrsquId,Integer endquId){
+        List<Wuliuxianlu> list =frontdeskService.companyList(statrsquId,endquId);
         return list;
     }
 

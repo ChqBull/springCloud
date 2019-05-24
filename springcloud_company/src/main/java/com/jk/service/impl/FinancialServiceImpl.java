@@ -18,7 +18,7 @@ public class FinancialServiceImpl implements FinancialService {
     FinancialMapper financialMapper;
 
     @Override
-    public HashMap<String, Object> getFinancialStatement(String id, FinanciaModel financiaModel, Integer page, Integer limit) {
+    public HashMap<String, Object> getFinancialStatement(Integer id, FinanciaModel financiaModel, Integer page, Integer limit) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         Long i = financialMapper.getFinancialStatementCount(id);
         List<FinanciaModel> li = financialMapper.getFinancialStatement(id,financiaModel,(page-1)*limit,limit);
@@ -29,7 +29,7 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public CashModel goCash(String id) {
+    public CashModel goCash(Integer id) {
         CashModel cashModel = new CashModel();
         /*获取当前账户余额*/
         Long Accountbalance = financialMapper.getAccountbalance(id);
@@ -43,7 +43,7 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public HashMap<String, Object> getWithdrawalRecords(String id, CashModel cashModel, Integer page, Integer limit) {
+    public HashMap<String, Object> getWithdrawalRecords(Integer id, CashModel cashModel, Integer page, Integer limit) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         Long sumAmount = financialMapper.getWithdrawalRecordsCount(id);
         List<FinanciaModel> li = financialMapper.getWithdrawalRecords(id,cashModel,(page-1)*limit,limit);
@@ -54,14 +54,14 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public List<BankCards> getInquireAboutBankCards(String id) {
+    public List<BankCards> getInquireAboutBankCards(Integer id) {
         return financialMapper.getInquireAboutBankCards(id);
     }
 
     @Override
-    public String addCash(CashModel cashModel, String id) {
+    public String addCash(CashModel cashModel, Integer id) {
         Integer i = cashModel.getWithdrawalPassword();
-        CompanyModel companyModel = financialMapper.judgePassword(i);
+        CompanyModel companyModel = financialMapper.judgePassword(id,i);
         if(companyModel == null){
             String msg = "提现密码错误!!!";
             return msg;
@@ -72,19 +72,19 @@ public class FinancialServiceImpl implements FinancialService {
             cashModel.setNewDate(format);
             cashModel.setAuditStatus(1);
             //cashModel.setCompanyId(Integer.valueOf(id));
-            financialMapper.addCash(cashModel);
+            financialMapper.addCash(id,cashModel);
             String msg = "提现申请已提交!请耐心等候.";
             return msg;
         }
     }
 
     @Override
-    public HashMap<String , Object> getWithdrawalRecordsEchars(String id, CashModel cashModel) {
+    public HashMap<String , Object> getWithdrawalRecordsEchars(Integer id, CashModel cashModel) {
         HashMap<String , Object> map = new HashMap<>();
         List<String> echarsNames = financialMapper.getWithdrawalRecordsEcharsNames(id);
         List<Integer> list = new ArrayList<>();
         for (int i = 0 ; i<echarsNames.size() ;i++){
-            Integer sum = financialMapper.getWithdrawalRecordsEchars(echarsNames.get(i));
+            Integer sum = financialMapper.getWithdrawalRecordsEchars(id,echarsNames.get(i));
             list.add(sum);
         }
         map.put("appDate",echarsNames);
@@ -93,7 +93,7 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public HashMap<String, Object> getWithdrawalEchars(String id) {
+    public HashMap<String, Object> getWithdrawalEchars(Integer id) {
         HashMap<String , Object> map = new HashMap<>();
         List<String> echarsNames = financialMapper.getWithdrawalEcharsNames(id);
         List<Integer> list = new ArrayList<>();
@@ -115,12 +115,12 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public List<CashModel> getWithdrawalRecordsIop(String id) {
+    public List<CashModel> getWithdrawalRecordsIop(Integer id) {
         return financialMapper.getWithdrawalRecordsIop(id);
     }
 
     @Override
-    public List<FinanciaModel> getWithdrawalRecordsFinaIop(String id) {
+    public List<FinanciaModel> getWithdrawalRecordsFinaIop(Integer id) {
         return financialMapper.getWithdrawalRecordsFinaIop(id);
     }
 }

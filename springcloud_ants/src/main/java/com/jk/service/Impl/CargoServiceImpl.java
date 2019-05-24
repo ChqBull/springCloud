@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,6 +40,8 @@ public class CargoServiceImpl implements CargoService {
         }else{
             orderBean.setZhifuWay("代付款");
         }
+
+
 
         cargoMapper.saveCargo(orderBean);
     }

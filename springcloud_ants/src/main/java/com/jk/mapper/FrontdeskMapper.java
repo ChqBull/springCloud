@@ -1,5 +1,6 @@
 package com.jk.mapper;
 
+
 import com.jk.bean.*;
 import org.apache.ibatis.annotations.Param;
 
@@ -7,21 +8,12 @@ import java.util.List;
 
 public interface FrontdeskMapper {
 
-    List<Provinces> findProvinces();
 
-    List<Cities> findCity(int provinceid);
+    List<AreaData> serviceArea(Integer statrsquId);
 
-    List<Areas> findArea(int cityid);
+    List<Wuliuxianlu> companyList(@Param("statrsquId") Integer statrsquId, @Param("endquId") Integer endquId);
 
-    List listData();
+    AreaData searchArea3(String endAreaId);
 
-    void add(OrderBean orderBean);
-
-    List<AreaData> serviceArea();
-
-    List<OrderBean> companyList();
-
-    AreaData searchArea3();
-
-    AreaData searchArea4(String cityId);
+    AreaData searchArea4(String startAreaId);
 }

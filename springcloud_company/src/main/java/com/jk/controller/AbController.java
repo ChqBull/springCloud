@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
@@ -31,22 +33,53 @@ public class AbController {
     }
 
     @RequestMapping("zhaopian")
-    public String getzhaopian(){
+    public String getzhaopian(Integer id,Model model){
+        model.addAttribute("id",id);
         return "zhaopian";
     }
 
+
+      //回显公司信息
+    @RequestMapping("findgongsi")
+    public String findgongsi(HttpServletRequest request, Model model){
+        /*UserBean user = (UserBean) session.getAttribute(session.getId());
+        String phoneNumber = user.getPhoneNumber();*/
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        CompanyModel list=anService.findgongsi(companyId);
+        model.addAttribute("c",list);
+        return "gongsi";
+    }
+    @RequestMapping("finds")
+    @ResponseBody
+    public CompanyModel finds(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        CompanyModel list=anService.findgongsi(companyId);
+
+        return list;
+    }
     @RequestMapping("addgongsi")
     @ResponseBody
     public void addgongsi(CompanyModel gongsi , String check, HttpSession session){
-        gongsi.setCompanyId(1);
+
         gongsi.setServe(check);
         anService.addgongsi(gongsi);
+    }
+    @RequestMapping("addtupian")
+    @ResponseBody
+    public void addtupian(CompanyModel gongsi,Integer id){
+        gongsi.setCompanyId(id);
+        anService.addtupian(gongsi);
     }
     //查询省
 
     @RequestMapping("findProvinces")
     @ResponseBody
     public List<Provinces>fingprovinces(){
+
         return  anService.fingprovinces();
     }
 
@@ -68,7 +101,7 @@ public class AbController {
 
     @RequestMapping("imgUpload")
     @ResponseBody
-    public  HashMap<String,Object> imgUpload( MultipartFile goodsImg,String msg){
+    public  HashMap<String,Object> imgUpload( MultipartFile goodsImg){
 
         String filename = goodsImg.getOriginalFilename();
         System.out.println(filename);
@@ -95,5 +128,15 @@ public class AbController {
 
         map.put("imgId","");
         return  map;
+    }
+    @RequestMapping("queryOne")
+    @ResponseBody
+    public CompanyModel findgongsi(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        CompanyModel list=anService.findgongsi(companyId);
+       return  list;
+
     }
 }

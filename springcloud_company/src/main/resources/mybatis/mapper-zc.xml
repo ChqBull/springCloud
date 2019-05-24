@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.AnMapper">
+
+
+
+ <update id="addgongsi" parameterType="com.jk.bean.CompanyModel">
+         update   t_company  set  gsjian=#{gongso.gsjian},gsphone=#{gongso.gsphone},gspople=#{gongso.gspople},gsweb=#{gongso.gsweb},gszong=#{gongso.gszong},gsjieshao=#{gongso.gsjieshao},
+              address=#{gongso.address},serve=#{gongso.serve},gsadrivs=#{gongso.gsadrivs},goodsImg=#{gongso.goodsImg},gsquancheng=#{gongso.gsquancheng},quid=#{gongso.qu}  where companyId =#{gongso.companyId}
+
+ </update>
+    <update id="addtupian" parameterType="com.jk.bean.CompanyModel">
+         update   t_company  set  yingye=#{gongso.yingye},fuzeren=#{gongso.fuzeren},shuiwu=#{gongso.shuiwu},daolu=#{gongso.daolu} where companyId =#{gongso.companyId}
+ </update>
+    <select id="findgongsi" resultType="com.jk.bean.CompanyModel">
+    select
+    tc.companyId ,tc.companyName,p.provinceid as sheng,c.cityid as shi,a.areaid as qu ,tc.companyPassword,tc.companyPhone,tc.companyRange
+    ,tc.goodsImg,tc.gsadrivs,tc.gsjian,tc.gsjieshao,tc.
+    gsphone,tc.withdrawalPassword,tc.serve,tc.gsweb,tc.gszong,tc.address,tc.gspople,tc.gsquancheng
+    from provinces p,cities c,areas a,t_company tc where p.provinceid=c.provinceid and tc.quid=a.areaid and companyId=#{id}  GROUP BY tc.companyId</select>
+
+</mapper>

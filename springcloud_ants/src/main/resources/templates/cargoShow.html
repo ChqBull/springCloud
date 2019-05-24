@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"></meta>
     <meta name="renderer" content="webkit"/>
@@ -69,14 +69,14 @@
 
 <ul class="layui-nav layui-bg-green" align="center">
     <li class="layui-nav-item"><a href="/index2">首页</a></li>
-    <li class="layui-nav-item"><a href="/dd">物流专线</a></li>
-    <li class="layui-nav-item"><a href="/getzhuanxian">在线发货</a></li>
+    <li class="layui-nav-item"><a href="/cc">物流专线</a></li>
+    <li class="layui-nav-item"><a href="/tozaixianfahuo">在线发货</a></li>
     <li class="layui-nav-item"><a href="">国际海运</a></li>
     <li class="layui-nav-item"><a href="">物流公司</a></li>
-    <li class="layui-nav-item"><a href="">物流新闻</a></li>
+    <li class="layui-nav-item"><a href="/toNewsApi">物流新闻</a></li>
     <li class="layui-nav-item"><a href="">物流招标</a></li>
     <li class="layui-nav-item"><a href="">在线购买</a></li>
-    <li class="layui-nav-item"><a href="">个人中心</a></li>
+    <li class="layui-nav-item"><a href="/userTree">个人中心</a></li>
 </ul>
 <div class="substation-box">
     <div class="substation">
@@ -212,7 +212,7 @@
                 <label class="layui-form-label">货物信息</label>
                 <div class="layui-input-inline" style="width: 100px;">
                     <input type="text" name="cargoWeight" id="cargoWeight" autocomplete="off" class="layui-input"
-                           placeholder="请输入重量"/>
+                           onblur="jisuan()"  placeholder="请输入重量"/>
                 </div>
                 <div class="layui-form-mid layui-word-aux">公斤</div>
 
@@ -228,14 +228,6 @@
                     <a href="https://zhidao.baidu.com/question/2080138432968266028.html" target="_blank"><span
                             style="color:blue">什么是重货轻货？</span></a>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">单价</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="cargoPrice" id="cargoPrice" onblur="jisuan()" autocomplete="off"
-                           class="layui-input"/>
-                </div>
-
             </div>
         </div>
 
@@ -363,6 +355,7 @@
     <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
         <button data-method="offset" data-type="r" class="layui-btn layui-btn-normal">右弹出</button>
     </div>
+    <input type="hidden" th:value="${id}" id="hId">
 
 </div>
 
@@ -400,7 +393,7 @@
     }*/
     function jisuan() {
         var cargoWeight = $("#cargoWeight").val();
-        var cargoPrice = $("#cargoPrice").val();
+        var cargoPrice = 5;
         var jieguo = cargoWeight * cargoPrice;
 
 
@@ -434,7 +427,6 @@
             } else {
                 $(".tian").show();
             }
-
         })
 
 
@@ -464,10 +456,11 @@ alert(obj[i].companyName)
         $.post(
             "findCompany",
             function (obj) {
+                var cid = $("#hId").val();
                 for (var i = 0; i < obj.length; i++) {
 
                     $("#gsmc").append("<option value=" + obj[i].companyId + ">" + obj[i].companyName + "</option>")
-
+                    $("#gsmc > option[value="+cid+"]").prop("selected",true);
                 }
                 form.render("select");
             },

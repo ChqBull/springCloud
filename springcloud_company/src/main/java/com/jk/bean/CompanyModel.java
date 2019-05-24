@@ -19,8 +19,18 @@ public class CompanyModel {
     private  String    gsjieshao;//公司介绍
     private  String    address;//详细地址
     private  String    serve;//优势服务行业
-    private  String    goodsImg;//上传图片
-    private  String    gsadrivs;//办公地址
+    private    String   goodsImg;//上传图片
+     private  String    gsadrivs;//办公地址
+     private  String    gsquancheng;
+     private   String  yingye;//营业执照
+     private  String  fuzeren;//负责人
+     private  String   shuiwu;//税务
+     private  String  daolu;//道路
+     private  String  city_id; //区id
 
-    private  String gsquancheng;
+    private  Integer  sheng;
+    private  Integer  shi;
+    private  Integer  qu;
+
+
 }

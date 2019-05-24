@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>C端后台首页</title>
+    <link href="http://www.lvmae.com/skin/default/member/style/20150729template.css" type="text/css" rel="stylesheet">
+    <link href="http://www.lvmae.com/skin/default/member/style/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/member/image/style.css">
+    <script type="text/javascript" src="http://www.lvmae.com/skin/default/member/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="http://www.lvmae.com/lang/zh-cn/lang.js"></script>
+    <script type="text/javascript" src="http://www.lvmae.com/file/script/config.js"></script>
+    <script type="text/javascript" src="http://www.lvmae.com/file/script/common.js"></script>
+    <script type="text/javascript" src="http://www.lvmae.com/file/script/admin.js"></script>
+    <script type="text/javascript" src="http://www.lvmae.com/file/script/member.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $(".top-nav li.user").click(function(){
+                $(".am-dropdown-content").toggle(100);
+            });
+
+            $(".nav-parent").click(function(){
+                $(this).addClass("nav-active");
+                $(this).siblings().removeClass("nav-active");
+                $(".nav-active ul.children").toggle(300);
+            });
+            var i=$(".process").children("li").length;
+            for(var j=0; j<i; j++){
+                $(".process li").eq(j).addClass("process"+j);
+            }
+
+            $(".fourbtn li").eq(3).addClass("lastbtn");
+
+            var curent_url = window.location.href;
+            if( curent_url.indexOf('edit.php?action=edit') != -1 ){
+
+                curent_url = curent_url.substr(0,curent_url.lastIndexOf('edit.php?action=edit'));
+            }
+            if( curent_url.indexOf('.php') !=-1 ){
+                curent_url = curent_url.substr(0,curent_url.indexOf('.php'));
+            }else{
+                curent_url = curent_url.substr(0,curent_url.lastIndexOf('/'));
+            }
+
+            var url ='';
+            $("div.nav ul.am-list li").each(function(){
+
+                url = $(this).find('a').attr('href');
+                if( url.indexOf('.php') != -1 ){
+                    url = url.substr(0,url.indexOf('.php'));
+                }
+
+                $(this).removeClass('active');
+                if( curent_url == url ){
+                    $(this).addClass('active');
+                }
+
+            })
+
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/member/image/index.css">
+</head>
+<body>
+<h2 class="title"><i class="fa fa-user-plus"></i>用户中心  <span>您的当前位置：<label><a href="/member">首页</a>/用户中心 </label></span> </h2>
+<div class="pagecon">
+    <div id="warn">
+    </div>
+    <table cellpadding="0" cellspacing="0" width="100%" height="100%">
+        <tbody><tr>
+            <td valign="top">
+                <div class="i_info">
+                    <ul>
+                        <li>
+                            欢迎登录：15964418138&nbsp;
+                            <a href="javascript:;" class="Vmember">(<i class="vip-member"></i>升级VIP)</a>
+                        </li>
+                        <!-- <li>
+                        <img src="http://www.lvmae.com/member/image/u_member.gif" width="16" height="16" title="未通过认证" align="absmiddle"/> 认证：
+                        <img src="http://www.lvmae.com/member/image/u_bank.gif" width="16" height="16" title="未通过银行帐号认证" align="absmiddle"/> <a href="validate.php?action=bank" class="l">银行</a> &nbsp;
+                        <img src="http://www.lvmae.com/member/image/u_truename.gif" width="16" height="16" title="未通过真实姓名认证" align="absmiddle"/> <a href="validate.php?action=truename" class="l">实名</a> &nbsp;
+                        </li>
+                         -->
+                        <li>
+                            <img src="http://www.lvmae.com/member/image/ico_message.gif" width="16" height="16" alt="" align="absmiddle"> 信件：
+                            <strong class="f_red">1</strong> 封 <a href="message.php" class="l">未读站内信</a>
+                            &nbsp;&nbsp;
+                            <a href="message.php?typeid=1" class="l">询价</a> |
+                            <!--<a href="message.php?typeid=2" class="l">报价</a> | -->
+                            <a href="message.php?typeid=3" class="l">留言</a> |
+                            <!--<a href="message.php?typeid=4" class="l">信使</a> | -->
+                            <a href="message.php?action=send" class="l">发信</a>
+                        </li>
+                        <!--<li>
+                        <img src="http://www.lvmae.com/member/image/ico_member.gif" width="16" height="16" alt="" align="absmiddle"/> 资金：
+                        <strong class="f_red px14">0</strong> 元可用 <span class="f_gray">(0.00元锁定)</span>&nbsp;&nbsp;
+                        <a href="record.php" class="l">资金流水</a> |
+                        <a href="cash.php" class="l">提现</a> |
+                        <a href="charge.php?action=pay" target="_blank"><img src="http://www.lvmae.com/member/image/btn_charge.gif" width="40" height="18" alt="" align="absmiddle"/></a>
+                        </li>-->
+                        <!--<li>
+                        <img src="http://www.lvmae.com/member/image/ico_credit.gif" width="16" height="16" alt="" align="absmiddle"/> 积分：
+                        <strong>0</strong>
+                        &nbsp;&nbsp;
+                        <a href="credit.php" class="l">积分记录</a> |
+                        <a href="credit.php?action=buy" class="l">购买积分</a> |
+                        <a href="credit.php?action=invite" class="l">推广赚积分</a>
+                        | <a href="http://www.lvmae.com/gift/" class="l" target="_blank">积分换礼</a></li>-->
+                        <li>
+                            <img src="http://www.lvmae.com/member/image/ico_sms.gif" width="16" height="16" alt="" align="absmiddle"> 短信：
+                            <strong>0</strong> 条可用
+                            &nbsp;&nbsp;
+                            <a href="sms.php?action=add" class="l">发送</a> |
+                            <a href="sms.php?action=buy" class="l">购买</a> |
+                            <a href="sms.php?action=record" class="l">接收记录</a> |
+                            <a href="sms.php?action=send" class="l">发送记录</a> |
+                            <a href="sms.php" class="l">短信记录</a>
+                        </li>
+                        <li>
+                            <img src="http://www.lvmae.com/member/image/ico_trade.gif" width="16" height="16" alt="" align="absmiddle"> 订单：
+                            <a href="trade.php?action=order&amp;status=1" class="l">待处理</a> |
+                            <a href="trade.php?action=order&amp;status=2" class="l">处理中</a> |
+                            <a href="trade.php?action=order&amp;status=3" class="l">已完成</a> |
+                            <!--<a href="trade.php" class="l">收到的订单(卖)</a> |
+                            <a href="trade.php?action=order" class="l">发出的订单(买)</a>
+                             | <a href="http://www.lvmae.com/mall/cart.php" class="l">购物车(<script type="text/javascript">document.write(substr_count(get_cookie('cart'), ','));</script>)</a>-->
+                        </li>
+                    </ul>
+                </div>
+                <div class="i_quick">
+                    <div>
+                        <ul>
+                            <!--<li><a href="my.php" class="b"><img src="http://www.lvmae.com/member/image/btn_my.gif" width="32" height="32" alt=""/><br/><span class="f_red">发布信息</span></a></li>-->
+                            <li><a href="edit.php?action=edit" class="b"><img src="http://www.lvmae.com/member/image/btn_edit.gif" width="32" height="32" alt=""><br>完善资料</a></li>
+                            <li><a href="message.php" class="b"><img src="http://www.lvmae.com/member/image/btn_message.gif" width="32" height="32" alt=""><br>站内信</a></li>
+                            <!--<li><a href="style.php" class="b"><img src="http://www.lvmae.com/member/image/btn_style.gif" width="32" height="32" alt=""/><br/>风格模板</a></li>-->
+                            <!--<li><a href="http://www.lvmae.com/index.php?homepage=15964418138" target="_blank" class="b"><img src="http://www.lvmae.com/member/image/btn_home.gif" width="32" height="32" alt=""/><br/><span class="f_red">我的商铺</span></a></li>-->
+                            <!--<li><a href="record.php" class="b"><img src="http://www.lvmae.com/member/image/btn_record.gif" width="32" height="32" alt=""/><br/>资金记录</a></li>-->
+                            <li><a href="trade.php?action=order" class="b"><img src="http://www.lvmae.com/member/image/btn_trade.gif" width="32" height="32" alt=""><br>我的订单</a></li>
+                            <!--<li><a href="alert.php" class="b"><img src="http://www.lvmae.com/member/image/btn_alert.gif" width="32" height="32" alt=""/><br/>贸易提醒</a></li>
+                            <li><a href="friend.php" class="b"><img src="http://www.lvmae.com/member/image/btn_friend.gif" width="32" height="32" alt=""/><br/>我的商友</a></li>-->
+                            <!--<li><a href="favorite.php" class="b"><img src="http://www.lvmae.com/member/image/btn_favorite.gif" width="32" height="32" alt=""/><br/>商机收藏</a></li>-->
+                        </ul>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <link href="http://www.lvmae.com/skin/default/member/style/20151010order-tms.css" type="text/css" rel="stylesheet">
+                <!--右侧内容 start-->
+                <div class="pagecon">
+
+                    <div class="mycar">
+                        <h3 class="title"><a href="http://www.lvmae.com/member/collection.php">快捷发货</a></h3>
+                        <div class="choosecar-list">
+                            <table class="r-list" cellpadding="0" cellspaciong="0">
+                                <tbody><tr>
+                                    <th>承运商</th>
+                                    <th>路线</th>
+                                    <th>操作</th>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                        <div style="line-height: 24px; text-align:center; widht:100%;"><a href="http://www.lvmae.com/member/collection.php" style="color: #f60; font-size: 16px;">更多</a></div>
+                    </div>
+
+                </div>
+                <!--右侧内容 end-->
+            </td>
+            <td width="8">&nbsp;</td>
+            <td valign="top" class="i_rt">
+                <!--<div class="i_head">
+                <strong>商务便笺</strong>
+                </div>
+                <div class="i_body">
+                <div class="i_note">
+                <form method="post" action="index.php" onsubmit="return check();">
+                <table cellspacing="2" cellpadding="2" width="100%">
+                <tr>
+                <td colspan="2"><textarea name="note" id="note">欢迎进入绿蚂蚁平台www.lvmae.com</textarea></td>
+                </tr>
+                <tr>
+                <td><input type="submit" name="submit" value=" 更 新 " class="btn"/></td>
+                <td class="f_gray">[可记录一些文字备忘，限1000字]</td>
+                </tr>
+                </table>
+                </form>
+                </div>
+                </div>-->
+                <div class="i_head">
+                    <span class="f_r"><a href="message.php">[更多]</a></span>
+                    <strong>系统消息</strong>
+                </div>
+                <div class="i_body">
+                    <div class="i_sys">
+                        <ul>
+                            <li><span class="f_r px11 f_gray">05-24</span>&nbsp;<a href="message.php?action=show&amp;itemid=43965" title="致货主的安全发货温馨提醒">致货主的安全发货温馨提醒</a></li>
+                            <li><span class="f_r px11 f_gray">05-20</span>&nbsp;<a href="message.php?action=show&amp;itemid=43869" title="对兄弟物流下架1个月整顿的通知">对兄弟物流下架1个月整顿的通知</a></li>
+                            <li><span class="f_r px11 f_gray">05-20</span>&nbsp;<a href="message.php?action=show&amp;itemid=43861" title="近期物流公司可能出现线路无法在页面展示的公告">近期物流公司可能出现线路无法在页面展示的公告</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="i_head">
+                    <!--<span class="f_r"><a href="edit.php">[修改]</a></span>-->
+                    <strong>我的资料</strong>
+                </div>
+                <div class="i_body">
+                    <div class="i_user">
+                        <table cellpadding="6" cellspacing="0" width="100%">
+                            <tbody><tr>
+                                <td class="i_user_l">会员名</td>
+                                <td>15964418138</td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l">会员组</td>
+                                <td>个人会员</td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l">会员ID</td>
+                                <td>41309</td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l">登录时间</td>
+                                <td>2019-05-22 17:29</td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l">注册时间</td>
+                                <td>2019-05-15 20:12</td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l" style="width:90px;">升级为承运商</td>
+                                <td>
+                                    &nbsp;<a href="http://www.lvmae.com/member/up.php"><span class="f_red"><b style="font-size:16px;">点击申请成为承运商</b></span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="i_user_l" style="width:90px;">绿蚂蚁服务电话</td>
+                                <td>&nbsp;<span class="f_red"><b style="font-size:16px;">400-884-6800</b></span></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    <div id="light" class="white_content">
+        <div>
+            <div style="width:50%;float:left;text-align:center;vertical-align:middle;cursor:pointer;" onclick="lead.close();">
+                <div style="margin:auto;width:225px;height:200px;background:#83c326;line-height:80px;">
+                    我是发货方<br><span class="fa fa-gift" style=" font-size:40px; "></span><br>
+                    <a href="javascript:void(0);" onclick="lead.close();">点击进入个人中心</a>
+                </div>
+            </div>
+            <div style="width:50%;float:left;text-align:center;vertical-align:middle;cursor:pointer;" onclick="lead.up();">
+                <div style="margin:auto;width:225px;height:200px;background:#83c326;line-height:80px;">
+                    我是承运商<br><span class="fa fa-truck" style=" font-size:40px; "></span><br>
+                    点击申请成为承运商
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fade" class="black_overlay"></div>
+</div>
+</body>
+</html>

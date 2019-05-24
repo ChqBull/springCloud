@@ -6,6 +6,8 @@ import com.jk.service.FrontdeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,36 +17,39 @@ public class FrontdeskServiceImpl implements FrontdeskService {
     FrontdeskMapper frontdeskMapper;
 
     @Override
-    public HashMap<String, Object> lineSearch(Integer page, Integer limit, OrderBean orderBea) {
-        Integer count =frontdeskMapper.count();
-        List<OrderBean> orderBeans = frontdeskMapper.list(page,limit,orderBea);
+    public HashMap<String, Object> lineSearch(Integer page, Integer limit, Wuliuxianlu wuliuxianlu,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        Integer count =frontdeskMapper.count(companyId);
+        List<Wuliuxianlu> wuliuxianlus = frontdeskMapper.list((page-1)*limit,limit,wuliuxianlu,companyId);
         String start ="";
         String startplace="";
         String end ="";
         String endplace="";
-        for (OrderBean orderBean : orderBeans) {
-            start = orderBean.getStartplace();
+        for (Wuliuxianlu wuliuxianlus1 : wuliuxianlus) {
+            start = wuliuxianlus1.getStartId();
             if (start!=null) {
                 AreaData areaName = frontdeskMapper.searchArea(start);
                 String area = areaName.getArea();
                 String city = areaName.getCity();
                 String province = areaName.getProvince();
                 startplace = province + city + area;
-                orderBean.setStartplace(startplace);
+                wuliuxianlus1.setStartplace(startplace);
             }
-            end = orderBean.getEndplace();
+            end = wuliuxianlus1.getEndId();
             if (end!=null) {
                 AreaData areaName = frontdeskMapper.searchArea2(end);
                 String area = areaName.getArea();
                 String city = areaName.getCity();
                 String province = areaName.getProvince();
                 endplace = province + city + area;
-                orderBean.setEndplace(endplace);
+                wuliuxianlus1.setEndplace(endplace);
             }
         }
         HashMap<String,Object> map= new HashMap<>();
         map.put("count",count);
-        map.put("data",orderBeans);
+        map.put("data",wuliuxianlus);
         map.put("code",0);
         return map;
     }
@@ -68,9 +73,9 @@ public class FrontdeskServiceImpl implements FrontdeskService {
     }
 
     @Override
-    public OrderBean editLine(Integer id) {
-        OrderBean orderBean= frontdeskMapper.editLine(id);
-        return orderBean;
+    public Wuliuxianlu editLine(String id) {
+        Wuliuxianlu wuliuxianlu= frontdeskMapper.editLine(id);
+        return wuliuxianlu;
     }
 
     @Override
@@ -80,8 +85,8 @@ public class FrontdeskServiceImpl implements FrontdeskService {
     }
 
     @Override
-    public void add(OrderBean orderBean) {
-        frontdeskMapper.add(orderBean);
+    public void add(Wuliuxianlu wusliuxianlu) {
+        frontdeskMapper.add(wusliuxianlu);
     }
 
     @Override
@@ -90,14 +95,51 @@ public class FrontdeskServiceImpl implements FrontdeskService {
     }
 
     @Override
-    public List<OrderBean> findAll() {
+    public List<Wuliuxianlu> findAll() {
         return frontdeskMapper.findAll();
     }
 
     @Override
-    public OrderBean queryOne(Integer id) {
-      OrderBean orderBean=  frontdeskMapper.queryOne(id);
-      return orderBean;
+    public Wuliuxianlu queryOne(Integer id) {
+      Wuliuxianlu wuliuxianlu=  frontdeskMapper.queryOne(id);
+      return wuliuxianlu;
+    }
+
+    @Override
+    public String address(Integer area1, Integer area2) {
+        String aa ="";
+        String startplace="";
+        String endplace="";
+        if (area1!=null) {
+            AreaData areaName = frontdeskMapper.searchArea5(area1);
+            String area = areaName.getArea();
+            String city = areaName.getCity();
+            String province = areaName.getProvince();
+            startplace = province + city + area;
+        }
+        if (area2!=null) {
+            AreaData areaName = frontdeskMapper.searchArea5(area2);
+            String area = areaName.getArea();
+            String city = areaName.getCity();
+            String province = areaName.getProvince();
+            endplace = province + city + area;
+        }
+        aa = startplace+"到"+endplace;
+        return aa;
+
+
+
+    }
+
+    @Override
+    public String addLine(Wuliuxianlu wuliuxianlu, HttpServletRequest request) {
+       HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        wuliuxianlu.setCompanyId(companyId);
+        frontdeskMapper.addLine(wuliuxianlu);
+        frontdeskMapper.addLine2(wuliuxianlu);
+        return null;
     }
 
 }

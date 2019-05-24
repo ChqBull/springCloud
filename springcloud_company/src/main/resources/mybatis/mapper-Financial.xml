@@ -4,7 +4,7 @@
 <mapper namespace="com.jk.mapper.FinancialMapper">
     <!--获取财务报表-->
  <select id="getFinancialStatement" resultType="com.jk.bean.FinanciaModel">
-     select * from t_financia where companyId = '1'
+     select * from t_financia where companyId = #{id}
      <if test="financiaModel.tradingNumber != null and financiaModel.tradingNumber!=''">
          and tradingNumber like concat('%', #{financiaModel.tradingNumber},'%')
      </if>
@@ -18,23 +18,23 @@
  </select>
     <!--获取总条数-->
  <select id="getFinancialStatementCount" resultType="long">
-     select count(*) from t_financia where companyId = '1'
+     select count(*) from t_financia where companyId = #{id}
  </select>
     <!--获取提现余额-->
  <select id="goCash" resultType="long">
-      select SUM(c.amount) from t_cash c where c.companyId  = '1'
+      select SUM(c.amount) from t_cash c where c.companyId  = #{id}
  </select>
     <!--获取当前账户余额-->
  <select id="getAccountbalance" resultType="long">
-       select  c.companyBalance from t_company c where c.companyId = '1'
+       select  c.companyBalance from t_company c where c.companyId = #{id}
  </select>
     <!--获取提现记录表总条数-->
  <select id="getWithdrawalRecordsCount" resultType="long">
-      select count(*) from t_cash c where companyId = '1'
+      select count(*) from t_cash c where companyId = #{id}
  </select>
     <!--获取提现记录表-->
  <select id="getWithdrawalRecords" resultType="com.jk.bean.CashModel">
-      select * from t_cash c where companyId = '1'
+      select * from t_cash c where companyId = #{id}
       <if test="cashModel.startDate != null">
           and applicationDate &gt;= #{cashModel.startDate}
       </if>
@@ -48,42 +48,42 @@
  </select>
     <!--获取提现记录表Iop-->
  <select id="getWithdrawalRecordsIop" resultType="com.jk.bean.CashModel">
-        select * from t_cash c where companyId = '1'
+        select * from t_cash c where companyId = #{id}
  </select>
     <!--获取公司银行卡账户-->
  <select id="getInquireAboutBankCards" resultType="com.jk.bean.BankCards">
-       select b.bankCardsNumber from t_bankCards b where b.companyId = '1'
+       select b.bankCardsNumber from t_bankCards b where b.companyId = #{id}
  </select>
     <!--判断体现密码是否正确-->
  <select id="judgePassword" resultType="com.jk.bean.CompanyModel">
-       select * from t_company c where c.companyId = '1' and c.withdrawalPassword = #{i}
+       select * from t_company c where c.companyId = #{id} and c.withdrawalPassword = #{i}
  </select>
     <!--添加提现记录-->
  <insert id="addCash">
      insert into  t_cash (applicationDate,amount,bankCards,auditStatus,companyId)
-     values (#{newDate},#{amount},#{bankCards},#{auditStatus},1)
+     values (#{newDate},#{amount},#{bankCards},#{auditStatus},#{id})
  </insert>
     <!--根据id查体现日期-->
  <select id="getWithdrawalRecordsEcharsNames" resultType="String">
-    select c.applicationDate from t_cash c where c.companyId = '1' group by c.applicationDate order by c.applicationDate
+    select c.applicationDate from t_cash c where c.companyId = #{id} group by c.applicationDate order by c.applicationDate
  </select>
     <!--根据日期查当日提现总金额-->
  <select id="getWithdrawalRecordsEchars" resultType="int">
-    select SUM(c.amount) from t_cash c where c.companyId = '1' and c.applicationDate = #{appDate}
+    select SUM(c.amount) from t_cash c where c.companyId = #{id} and c.applicationDate = #{appDate}
  </select>
     <!--根据id查交易日期-->
  <select id="getWithdrawalEcharsNames" resultType="String">
-    select f.tradingDate from t_financia f where  f.companyId = '1' GROUP BY f.tradingDate order by f.tradingDate
+    select f.tradingDate from t_financia f where  f.companyId = #{id} GROUP BY f.tradingDate order by f.tradingDate
  </select>
     <!--根据日期查当日提现总金额-->
  <select id="getWithdrawalEchars" resultType="int">
-    select f.transactionAmount from t_financia f where  f.tradingDate = #{s} and f.companyId = '1' and f.budgetType = '2'
+    select sum(f.transactionAmount) from t_financia f where  f.tradingDate = #{s} and f.companyId = #{id} and f.budgetType = '2'
  </select>
  <select id="getWithdrawalEchars2" resultType="int">
-    select f.transactionAmount from t_financia f where  f.tradingDate = #{s} and f.companyId = '1' and f.budgetType = '1'
+    select sum(f.transactionAmount) from t_financia f where  f.tradingDate = #{s} and f.companyId = #{id} and f.budgetType = '1'
  </select>
     <!--获取财务报表poi-->
  <select id="getWithdrawalRecordsFinaIop" resultType="com.jk.bean.FinanciaModel">
-        select * from t_financia where companyId = '1'
+        select * from t_financia where companyId = #{id}
  </select>
 </mapper>

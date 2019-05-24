@@ -66,7 +66,7 @@
             <tr>
                 <th>货物名称</th>
                 <th>件数</th>
-                <th>包装类型</th>
+               <!-- <th>包装类型</th>-->
                 <th>单件重量</th>
                 <th>单件体积</th>
             </tr>
@@ -75,7 +75,7 @@
             <tr>
                 <td><span  th:text="${o.cargoName}"></span></td>
                 <td><span  th:text="${o.cargoCount}"></span></td>
-                <td><span  th:text="${o.cargoType}"></span></td>
+             <!--   <td><span  th:text="${o.cargoType}"></span></td>-->
                 <td><span  th:text="${o.cargoWeight}"></span></td>
                 <td><span  th:text="${o.cargoBulk}"></span></td>
 
@@ -178,14 +178,14 @@
         //alert(id);
         $.ajax({
             //修改订单状态
-            url:"updatejiesuan?id="+id+"&status="+1,
+            url:"updatejiesuan?id="+id+"&status="+3,
             type:"post",
             success:function () {
                 layer.msg('已经成功结算', {
                     icon: 1,
                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
                 }, function(){
-                    //do something
+                    window.parent.location.reload();
                 });
             }
         })
@@ -207,7 +207,7 @@
 
                 $.ajax({
                     //修改订单状态
-                    url:"updatejiesuan?id="+id+"&status="+2,
+                    url:"updatejiesuan?id="+id+"&status="+4,
                     type:"post",
                     success:function () {
                         layer.msg('已经拒绝结算,系统将在俩天后自动结算', {icon: 1});

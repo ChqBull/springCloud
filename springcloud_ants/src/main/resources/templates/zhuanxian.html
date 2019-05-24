@@ -28,42 +28,52 @@
 
 <script type="text/javascript" src="http://www.lvmae.com/file/script/index/main.js" charset="UTF-8"></script>
 <body>
+<span id="span1"></span>--<span id="span2"></span>
+<input type="hidden" th:value="${c.startCity}" id="a"/>
+<input type="hidden" th:value="${c.endCity}" id="b" />
 <div class="layui-tab-content">
     <div class="layui-tab-item layui-show" align="center">
        <!-- <input type="text" style='border:0' th:value="${c.names}"/>
         <span id="span1"></span>-->
     </div>
-    <div class="layui-tab-item">
 
 
-
-    </div>
     <div class="c-left">
 
         <!--公司基本信息 start-->
-        <div class="company-infor">
+        <div class="company-infor" style="width: 1000px">
             <div class="com-decoration">
 
                     <img alt="广州市兢业物流有限公司" src="http://www.lvmae.com/file/upload/201705/24/17-52-06-79-37661.jpg"/>
 
-
                 <dl>
-                    <dt><input type="text" style='border:0' id="ss" disabled='disabled' background="white" th:value="${c.names}"/></dt>
+                    <input type="hidden" id="cId" th:value="${c.companyId}"/>
+                    <input type="hidden" id="companyName" th:value="${c.companyName}"/>
+                    <input type="hidden" id="zhucetime" th:value="${c.zhucetime}"/>
+                    <input type="hidden" id="count" th:value="${c.count}"/>
+                    <input type="hidden" id="gspople" th:value="${c.gspople}"/>
+                    <input type="hidden" id="companyPhone" th:value="${c.companyPhone}"/>
+                    <input type="hidden" id="address" th:value="${c.address}"/>
+                    <input type="hidden" id="price" th:value="${c.price}"/>
+
+
+                    <dt><span id="span3"></span></dt>
                     <dd><span class="lt">服务保障：</span><span>
-                                                        <i class="icon-zheng" title="该会员经过绿蚂蚁实地认证，安全可靠">证</i>                            <i class="icon-abc" title="该承运商的资信评级为AAA">AAA</i>
+                        <i class="icon-zheng" title="该会员经过绿蚂蚁实地认证，安全可靠">证</i>
+                        <i class="icon-abc" title="该承运商的资信评级为AAA">AAA</i>
                             </span></dd>
-                    <dd><span class="lt">认证类型：</span><input type="text" disabled='disabled' style='border:0' th:value="${c.ptype}"/></dd>
-                    <dd><span class="lt">注册时间：</span><input type="text" disabled='disabled' style='border:0' th:value="${c.pdate}"/></dd>
-                    <dd><span class="lt">服务线路：</span><input type="text" disabled='disabled' style='border:0' th:value="${c.pcount}+'条'"/></dd>
-                    <dd><span class="lt">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span><input type="text" disabled='disabled' style='border:0' th:value="${c.contact}"/></dd>
-                    <dd><span class="lt">联系电话：</span><span>
-                               <input type="text" disabled='disabled' style='border:0' th:value="${c.phone}"/>                          </span></dd>
-                    <dd><span class="lt">联系地址:</span><input type="text" disabled='disabled'  style='border:0' th:value="${c.adrive}"/></dd>
+                    <dd><span class="lt">认证类型：</span><span>营业执照已认证</span></dd>
+                    <dd><span class="lt">注册时间：</span><span id="span4"></span></dd>
+                    <dd><span class="lt">服务线路：</span><span id="span5"></span></dd>
+                    <dd><span class="lt">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span><span id="span6"></span></dd>
+                    <dd><span class="lt">联系电话：</span>
+                              <span id="span7"></span>                  </dd>
+                    <dd><span class="lt">联系地址:</span><span id="span8"></span>  </dd>
                 </dl>
             </div>
             <div class="line-infor">
                 <div class="line-update">
-                    <span class="time">发布时间：2018-01-25</span><span class="browse-num">浏览2185次</span><a id="collect" type_id="1" class="sc-btn" href="javascript:;" target="_blank"><span id="collect2">已收藏</span></a>
+                    <span class="time"></span><span class="browse-num">浏览2185次</span><a id="collect" type_id="1" class="sc-btn" href="javascript:;" target="_blank"><span id="collect2">已收藏</span></a>
                     <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right;">
                         <span class="bds_more" style="height: 20px;padding-top: 0px;">分享到：</span> <a class="bds_qzone" title="分享到QQ空间" href="#"></a>
                         <a class="bds_tsina" title="分享到新浪微博" href="#"></a> <a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
@@ -77,17 +87,17 @@
                 </div>
                 <!--发车时刻 start-->
                 <ul class="timeTable">
-                    <li><label>今日发车时刻</label><input type="text" disabled='disabled' id="totay" style='border:0' th:value="${c.todaytime}" /></li>
-                    <li><label>明日发车时刻</label><input type="text" disabled='disabled' id="totays"  style='border:0' th:value="${c.tomtime}"/></li>
+                    <li><label>今日发车时刻</label>详情咨询承运商</li>
+                    <li><label>明日发车时刻</label>详情咨询承运商</li>
                 </ul>
                 <!--发车时刻 end-->
                 <ul class="l1">
-                    <li class="item"><span class="bold">运输方式：</span><input type="text" disabled='disabled'  style='border:0' th:value="${c.transport}"/></li>
+                    <li class="item"><span class="bold">运输方式：</span><span>零担运输</span></li>
                     <li class="item"><span class="bold">运输时效：</span>24-72&nbsp;小时<em>注：发货时效从第2天08:00开始计算</em></li>
-                    <li class="item"><span class="bold">运输价格：</span><input type="text" disabled='disabled'  style='border:0' th:value="${c.price}"/></li>
+                    <li class="item"><span class="bold">运输价格：</span><span id="span9"></span></li>
                     <li class="item" style="color:#ff1200;">注：此价格与时效仅供参考，准确报价以物流承运商实际费用为准</li>
                 </ul>
-                <a href="/tocargoShow" class="fah-btn" target="_blank">联系发货</a>
+                <a href="javascript:LianxiFahuo()" class="fah-btn" target="_blank">联系发货</a>
                 <p style="color:red;margin-top:10px;font-size: 14px;">*本平台仅向您提供物流服务信息，您在物流运输过程中出现的任何风险、损失，均与平台无关。</p>
             </div>
         </div>
@@ -107,31 +117,7 @@
             <label><input checked="checked" type="checkbox"/><img src="http://www.lvmae.com/skin/default/image/icon_fys.jpg"/>防易碎</label>
             <label><input checked="checked" type="checkbox"/><img src="http://www.lvmae.com/skin/default/image/icon_fqx.jpg"/>防倾斜</label>
         </div>
-        <!--注意事项 end-->
-        <!--地理位置 start-->
-        <h3 class="transaction"><span>位置地图</span></h3>
-        <div class="company-order">
-            <p class="company-adds"><span class="bold ">地址：</span><input type="text" style='border:0' disabled='disabled' background="white" th:value="${c.names}"/></p>
-<!--
-            <p class="ac"></p><div class="map" id="map" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left;"><div style="overflow: visible; position: absolute; z-index: 0; left: -788507px; top: 165690px; cursor: url(&quot;http://api0.map.bdimg.com/images/openhand.cur&quot;) 8 8, default;"><div class="BMap_mask" style="position: absolute; left: 788507px; top: -165690px; z-index: 9; overflow: hidden; user-select: none; width: 890px; height: 430px;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 800;"><div class="BMap_pop" style="box-sizing: content-box; position: absolute; cursor: default; left: 788842px; top: -165611px;"><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 0px; top: 0px; width: 25px; height: 25px;"><div style="box-sizing:content-box;background:#fff;border-top:1px solid #ababab;border-left:1px solid #ababab;width:30px;height:30px;"></div></div><div class="BMap_top" style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 25px; top: 0px; width: 203px; height: 25px;"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 228px; top: 0px; width: 25px; height: 25px;"><div style="box-sizing:content-box;position:absolute;top:0;left:-6px;background:#fff;border-top:1px solid #ababab;border-right:1px solid #ababab;width:30px;height:30px;"></div></div><div class="BMap_center" style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 0px; top: 25px; width: 251px; height: 37px;"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 0px; top: 62px; width: 25px; height: 25px;"><div style="box-sizing:content-box;position:absolute;top:-6px;left:0;background:#fff;border-bottom:1px solid #ababab;border-left:1px solid #ababab;width:30px;height:30px;"></div></div><div class="BMap_bottom" style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 25px; top: 62px; width: 203px; height: 24px;"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 228px; top: 62px; width: 25px; height: 25px;"><div style="box-sizing:content-box;position:absolute;top:-6px;left:-6px;background:#fff;border-right:1px solid #ababab;border-bottom:1px solid #ababab;width:30px;height:30px;"></div></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 110px; top: 62px; width: 34px; height: 50px;"><img style="box-sizing:content-box;border:none;margin:0px;padding:0px;margin-left:-186px;margin-top:-691px;max-width:none; width:690px;height:786px;" src="http://api0.map.bdimg.com/images/iw3.png"></div><div style="box-sizing: content-box; width: 221px; height: 55px; position: absolute; left: 16px; top: 16px; z-index: 10; overflow: hidden;"><div class="BMap_bubble_title" style="display: none; overflow: hidden; height: auto; line-height: 24px; white-space: nowrap; width: auto;"></div><div class="BMap_bubble_content" style="width: auto; height: auto;"><h4 style="margin:0 0 5px 0;padding:0.2em 0"></h4><p style="margin:0;line-height:1.5;font-size:13px;text-indent:2em">广州市广州市白云区锦邦货运市场</p></div><div class="BMap_bubble_max_content" style="display:none;position:relative"></div></div><img style="position: absolute; top: 12px; width: 10px; height: 10px; cursor: pointer; z-index: 10000; left: 228px;" src="http://api0.map.bdimg.com/images/iw_close1d3.gif"><img style="position:absolute;top:12px;width:10px;height:10px;-moz-user-select:none;cursor:pointer;z-index:10000;display:none" src="http://api0.map.bdimg.com/images/quanjing.png" title="进入全景"><img style="position:absolute;top:10px;width:9px;height:14px;-moz-user-select:none;cursor:pointer;z-index:10000;display:none;" src="http://api0.map.bdimg.com/images/phone.png" title="发送到手机"><img style="position: absolute; top: 12px; width: 10px; height: 10px; cursor: pointer; z-index: 10000; display: none; left: 208px;" src="http://api0.map.bdimg.com/images/iw_plus1d3.gif"><div style="position: absolute; top: 0px; left: 0px; z-index: 10000; width: 253px;"></div></div></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 700;"><span class="BMap_Marker BMap_noprint" unselectable="on" "="" style="position: absolute; padding: 0px; margin: 0px; border: 0px; cursor: pointer; background: url(&quot;http://api0.map.bdimg.com/images/blank.gif&quot;); width: 19px; height: 25px; left: 788942px; top: -165500px; z-index: -4660596; user-select: none;" title=""></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 600;"><div class="BMap_shadow" style="position: absolute; left: 788820px; top: -165567px;" type="infowindow_shadow"><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 36px; top: 0px; width: 70px; height: 30px;"><img onmousedown="return false" style="margin-left: -323px; margin-top: 0px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 106px; top: 0px; width: 165px; height: 30px;"><img onmousedown="return false" style="margin-left: -393px; margin-top: 0px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 271px; top: 0px; width: 70px; height: 30px;"><img onmousedown="return false" style="margin-left: -1033px; margin-top: 0px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 29px; top: 30px; width: 77px; height: 7px;"><img onmousedown="return false" style="margin-top: -30px; margin-left: -316px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 106px; top: 30px; width: 187px; height: 7px;"><img onmousedown="return false" style="margin-left: -360px; margin-top: -30px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 293px; top: 30px; width: 77px; height: 7px;"><img onmousedown="return false" style="margin-top: -30px; margin-left: -1056px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 0px; top: 37px; width: 50px; height: 60px;"><img onmousedown="return false" style="margin-left: -14px; margin-top: -310px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 50px; top: 37px; width: 12px; height: 60px;"><img onmousedown="return false" style="margin-left: -255px; margin-top: -310px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 62px; top: 37px; width: 140px; height: 60px;"><img onmousedown="return false" style="margin-left: -440px; margin-top: -310px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 202px; top: 37px; width: 62px; height: 60px;"><img onmousedown="return false" style="margin-left: -255px; margin-top: -310px;" src="http://api0.map.bdimg.com/images/iws3.png"></div><div style="box-sizing: content-box; overflow: hidden; z-index: 1; position: absolute; left: 264px; top: 37px; width: 70px; height: 60px;"><img onmousedown="return false" style="margin-left: -754px; margin-top: -310px;" src="http://api0.map.bdimg.com/images/iws3.png"></div></div></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 500;"><label class="BMapLabel" unselectable="on" style="position: absolute; display: none; cursor: inherit; background-color: rgb(190, 190, 190); border: 1px solid rgb(190, 190, 190); padding: 1px; white-space: nowrap; font: 12px arial, sans-serif; z-index: -20000; color: rgb(190, 190, 190);">shadow</label></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 400;"><span class="BMap_Marker" unselectable="on" style="position: absolute; padding: 0px; margin: 0px; border: 0px; width: 0px; height: 0px; left: 788942px; top: -165500px; z-index: -4660596;"><div style="position: absolute; margin: 0px; padding: 0px; width: 19px; height: 25px; overflow: hidden;"><img src="http://api0.map.bdimg.com/images/marker_red_sprite.png" style="display: block; border:none;margin-left:0px; margin-top:0px; "></div></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 300;"><span unselectable="on" style="position: absolute; padding: 0px; margin: 0px; border: 0px; width: 20px; height: 11px; left: 788946px; top: -165486px;"><div style="position: absolute; margin: 0px; padding: 0px; width: 20px; height: 11px; overflow: hidden;"><img src="http://api0.map.bdimg.com/images/marker_red_sprite.png" style="display: block; border:none;margin-left:-19px; margin-top:-13px; "></div></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 201;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 1;"><div style="position: absolute; overflow: visible; z-index: -100; left: 788952px; top: -165475px; display: block; transform: translate3d(0px, 0px, 0px);"><img src="http://online1.map.bdimg.com/tile/?qt=vtile&amp;x=6161&amp;y=1295&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -381px; top: -320px; max-width: none; opacity: 1;"><img src="http://online1.map.bdimg.com/tile/?qt=vtile&amp;x=6163&amp;y=1293&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 131px; top: 192px; max-width: none; opacity: 1;"><img src="http://online1.map.bdimg.com/tile/?qt=vtile&amp;x=6162&amp;y=1294&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -125px; top: -64px; max-width: none; opacity: 1;"><img src="http://online0.map.bdimg.com/tile/?qt=vtile&amp;x=6162&amp;y=1293&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -125px; top: 192px; max-width: none; opacity: 1;"><img src="http://online0.map.bdimg.com/tile/?qt=vtile&amp;x=6161&amp;y=1294&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -381px; top: -64px; max-width: none; opacity: 1;"><img src="http://online2.map.bdimg.com/tile/?qt=vtile&amp;x=6163&amp;y=1294&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 131px; top: -64px; max-width: none; opacity: 1;"><img src="http://online2.map.bdimg.com/tile/?qt=vtile&amp;x=6162&amp;y=1295&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -125px; top: -320px; max-width: none; opacity: 1;"><img src="http://online3.map.bdimg.com/tile/?qt=vtile&amp;x=6164&amp;y=1294&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 387px; top: -64px; max-width: none; opacity: 1;"><img src="http://online4.map.bdimg.com/tile/?qt=vtile&amp;x=6160&amp;y=1294&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -637px; top: -64px; max-width: none; opacity: 1;"><img src="http://online4.map.bdimg.com/tile/?qt=vtile&amp;x=6161&amp;y=1293&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -381px; top: 192px; max-width: none; opacity: 1;"><img src="http://online0.map.bdimg.com/tile/?qt=vtile&amp;x=6160&amp;y=1295&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -637px; top: -320px; max-width: none; opacity: 1;"><img src="http://online2.map.bdimg.com/tile/?qt=vtile&amp;x=6164&amp;y=1293&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 387px; top: 192px; max-width: none; opacity: 1;"><img src="http://online3.map.bdimg.com/tile/?qt=vtile&amp;x=6160&amp;y=1293&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: -637px; top: 192px; max-width: none; opacity: 1;"><img src="http://online4.map.bdimg.com/tile/?qt=vtile&amp;x=6164&amp;y=1295&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 387px; top: -320px; max-width: none; opacity: 1;"><img src="http://online3.map.bdimg.com/tile/?qt=vtile&amp;x=6163&amp;y=1295&amp;z=15&amp;styles=pl&amp;scaler=1&amp;udt=20190514" style="position: absolute; border: none; width: 256px; height: 256px; left: 131px; top: -320px; max-width: none; opacity: 1;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 2; display: none;"><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 0; display: none;"></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 10; display: none;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 3;"></div></div><div class="pano_close" title="退出全景" style="z-index: 1201; display: none;"></div><a class="pano_pc_indoor_exit" title="退出室内景" style="z-index: 1201; display: none;" target="_blank"><span style="float:right;margin-right:12px;">出口</span></a><div id="zoomer" style="position:absolute;z-index:0;top:0px;left:0px;overflow:hidden;visibility:hidden;cursor:url(http://api0.map.bdimg.com/images/openhand.cur) 8 8,default"><div class="BMap_zoomer" style="top:0;left:0;"></div><div class="BMap_zoomer" style="top:0;right:0;"></div><div class="BMap_zoomer" style="bottom:0;left:0;"></div><div class="BMap_zoomer" style="bottom:0;right:0;"></div></div><div unselectable="on" class=" BMap_stdMpCtrl BMap_stdMpType0 BMap_noprint anchorTL" style="width: 62px; height: 192px; bottom: auto; right: auto; top: 10px; left: 10px; position: absolute; z-index: 1100; text-size-adjust: none;"><div class="BMap_stdMpPan"><div class="BMap_button BMap_panN" title="向上平移"></div><div class="BMap_button BMap_panW" title="向左平移"></div><div class="BMap_button BMap_panE" title="向右平移"></div><div class="BMap_button BMap_panS" title="向下平移"></div><div class="BMap_stdMpPanBg BMap_smcbg"></div></div><div class="BMap_stdMpZoom" style="height: 147px; width: 62px;"><div class="BMap_button BMap_stdMpZoomIn" title="放大一级"><div class="BMap_smcbg"></div></div><div class="BMap_button BMap_stdMpZoomOut" title="缩小一级" style="top: 126px;"><div class="BMap_smcbg"></div></div><div class="BMap_stdMpSlider" style="height: 108px;"><div class="BMap_stdMpSliderBgTop" style="height: 108px;"><div class="BMap_smcbg"></div></div><div class="BMap_stdMpSliderBgBot" style="top: 25px; height: 87px;"></div><div class="BMap_stdMpSliderMask" title="放置到此级别"></div><div class="BMap_stdMpSliderBar" title="拖动缩放" style="cursor: url(&quot;http://api0.map.bdimg.com/images/openhand.cur&quot;) 8 8, default; top: 25px;"><div class="BMap_smcbg"></div></div></div><div class="BMap_zlHolder"><div class="BMap_zlSt"><div class="BMap_smcbg"></div></div><div class="BMap_zlCity"><div class="BMap_smcbg"></div></div><div class="BMap_zlProv"><div class="BMap_smcbg"></div></div><div class="BMap_zlCountry"><div class="BMap_smcbg"></div></div></div></div><div class="BMap_stdMpGeolocation" style="position: initial; display: none; margin-top: 43px; margin-left: 10px;"><div class="BMap_geolocationContainer" style="position: initial; width: 24px; height: 24px; overflow: hidden; margin: 0px; box-sizing: border-box;"><div class="BMap_geolocationIconBackground" style="width: 24px; height: 24px; background-image: url(http://api0.map.bdimg.com/images/navigation-control/geolocation-control/pc/bg-20x20.png); background-size: 20px 20px; background-position: 3px 3px; background-repeat: no-repeat;"><div class="BMap_geolocationIcon" style="position: initial; width: 24px; height: 24px; cursor: pointer; background-image: url('http://api0.map.bdimg.com/images/navigation-control/geolocation-control/pc/success-10x10.png'); background-size: 10px 10px; background-repeat: no-repeat; background-position: center;"></div></div></div></div></div><div unselectable="on" style="bottom: auto; right: 10px; top: 10px; left: auto; white-space: nowrap; cursor: pointer; position: absolute; z-index: 10; text-size-adjust: none;" class=" BMap_noprint anchorTR"><div style="float: left;"><div title="显示普通地图" style="box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 3px; border-left: 1px solid rgb(139, 164, 220); border-top: 1px solid rgb(139, 164, 220); border-bottom: 1px solid rgb(139, 164, 220); background: rgb(142, 168, 224); padding: 2px 6px; font: bold 12px/1.3em arial, sans-serif; text-align: center; white-space: nowrap; border-radius: 3px 0px 0px 3px; color: rgb(255, 255, 255);">地图</div></div><div style="float: left;"><div title="显示卫星影像" style="box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 3px; border-left: 1px solid rgb(139, 164, 220); border-top: 1px solid rgb(139, 164, 220); border-bottom: 1px solid rgb(139, 164, 220); background: rgb(255, 255, 255); padding: 2px 6px; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 12px; line-height: 1.3em; font-family: arial, sans-serif; text-align: center; white-space: nowrap; color: rgb(0, 0, 0);">卫星</div><div style="position: absolute; top: 21px; left: 37px; z-index: -1; display: none;"><div title="显示带有街道的卫星影像" style="border-right:1px solid #8ba4dc;border-bottom:1px solid #8ba4dc;border-left:1px solid #8ba4dc;background:white;font:12px arial,sans-serif;padding:0 8px 0 6px;line-height:1.6em;box-shadow:2px 2px 3px rgba(0, 0, 0, 0.35)"><span checked="checked" "="" class="BMap_checkbox"></span><label style="vertical-align: middle; cursor: pointer;">混合</label></div></div></div><div style="float: left;"><div title="显示三维地图" style="box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 3px; border-width: 1px; border-style: solid; border-color: rgb(139, 164, 220); background: rgb(255, 255, 255); padding: 2px 6px; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 12px; line-height: 1.3em; font-family: arial, sans-serif; text-align: center; white-space: nowrap; border-radius: 0px 3px 3px 0px; color: rgb(0, 0, 0);">三维</div></div></div><div unselectable="on" class=" BMap_omCtrl BMap_ieundefined BMap_noprint anchorBR quad4" style="width: 13px; height: 13px; bottom: 0px; right: 0px; top: auto; left: auto; position: absolute; z-index: 10; text-size-adjust: none;"><div class="BMap_omOutFrame" style="width: 149px; height: 149px;"><div class="BMap_omInnFrame" style="bottom: auto; right: auto; top: 5px; left: 5px; width: 142px; height: 142px;"><div class="BMap_omMapContainer"></div><div class="BMap_omViewMv" style="cursor: url(&quot;http://api0.map.bdimg.com/images/openhand.cur&quot;) 8 8, default;"><div class="BMap_omViewInnFrame"><div></div></div></div></div></div><div class="BMap_omBtn BMap_omBtnClosed" style="bottom: 0px; right: 0px; top: auto; left: auto;"></div></div><div style="height: 32px; position: absolute; z-index: 30; text-size-adjust: none; bottom: 20px; right: auto; top: auto; left: 1px;" class=" anchorBL"><a title="到百度地图查看此区域" target="_blank" href="http://map.baidu.com/?sr=1" style="outline: none;"><img style="border:none;width:77px;height:32px" src="http://api0.map.bdimg.com/images/copyright_logo.png"></a></div></div><p></p>
--->
-            <div class="search-road clearfix mt20 c6">
-                <strong class="bold">线路查询：</strong>
-                <label>起点：</label>
-                <div class="placeholder-box fl">
-                    <input type="text" class="input gray " id="stratAddress" value="请输入起点" onclick="if(value==defaultValue){value='';}$(this).removeClass('gray');" onblur="if(!value){value=defaultValue;$(this).addClass('gray');}"/>
-                </div>
-                <label>终点：</label>
-                <div class="placeholder-box fl">
 
-                    <input type="text"   background="white" th:value="${c.names}"/>
-                </div>
-                <a href="javascript:;" class="btn b-5" onclick="tranQuery();" target="_blank">查询公交线路</a> <a href="javascript:;" class="btn b-5" onclick="carQuery();" target="_blank">查询驾车线路</a>
-            </div>
-            <div class="road_detail" id="mapResult"></div>
-        </div>
-        <!--地理位置 end-->
-        <!--成交订单 start-->
         <h3 class="transaction"><span>成交记录</span></h3>
         <div class="company-order" >
             <table  class="layui-hide" lay-filter="user" id="test-table-simple"></table>
@@ -144,8 +130,15 @@
 </body>
 <script>
    $(function () {
-       shijian();
-
+       $("#span1").html($("#a").val())
+       $("#span2").html($("#b").val())
+       $("#span3").html($("#companyName").val())
+       $("#span4").html($("#zhucetime").val())
+       $("#span5").html($("#count").val())
+       $("#span6").html($("#gspople").val())
+       $("#span7").html($("#companyPhone").val())
+       $("#span8").html($("#address").val())
+       $("#span9").html($("#price").val())
    })
        layui.use(['table'], function(){
            var table = layui.table;
@@ -153,15 +146,29 @@
            table.render({
                elem: '#test-table-simple'
                ,url: 'getyesjilu'
-               ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+               ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                ,cols: [ [
-                    {field:'phone', width:100,title: '用户手机号', sort: true}
-                   ,{field:'cargoName', width:100, title: '货物名称'}
-                   ,{field:'cargoPrice', width:100, title: '单价', sort: true}
+                    {field:'phone', width:130,
+                        templet:function(d){
+                            return "&nbsp;&nbsp; &nbsp; &nbsp;"+d.phone;
+                        },
+                        title: '用户手机号', sort: true}
+                   ,{field:'', width:130,
+                       templet:function(d){
+                            return "&nbsp;&nbsp; &nbsp; &nbsp;"+d.cargoName;
+                       },
+                       title: '货物名称'}
+                   ,{field:'',
+                       templet:function(d){
+                           return "&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;"+d.cargoPrice;
+                       },width:100, title: '单价', sort: true}
                ] ]
            });
        });
-
+    function LianxiFahuo(id){
+        var cid = $("#cId").val();
+        location.href="/tocargoShow?cid="+cid;
+    }
 
    function shijian(){
 

@@ -39,6 +39,7 @@ public class OrderBean implements Serializable {
                 private String companyName;
                 private String gsjian;
 
+                private String dzxq;//详情地址
 
                private String tiGoods;//是否上门提货  0否，1是
                private String submitstate;//是否发布  0否，1是
@@ -50,6 +51,9 @@ public class OrderBean implements Serializable {
                private  String  shiId;
                private  String  shengId2;
                private  String  shiId2;
+
+
+               private  Integer quId;
 
     //收货方
                private  String   shouhuo;// 发货人
@@ -102,5 +106,25 @@ public class OrderBean implements Serializable {
                 private Integer  statrsquId;
 
                 private Integer endquId;
+
+    private String status;
+
+    //收货方
+
+    private Integer sAreId;//始发地
+    private Integer zAreId;//终点id
+    private String zhuanXian;
+
+    //地区
+
+    private  String provinceName;
+    private  String cityName;
+    private  String areaName;
+
+
+    //用户id
+    private  Integer userId;
+
+
 
 }

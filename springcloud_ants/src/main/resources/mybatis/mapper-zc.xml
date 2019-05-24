@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.mapper.AnMapper">
+
+    <select id="getzhuanxian" resultType="com.jk.bean.zhuanxian">
+        select c.city as startcity,d.city as endcity,tc.companyName,tc.companyId,ht.price ,tc.companyPhone,tc.address,tc.zhucetime,tc.gsadrivs as gsadrivs,tc.gspople
+        from hualing_track ht,t_company tc,cities c,(select * from cities) d
+        where ht.company_id=tc.companyId
+        and ht.startCity_id=c.cityid
+        and ht.endCity_id=d.cityid
+        and ht.id = #{id}
+    </select>
+
+    <insert id="addCaiWuBaoBiao">
+        insert into t_financia()
+    </insert>
+
+
+</mapper>

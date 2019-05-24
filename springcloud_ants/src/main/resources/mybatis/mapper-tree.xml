@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.mapper.CargoMapper">
     <insert id="saveCargo">
-      insert into lineTable (consigner,phone,cargoName,cargoWeight,cargoBulk,cargoPrice,fahuoExplain,shouhuo,shphone,shlxphone,paycount,quhuoWay,shGoods,zhifuWay,dzxq,shengId,shiId,quId,ddid,companyId,userId)
-      values(#{consigner},#{phone},#{cargoName},#{cargoWeight},#{cargoBulk},#{cargoPrice},#{fahuoExplain},#{shouhuo},#{shphone},#{shlxphone},#{paycount},#{quhuoWay},#{shGoods},#{zhifuWay},#{dzxq},#{shengId},#{shiId},#{quId},#{ddid},#{companyId},#{id})
+      insert into lineTable (consigner,phone,cargoName,cargoWeight,cargoBulk,cargoPrice,fahuoExplain,shouhuo,shphone,shlxphone,paycount,quhuoWay,shGoods,zhifuWay,dzxq,shengId,shiId,quId,ddid,companyId,userId,xiadanDate)
+      values(#{consigner},#{phone},#{cargoName},#{cargoWeight},#{cargoBulk},#{cargoPrice},#{fahuoExplain},#{shouhuo},#{shphone},#{shlxphone},#{paycount},#{quhuoWay},#{shGoods},#{zhifuWay},#{dzxq},#{shengId},#{shiId},#{quId},#{ddid},#{companyId},#{id},CURDATE())
   </insert>
     <insert id="addDingdan">
         insert  into lineTable(ddid,consigner,phone,cargoName,cargoWeight,cargoBulk,fahuoExplain,statrsquId,endquId,paycount)

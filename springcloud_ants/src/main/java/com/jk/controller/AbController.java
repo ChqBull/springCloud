@@ -24,9 +24,14 @@ public class AbController {
 
     @RequestMapping("getzhuanxian")
     public String getzhuanxian(Integer id, Model model){
-        patent patent=anService.getzhuanxian(id);
-        model.addAttribute("c",patent);
-        return  "zhuanxian";
+        zhuanxian patent=anService.getzhuanxian(id);
+        if(patent!=null){
+            Integer count=anService.findxianlucount(patent.getCompanyId());
+            patent.setCount(count);
+            model.addAttribute("c",patent);
+            return  "zhuanxian";
+        }
+        return null;
     }
 
     @RequestMapping("getyesjilu")

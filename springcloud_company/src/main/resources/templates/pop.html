@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<fieldset class="layui-elem-field">
+    <legend>线路新增</legend>
+<form class="layui-form" action="" id="addLine">
+
+    <div class="layui-field-box">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 150px">请选择始发地：</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="shengId" lay-filter="sheng" id="sheng">
+                    <option value="">请选择省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select  name="shiId" lay-filter="shi" id="shi">
+                    <option value="">市</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select  name="startId" lay-filter="xian" id="xian">
+                    <option value="" selected>区</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"  style="width: 150px">请选择目的地：</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="shengId1" lay-filter="province" id="province" lay-verify="required">
+                    <option value="">请选择省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="shiId2" lay-filter="city" id="city" lay-verify="required">
+                    <option value="">市</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 100px">
+                <select name="endId" lay-filter="area" id="area"  lay-verify="required">
+                    <option value="">区</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <table >
+        <tr align="left">
+            <th colspan="2">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 80px">运输时效：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="yunshuShiChang"  lay-verify="pass" placeholder="小时" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </th>
+        </tr>
+        <tr align="left">
+            <th colspan="2">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 80px"> 最低一票价格：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="zuiDiYiPiao" lay-verify="basic"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </th>
+        </tr>
+        <tr align="left">
+            <th width="300px">
+                <label class="layui-form-label" style="width: 100px">重货价格：</label>
+                <div class="layui-input-inline" style="width: 170px">
+                <select name="zhongHuoJiqGe" lay-verify="required" >
+                    <option value="">请选择</option>
+                    <option value="1.2">0-1000公斤    1.2元/公斤</option>
+                    <option value="1.1">1000-3000公斤 1.1元/公斤</option>
+                    <option value="1.0">3000-5000公斤 1.0元/公斤</option>
+                </select>
+                </div>
+            </th>
+            <th width="300px">
+                <label class="layui-form-label">轻货价格：</label>
+                <div class="layui-input-inline" style="width: 170px">
+                <select name="qingHuoJiaGe" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="1.2">0-100立方    1.2元/立方</option>
+                    <option value="1.1">100-300立方 1.1元/立方</option>
+                    <option value="1.0">300-500立方 1.0元/立方</option>
+                </select>
+                </div>
+            </th>
+        </tr>
+        <tr align="left">
+        <th>
+            <label class="layui-form-label" style="width: 125px">是否支持送货上门</label>
+            <div class="layui-input-block">
+                <input type="radio" name="songHuoSHangMen" id="shGoods1" value="1" title="是">
+                <input type="radio" name="songHuoSHangMen" id="shGoods2" value="0" title="否" >
+            </div>
+        </th>
+        <th>
+            <label class="layui-form-label" style="width: 125px">是否支持上门提货</label>
+            <div class="layui-input-block">
+                <input type="radio" name="shangMenTiHuo" id="tiGoods1" value="1" title="是">
+                <input type="radio" name="shangMenTiHuo" id="tiGoods2" value="0" title="否" >
+            </div>
+        </th>
+        </tr>
+        <tr align="left">
+            <td colspan="2">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 60px">地址：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="address"  required name="diZhi"  lay-verify="required" placeholder="请输具体地址"  class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button class="layui-btn" type="button" lay-submit lay-filter="formDemo" data-type="reload" onclick="addLine()">
+        <i class="layui-icon layui-icon-water"></i> 保存
+    </button>
+</form>
+</fieldset>
+</body>
+<script>
+    layui.use('form',function () {
+        var form = layui.form;
+        form.render();
+
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+       /* form.verify({
+           pass: [
+                /^[\S]{3}$/
+                ,'请输入正确的格式：最大三位，不能是负数'
+            ],
+           basic: [
+                /^[\S]$/
+                ,'请输入正确的格式'
+            ]
+        });*/
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    province =obj[i].province;
+                    $("#sheng").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                }
+                form.render("select");
+                layer.msg('请选择对应的省');
+            },
+            "json"
+        )
+        $.post(
+            "findProvinces",
+            function (obj) {
+                for (var i = 0; i < obj.length; i++) {
+                    province2 =obj[i].province;
+                    $("#province").append("<option value=" + obj[i].provinceid + ">" + obj[i].province + "</option>")
+                }
+                form.render("select");
+                layer.msg('请选择对应的省');
+            },
+            "json"
+        )
+        //追加发货地的市
+        form.on('select(sheng)', function (data) {
+            $("#shi").empty();//当省发生改变把以前市区的数据清空
+            $("#shi").append($("<option value=''>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#xian").empty();//一起把以前县的数据清空
+            $("#xian").append($("<option value=''> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                           city = obj[i].city;
+                            $("#shi").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                        layer.msg('请选择对应的市');
+                    },
+                    "json"
+                )
+            }
+        });
+        //追加发货地的县
+        form.on('select(shi)', function (data) {
+            $("#xian").empty();//当市区发生该变把以前县的数据清空
+            $("#xian").append($("<option value=''> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        aa = obj[i].area;
+                        $("#xian").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                    layer.msg('请选择对应的区');
+                },
+                "json"
+            )
+        })
+        //2
+        //追加发货地的市
+        form.on('select(province)', function (data) {
+            $("#city").empty();//当省发生改变把以前市区的数据清空
+            $("#city").append($("<option value=''>请选择</option>"));//然后再追加一个请选择这样一个标签
+            $("#area").empty();//一起把以前县的数据清空
+            $("#area").append($("<option value=''> 请选择</option>"));//然后再追加一个请选择这样一个标签
+            if (data.value != 0) {
+                $.post(
+                    "findCity",
+                    {provinceid: data.value},
+                    function (obj) {
+                        for (var i = 0; i < obj.length; i++) {
+                            city2 = obj[i].city;
+                            $("#city").append("<option value=" + obj[i].cityid + ">" + obj[i].city + "</option>")
+                        }
+                        form.render("select");
+                        layer.msg('请选择对应的市');
+                    },
+                    "json"
+                )
+            }
+        });
+
+        //追加发货地的县
+        form.on('select(city)', function (data) {
+            $("#area").empty();//当市区发生该变把以前县的数据清空
+            $("#area").append($("<option value=''> 请选择</option>"));
+            $.post(
+                "findArea",
+                {cityid: data.value},
+                function (obj) {
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#area").append("<option value=" + obj[i].areaid + ">" + obj[i].area + "</option>")
+                    }
+                    form.render("select");
+                    layer.msg('请选择对应的区');
+                },
+                "json"
+            )
+
+        })
+        form.on('select(area)', function (data) {
+            getaddress()
+        })
+
+
+
+    })
+
+    function addLine (){
+        var form = $("#addLine").serialize();
+        $.ajax({
+            url:"addLine",
+            type:"post",
+            data:form,
+            success:function(data){
+                layer.msg('新增成功');
+            },error:function(){
+
+            }
+        })
+    }
+
+    function getaddress(){
+        var area1 = $("#xian").val();
+        var area2 =$("#area").val()
+        $.ajax({
+            url:"address",
+            type:"post",
+            data:{area1:area1,area2:area2},
+            success:function(data){
+                $("#address").val(data)
+            }
+        })
+
+
+
+    }
+
+</script>
+</html>

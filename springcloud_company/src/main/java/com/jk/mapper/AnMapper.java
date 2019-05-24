@@ -11,7 +11,7 @@ public interface AnMapper {
 
 
 
-    void addgongsi( @Param("gongso") CompanyModel gongsi);
+    void addgongsi(@Param("gongso") CompanyModel gongsi);
 
     @Select("select * from provinces ")
     List<Provinces> fingprovinces();
@@ -21,4 +21,9 @@ public interface AnMapper {
 
     @Select(" select * from areas where cityid=#{id} ")
     List<Areas> findArea(@Param("id") Integer cityid);
+
+    void addtupian(@Param("gongso") CompanyModel gongsi);
+
+
+    CompanyModel findgongsi(@Param("id")Integer companyId);
 }

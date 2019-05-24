@@ -5,9 +5,10 @@ import com.jk.bean.*;
 import java.util.List;
 
 public interface AnService {
-    patent getzhuanxian(Integer id);
+    zhuanxian getzhuanxian(Integer id);
 
     List<OrderBean> getyesjilu();
 
 
+    Integer findxianlucount(int companyid);
 }

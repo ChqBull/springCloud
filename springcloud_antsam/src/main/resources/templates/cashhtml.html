@@ -1,0 +1,132 @@
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/common.css?version=20170918" />
+    <link rel="stylesheet" type="text/css" href="http://www.lvmae.com/skin/default/css/zzsc.css" />
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+
+</head>
+
+
+<body>
+<fieldset class="layui-elem-field">
+    <legend>搜索结果</legend>
+    <div class="layui-field-box" style="width: 700px;">
+        <table class="layui-hide" id="layuitable" lay-filter="test" ></table>
+    </div>
+</fieldset>
+</body>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#layuitable'
+            ,url:'queryOrder'
+            ,cols: [
+                [
+                     {field:'cmId', width:100, title: 'id', sort: true}
+                    ,{field:'companyName', width:100, title: '申请公司', sort: true}
+                    ,{field:'applicationDate', width:100, title: '提现时间', sort: true}
+                    ,{field:'amount', width:100, title: '提现金额'}
+                    ,{field:'bankCards', width:100, title: '提现银行卡'}
+                    ,{field:'auditStatus', width:100, title: '提现状态'}
+                    ,{field:'xxx', width:100,toolbar:'#barDemo',
+                      templet:function(d){
+                      },
+                    title: '发货人'}
+                ]
+            ]
+            ,id:"cmId"
+            ,page: true
+            ,limits: [1,5,10]  //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
+            ,limit: 5 //每页默认显示的数量
+            ,method:'post'  //提交方式
+            ,done: function(res, curr, count){
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                //console.log(res);
+                //得到当前页码
+                //console.log(curr);
+                //得到数据总量
+                //console.log(count);
+                $(".layui-table-box").find("[data-field='cmId']").css("display","none");
+                $("[data-field='auditStatus']").children().each(function(){
+                    if($(this).text()=='1'){
+                        $(this).text("未审核")
+                    }else if($(this).text()=='2'){
+                        $(this).text("已审核")
+                    }
+                });
+            }
+        });
+        var $ = layui.$, active = {
+            reload: function(){
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        chaxunshu: $("#select1").val()
+                        ,chaxunreal:$("#chaxun1").val()
+                        ,quhuoWay:$("#select2").val()
+                        ,zhifuWay:$("#select3").val()
+                        ,startDate:$("#test1").val()
+                        ,endDate:$("#test2").val()
+                        ,diqu:$("#seleDiqu").val()
+                        ,pid:$("#sheng").val()
+                        ,cid:$("#shi").val()
+                        ,aid:$("#xian").val()
+
+                    }
+                });
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    });
+
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            var amount = data.amount;
+            var id= data.companyId;
+            var cid= data.cmId;
+            if (obj.event === 'del') {
+                alert(cid)
+
+            }
+                $.ajax({
+                    url:"editLine",
+                    data:{amount:amount,id:id,cid:cid},
+                    success:function () {
+                        location.href="/getcash";
+                    },error:function () {
+
+                    }
+                })
+
+
+            })
+        })
+
+
+</script>
+<script type="text/html" id="barDemo">
+    <button type="button" class="layui-btn layui-btn-xs" id="editLine" lay-event="del">
+        <i class="layui-icon layui-icon-water"></i>修改
+    </button>
+</script>
+</html>

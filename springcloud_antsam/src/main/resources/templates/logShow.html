@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+</head>
+<body>
+
+<div class="demoTable">
+    用户名搜索：
+    <div class="layui-inline">
+        <input class="layui-input" name="username" id="username" autocomplete="off"/>
+    </div>
+    <button class="layui-btn" data-type="reload"  id="find">搜索</button>
+</div>
+
+
+
+<button class="layui-btn"  type="button" onclick="daochu2()">导出</button>
+<table class="layui-hide" id="test2" lay-filter="test2"></table>
+
+
+
+
+
+<script type="text/html" id="barDemo">
+       <button class="layui-btn layui-btn-danger l
+       1ayui-btn-xs"  lay-event="del" >删除此日志</button>
+</script>
+
+
+</body>
+<script>
+
+    //日志导出
+    function  daochu2() {
+        location.href="logExcelDownloads";
+    }
+
+
+    layui.use('table', function(){
+        var table = layui.table;
+   table.render({
+            elem: '#test2'
+            ,url:'findLog'
+            ,id:'testReload'
+            ,cols: [
+                [
+                    {field:'id', width:130, title: 'id'}
+                    ,{field:'username', width:130, title: '用户名'}
+                    ,{field:'operation', width:170, title: '操作'}
+                    ,{field:'method', width:280, title: '方法名'}
+
+                    ,{field:'ip', width:130, title: 'ip'}
+                    ,{field:'createDate', width:130, title: '时间'}
+                    ,{field:'132', width:130, title: '操作',toolbar: '#barDemo'}
+                ]
+            ]
+            ,page: true
+        });
+      table.on('tool(test2)', function (obj) {
+            var data = obj.data;
+            var id = data.id;
+            if (obj.event === 'del') {
+                location.href="delLog?id="+id
+
+            }
+        })
+
+        var $ = layui.$, active = {
+            reload: function(){
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        username:$("#username").val()
+                    }
+                });
+            }
+        };
+        $('#find').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    });
+
+
+
+
+
+</script>
+
+</html>

@@ -7,17 +7,7 @@ import java.util.List;
 
 public interface FrontdeskService {
 
-    List<Provinces> findProvinces();
+    List<AreaData> serviceArea(Integer statrsquId);
 
-    List<Cities> findCity(int provinceid);
-
-    List<Areas> findArea(int cityid);
-
-    List listData();
-
-    void add(OrderBean orderBean);
-
-    List<AreaData> serviceArea();
-
-    List<OrderBean> companyList();
+    List<Wuliuxianlu> companyList(Integer statrsquId, Integer endquId);
 }

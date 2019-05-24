@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+</head>
+<body>
+
+        <button class="layui-btn"  type="button" onclick="addDialog()">添加</button>
+        <button class="layui-btn"  type="button" onclick="daochu()">导出</button>
+
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+
+</body>
+
+
+
+<script type="text/html" id="barDemo">
+      <button class="layui-btn layui-btn-danger layui-btn-xs"  lay-event="del" >删除</button>
+</script>
+
+
+<script>
+  //导出
+  function  daochu() {
+        location.href="BlackExcelDownloads";
+    }
+
+
+
+    function addDialog(){
+
+
+        layer.open({
+            area: ['500px', '500px'],
+            title: "新增黑名单",
+            fixed: true, //不固定
+            maxmin: true,
+            shade: 0.3,
+            skin: 'layui-layer-rim',
+            type: 2,
+            shadeClose: true,
+            btn:'关闭',
+            content: '/toBlackDialog' ,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            end: function() {
+                //刷新页面,
+                location.reload();
+            },
+        });
+        return false;
+
+    }
+
+
+
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+
+
+
+
+
+
+        table.render({
+            elem: '#test'
+            ,url:'findbalck'
+            ,cols: [
+                [
+                    {field:'id', width:120, title: 'id'}
+                    ,{field:'phoneNumber', width:120, title: '黑名单手机号'}
+                    ,{field:'blackDate', width:120, title: '加入时间'}
+                    ,{field:'ycCause', width:120, title: '异常原因'}
+                    ,{field:'status', width:120, title: '状态',templet:function (d) {
+                        if(d.status==1){
+                          return "异常";
+                        }else{
+                            return "正常"
+                        }
+
+                    }}
+                    ,{field:'132', width:100, title: '操作',toolbar: '#barDemo'}
+
+                ]
+            ]
+            ,page: true
+        });
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            var id = data.id;
+            if (obj.event === 'del') {
+                location.href="delBlack?id="+id
+
+            }
+        })
+
+    });
+/*
+    function  delbalck(id) {
+
+        $.ajax({
+            url:'delBlack?id='+id,
+            type:'post',
+            dataType:'json',
+            data:{
+                id:id
+            },
+             success:function (data) {
+                 if (data){
+                     location.href="/toblack"
+                     alert("删除成功")
+                 }
+
+             }
+
+        })
+
+    }*/
+
+</script>
+</html>

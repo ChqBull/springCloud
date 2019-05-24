@@ -66,7 +66,7 @@
     </select>
 
     <select id="findLineByCityid" resultType="hualingTrack">
-        select ht.startCity_id,ht.endCity_id,tc.companyName,c.city as startCity,d.city as endCity
+        select ht.startCity_id,ht.endCity_id,tc.companyName,c.city as startCity,d.city as endCity,ht.id
         from hualing_track ht,t_company tc,cities c,(select * from cities) d
         where ht.company_id=tc.companyId
         and ht.startCity_id=c.cityid

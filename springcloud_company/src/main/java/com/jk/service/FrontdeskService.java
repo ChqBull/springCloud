@@ -1,15 +1,13 @@
 package com.jk.service;
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.OrderBean;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 
 public interface FrontdeskService {
-    HashMap<String,Object> lineSearch(Integer page, Integer limit, OrderBean orderBean);
+    HashMap<String,Object> lineSearch(Integer page, Integer limit, Wuliuxianlu wuliuxianlu, HttpServletRequest request);
 
     List<Provinces> findProvinces();
 
@@ -17,16 +15,21 @@ public interface FrontdeskService {
 
     List<Areas> findArea(int cityid);
 
-    OrderBean editLine(Integer id);
+    Wuliuxianlu editLine(String id);
 
     List listData();
 
-    void add(OrderBean orderBean);
+    void add(Wuliuxianlu wuliuxianlu);
 
     void deleteData(int id);
 
-    List<OrderBean> findAll();
+    List<Wuliuxianlu> findAll();
 
 
-    OrderBean queryOne(Integer id);
+    Wuliuxianlu queryOne(Integer id);
+
+    String address(Integer area1, Integer area2);
+
+    String addLine(Wuliuxianlu orderBean, HttpServletRequest request);
+
 }

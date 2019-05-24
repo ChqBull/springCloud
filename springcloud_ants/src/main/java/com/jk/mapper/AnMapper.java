@@ -9,11 +9,12 @@ import java.util.List;
 
 public interface AnMapper {
 
-    @Select("select * from patent where pid='1' ")
-    patent getzhuanxian(@Param("id") Integer id);
 
-    @Select("select * from lineTable_copy  where start=1")
+    zhuanxian getzhuanxian(@Param("id") Integer id);
+
+    @Select("select * from lineTable_copy  where ispay='是'")
      List<OrderBean> getyesjilu();
 
-
+    @Select("select count(*) from hualing_track where company_id=#{id}")
+    Integer findxianlucount(@Param("id") int companyid);
 }

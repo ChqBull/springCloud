@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface FrontdeskMapper {
-    Integer count();
+    Integer count(Integer companyId);
 
-    List<OrderBean> list(Integer page, Integer limit, @Param("od") OrderBean orderBean);
+    List<Wuliuxianlu> list(Integer page, Integer limit, @Param("od") Wuliuxianlu wuliuxianlu, @Param("companyId") Integer companyId);
 
     List<Provinces> findProvinces();
 
@@ -16,11 +16,11 @@ public interface FrontdeskMapper {
 
     List<Areas> findArea(int cityid);
 
-    OrderBean editLine(Integer id);
+    Wuliuxianlu editLine(String id);
 
     List listData();
 
-    void add(OrderBean orderBean);
+    void add(Wuliuxianlu wuliuxianlu);
 
     AreaData searchArea(String startplace);
 
@@ -28,8 +28,14 @@ public interface FrontdeskMapper {
 
     void deleteData(int id);
 
-    List<OrderBean> findAll();
+    List<Wuliuxianlu> findAll();
 
 
-    OrderBean queryOne(Integer id);
+    Wuliuxianlu queryOne(Integer id);
+
+    AreaData searchArea5(Integer area1);
+
+    void addLine(Wuliuxianlu wuliuxianlu);
+
+    void addLine2(Wuliuxianlu wuliuxianlu);
 }

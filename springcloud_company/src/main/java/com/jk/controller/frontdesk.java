@@ -1,10 +1,7 @@
 package com.jk.controller;
 
 
-import com.jk.bean.Areas;
-import com.jk.bean.Cities;
-import com.jk.bean.OrderBean;
-import com.jk.bean.Provinces;
+import com.jk.bean.*;
 import com.jk.service.FrontdeskService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -25,7 +23,10 @@ public class frontdesk {
     @Autowired
     private FrontdeskService frontdeskService;
 
-
+    @RequestMapping("aa")
+    public String aa(){
+        return "pop";
+    }
 
     @RequestMapping("ee")
     public String ee(){
@@ -43,35 +44,18 @@ public class frontdesk {
 
     @RequestMapping("lineSearch")
     @ResponseBody
-    public HashMap<String,Object> lineSearch(Integer page, Integer limit, OrderBean orderBean){
+    public HashMap<String,Object> lineSearch(Integer page, Integer limit, Wuliuxianlu wuliuxianlu,HttpServletRequest request){
 
-        return frontdeskService.lineSearch(page,limit,orderBean);
+        return frontdeskService.lineSearch(page,limit,wuliuxianlu,request);
 
 
     }
-    @RequestMapping("findProvinc")
-    @ResponseBody
-    public List<Provinces> findProvinces(){
-        return frontdeskService.findProvinces();
-    }
 
-    @RequestMapping("findCit")
-    @ResponseBody
-    public List<Cities> findCity(int provinceid){
-        return frontdeskService.findCity(provinceid);
-    }
-
-    @RequestMapping("findAre")
-    @ResponseBody
-    public List<Areas> findArea(int cityid){
-        return frontdeskService.findArea(cityid);
-    }
 
     @RequestMapping("editLine")
-
-    public String editLine(Model model,Integer id){
-        OrderBean orderBean = frontdeskService.editLine(id);
-        model.addAttribute("order",orderBean);
+    public String editLine(Model model,String id){
+        Wuliuxianlu wuliuxianlu = frontdeskService.editLine(id);
+        model.addAttribute("order",wuliuxianlu);
         return "editLine";
     }
     @RequestMapping("listData")
@@ -82,8 +66,8 @@ public class frontdesk {
     }
     @RequestMapping("add")
     @ResponseBody
-    public String add(OrderBean orderBean){
-        frontdeskService.add(orderBean);
+    public String add(Wuliuxianlu  wuliuxianlu){
+        frontdeskService.add(wuliuxianlu);
         return "linemanager";
     }
     @RequestMapping("deleteData")
@@ -103,21 +87,22 @@ public class frontdesk {
 
         //创建表头
         setTitle(workbook, sheet);
-        List<OrderBean> answers = frontdeskService.findAll();
+        List<Wuliuxianlu> answers = frontdeskService.findAll();
 
         //新增数据行，并且设置单元格数据
         int rowNum = 1;
-        for (OrderBean answer:answers) {
+
+
+        for (Wuliuxianlu answer:answers) {
             HSSFRow row = sheet.createRow(rowNum);
-            row.createCell(0).setCellValue(answer.getId());
+            row.createCell(0).setCellValue(answer.getXlId());
             row.createCell(1).setCellValue(answer.getStartplace());
             row.createCell(2).setCellValue(answer.getEndplace());
-            row.createCell(4).setCellValue(answer.getHaveyPrice());
-            row.createCell(5).setCellValue(answer.getLightPrice());
-            row.createCell(6).setCellValue(answer.getBasicPrice());
-            row.createCell(7).setCellValue(answer.getCargoWeight());
-            row.createCell(8).setCellValue(answer.getShGoods());
-            row.createCell(9).setCellValue(answer.getSubmitstate());
+            row.createCell(4).setCellValue(answer.getZhongHuoJiqGe());
+            row.createCell(5).setCellValue(answer.getQingHuoJiaGe());
+            row.createCell(6).setCellValue(answer.getZuiDiYiPiao());
+            row.createCell(8).setCellValue(answer.getShangMenTiHuo());
+            row.createCell(9).setCellValue(answer.getSubstatus());
             rowNum++;
         }
         String fileName = "survey-answer.xls";
@@ -187,10 +172,6 @@ public class frontdesk {
         cell.setCellValue("最低一票价格");
         cell.setCellStyle(style);
 
-        cell = row.createCell(7);
-        cell.setCellValue("货物重量");
-        cell.setCellStyle(style);
-
         cell = row.createCell(8);
         cell.setCellValue("上门提货");
         cell.setCellStyle(style);
@@ -203,11 +184,24 @@ public class frontdesk {
         cell.setCellValue("发布状态");
         cell.setCellStyle(style);
     }
-    @RequestMapping("queryOne")
+    @RequestMapping("queryTwo")
     @ResponseBody
-    public OrderBean queryOne(Integer id){
-        OrderBean orderBean= frontdeskService.queryOne(id);
-        return orderBean;
+    public Wuliuxianlu queryOne(Integer id){
+        Wuliuxianlu wuliuxianlu= frontdeskService.queryOne(id);
+        return wuliuxianlu;
+    }
+
+    @RequestMapping("address")
+    @ResponseBody
+    public String address(Integer area1,Integer area2){
+        String aa = frontdeskService.address(area1,area2);
+        return aa;
+    }
+    @RequestMapping("addLine")
+    @ResponseBody
+    public String addLine(Wuliuxianlu wuliuxianlu, HttpServletRequest request){
+        String aa = frontdeskService.addLine(wuliuxianlu,request);
+        return aa;
     }
 
 }

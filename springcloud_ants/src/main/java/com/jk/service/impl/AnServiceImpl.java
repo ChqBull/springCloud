@@ -1,6 +1,7 @@
 package com.jk.service.impl;
 
-import com.jk.bean.*;
+import com.jk.bean.OrderBean;
+import com.jk.bean.zhuanxian;
 import com.jk.mapper.AnMapper;
 import com.jk.service.AnService;
 import org.springframework.stereotype.Service;
@@ -9,12 +10,12 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class AnServiceImpl  implements AnService {
+public class AnServiceImpl implements  AnService{
 
     @Resource
     AnMapper anMapper;
     @Override
-    public patent getzhuanxian(Integer id) {
+    public zhuanxian getzhuanxian(Integer id) {
 
         return anMapper.getzhuanxian(id);
     }
@@ -29,6 +30,11 @@ public class AnServiceImpl  implements AnService {
 
         }
         return list;
+    }
+
+    @Override
+    public Integer findxianlucount(int companyId) {
+        return anMapper.findxianlucount(companyId);
     }
 
 

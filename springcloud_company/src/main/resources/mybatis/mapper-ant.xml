@@ -4,17 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jk.mapper.FrontdeskMapper">
-<select id="list" resultType="com.jk.bean.OrderBean">
-    select * from lineTable where 1=1
-    <if test="od.startplace!=null and od.startplace!=null" >
-        and startplace = #{od.startplace}
+<select id="list" resultType="com.jk.bean.Wuliuxianlu">
+    select * from t_wuliuixianlu where 1=1 and companyId = #{companyId}
+    <if test="od.startId!=null and od.endId!=null" >
+        and startId = #{od.startId}
     </if>
-    <if test="od.endplace!=null and od.endplace!=''"  >
-        and endplace = #{od.endplace}
+    <if test="od.endId!=null and od.endId!=''"  >
+        and endId = #{od.endId}
     </if>
 </select>
 <select id="count" resultType="Integer">
-    select count(id) from lineTable
+    select count(xlId) from t_wuliuixianlu where companyId = #{companyId}
 </select>
 <select id="findProvinces" resultType="com.jk.bean.Provinces">
     select *  from provinces
@@ -27,36 +27,36 @@
     select *  from areas where cityid = #{0}
 </select>
 
-<select id="editLine" resultType="com.jk.bean.OrderBean">
-    select *  from lineTable where id = #{0}
+<select id="editLine" resultType="com.jk.bean.Wuliuxianlu">
+    select *  from t_wuliuixianlu where xlId = #{0}
 </select>
 
-<select id="listData" resultType="com.jk.bean.OrderBean">
-    select *  from lineTable
+<select id="listData" resultType="com.jk.bean.Wuliuxianlu">
+    select *  from t_wuliuixianlu
 </select>
-<update id="add" parameterType="com.jk.bean.OrderBean">
-   update lineTable
+<update id="add" parameterType="com.jk.bean.Wuliuxianlu">
+   update t_wuliuixianlu
    <set>
-    <if test="basicPrice != null and basicPrice!='' ">
-        basicprice = #{basicPrice},
+    <if test="zuiDiYiPiao != null and zuiDiYiPiao!='' ">
+        zuiDiYiPiao = #{zuiDiYiPiao},
     </if>
-    <if test="transtime != null and transtime!='' ">
-        transtime = #{transtime},
+    <if test="yunshuShiChang != null and yunshuShiChang!='' ">
+        yunshuShiChang = #{yunshuShiChang},
     </if>
-    <if test="shengId!=null and shiId!=null and startplace != null and startplace!='' ">
-        startplace = #{startplace},
+    <if test="shengId!=null and shiId!=null and startId != null and startId!='' ">
+        startId = #{startId},
     </if>
-    <if test="shengId2!=null and shiId2!=null and endplace != null and endplace!='' ">
-        endplace = #{endplace},
+    <if test="shengId2!=null and shiId2!=null and endId != null and endId!='' ">
+        endId = #{endId},
     </if>
-    <if test="tiGoods != null">
-        tiGoods = #{tiGoods},
+    <if test="shangMenTiHuo != null">
+        shangMenTiHuo = #{shangMenTiHuo},
     </if>
-    <if test="shGoods != null">
-        shGoods = #{shGoods}
+    <if test="songHuoSHangMen != null">
+        songHuoSHangMen = #{songHuoSHangMen}
     </if>
    </set>
-   where id = #{id}
+   where xlId = #{xlId}
 </update>
 <select id="searchArea" resultType="com.jk.bean.AreaData">
     SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
@@ -65,15 +65,22 @@
 <select id="searchArea2" resultType="com.jk.bean.AreaData">
     SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
 </select>
-<delete id="deleteData" parameterType="com.jk.bean.OrderBean">
-    delete from lineTable where id = #{0}
+<delete id="deleteData" parameterType="com.jk.bean.Wuliuxianlu">
+    delete from t_wuliuixianlu where xlId = #{0}
 </delete>
-<select id="findAll" resultType="com.jk.bean.OrderBean">
-   select * from lineTable
+<select id="findAll" resultType="com.jk.bean.Wuliuxianlu">
+   select * from t_wuliuixianlu
 </select>
-<select id="queryOne" resultType="com.jk.bean.OrderBean">
-   select * from lineTable where id = #{0}
+<select id="queryOne" resultType="com.jk.bean.Wuliuxianlu">
+   select * from t_wuliuixianlu where xlId = #{0}
+</select>
+<select id="searchArea5" resultType="com.jk.bean.AreaData">
+    SELECT p.province,c.city,a.area from provinces p,cities c,areas a where p.provinceid=c.provinceid and c.cityid = a.cityid and a.areaid= #{0}
 </select>
 
+<insert id="addLine" parameterType="com.jk.bean.Wuliuxianlu">
+    insert into t_wuliuixianlu (startId,endId,companyId,yunshuShiChang,zuiDiYiPiao,zhongHuoJiqGe,qingHuoJiaGe,songHuoSHangMen,shangMenTiHuo,diZhi)
+    values(#{startId},#{endId},#{companyId},#{yunshuShiChang},#{zuiDiYiPiao},#{zhongHuoJiqGe},#{qingHuoJiaGe},#{songHuoSHangMen},#{shangMenTiHuo},#{diZhi})
+</insert>
 
 </mapper>

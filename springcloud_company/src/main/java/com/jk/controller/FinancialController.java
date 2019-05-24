@@ -2,6 +2,7 @@ package com.jk.controller;
 
 import com.jk.bean.BankCards;
 import com.jk.bean.CashModel;
+import com.jk.bean.CompanyModel;
 import com.jk.bean.FinanciaModel;
 import com.jk.service.FinancialService;
 import org.apache.poi.hssf.usermodel.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -28,31 +30,39 @@ public class FinancialController {
     @RequestMapping("getFinancialStatement")
     @ResponseBody
     public HashMap<String, Object> getFinancialStatement(HttpServletRequest request, FinanciaModel financiaModel,Integer page ,Integer limit){
-        String id = request.getSession().getId();
-        HashMap<String, Object> map = financialService.getFinancialStatement(id,financiaModel,page,limit);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        HashMap<String, Object> map = financialService.getFinancialStatement(companyId,financiaModel,page,limit);
         return map;
     }
     /*获取提现记录*/
     @RequestMapping("getWithdrawalRecords")
     @ResponseBody
     public HashMap<String, Object> getWithdrawalRecords(HttpServletRequest request, CashModel cashModel, Integer page , Integer limit ){
-        String id = request.getSession().getId();
-        HashMap<String, Object> map = financialService.getWithdrawalRecords(id,cashModel,page,limit);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        HashMap<String, Object> map = financialService.getWithdrawalRecords(companyId,cashModel,page,limit);
         return map;
     }
     /*获取提现记录Echars*/
     @RequestMapping("getWithdrawalRecordsEchars")
     @ResponseBody
     public HashMap<String , Object>  getWithdrawalRecordsEchars(HttpServletRequest request,CashModel cashModel){
-        String id = request.getSession().getId();
-        HashMap<String , Object>  map = financialService.getWithdrawalRecordsEchars(id,cashModel);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        HashMap<String , Object>  map = financialService.getWithdrawalRecordsEchars(companyId,cashModel);
         return map;
     }
     /*跳转提现界面*/
     @RequestMapping("goCash")
     public String goCash(HttpServletRequest request, Model model){
-        String id = request.getSession().getId();
-        CashModel cashModel = financialService.goCash(id);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        CashModel cashModel = financialService.goCash(companyId);
         model.addAttribute("f",cashModel);
         return "Home";
     }
@@ -60,29 +70,37 @@ public class FinancialController {
     @RequestMapping("getInquireAboutBankCards")
     @ResponseBody
     public List<BankCards> getInquireAboutBankCards(HttpServletRequest request){
-        String id = request.getSession().getId();
-        return financialService.getInquireAboutBankCards(id);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        return financialService.getInquireAboutBankCards(companyId);
     }
     /*提交提现*/
     @RequestMapping("addCash")
     @ResponseBody
     public String addCash(HttpServletRequest request,CashModel cashModel){
-        String id = request.getSession().getId();
-        String msg = financialService.addCash(cashModel,id);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        String msg = financialService.addCash(cashModel,companyId);
         return msg;
     }
     /*获取财务报表Echars*/
     @RequestMapping("getWithdrawal")
     @ResponseBody
     public HashMap<String , Object>  getWithdrawalEchars(HttpServletRequest request){
-        String id = request.getSession().getId();
-        HashMap<String , Object>  map = financialService.getWithdrawalEchars(id);
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        HashMap<String , Object>  map = financialService.getWithdrawalEchars(companyId);
         return map;
     }
     /*导出余额提现表*/
     @RequestMapping("ExcelDownloadsPoi")
     public void download(HttpServletResponse response,HttpServletRequest request) throws IOException {
-        String id = request.getSession().getId();
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         //创建一个Excel表单,参数为sheet的名字
@@ -90,7 +108,7 @@ public class FinancialController {
 
         //创建表头
         setTitle(workbook, sheet);
-        List<CashModel> li = financialService.getWithdrawalRecordsIop(id);
+        List<CashModel> li = financialService.getWithdrawalRecordsIop(companyId);
 
         //新增数据行，并且设置单元格数据
         int rowNum = 1;
@@ -160,15 +178,16 @@ public class FinancialController {
     /*导出余额提现表*/
     @RequestMapping("fianExcelDownloadsPoi")
     public void downloadFian(HttpServletResponse response,HttpServletRequest request) throws IOException {
-        String id = request.getSession().getId();
-
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
         HSSFWorkbook workbook = new HSSFWorkbook();
         //创建一个Excel表单,参数为sheet的名字
         HSSFSheet sheet = workbook.createSheet("用户表");
 
         //创建表头
         setfinaTitle(workbook, sheet);
-        List<FinanciaModel> li = financialService.getWithdrawalRecordsFinaIop(id);
+        List<FinanciaModel> li = financialService.getWithdrawalRecordsFinaIop(companyId);
 
         //新增数据行，并且设置单元格数据
         int rowNum = 1;

@@ -4,11 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jk.mapper.AnMapper">
-
-    <update id="addgongsi" parameterType="com.jk.bean.CompanyModel">
+<!-- <update id="addgongsi" parameterType="com.jk.bean.CompanyModel">
          update   t_company  set  gsjian=#{gongso.gsjian},gsphone=#{gongso.gsphone},gspople=#{gongso.gspople},gsweb=#{gongso.gsweb},gszong=#{gongso.gszong},gsjieshao=#{gongso.gsjieshao},
-              address=#{gongso.address},serve=#{gongso.serve},gsadrivs=#{gongso.gsadrivs},goodsImg=#{gongso.goodsImg},gsquancheng=#{gongso.gsquancheng}  where companyId =#{gongso.companyId}
-
+              address=#{gongso.address},serve=#{gongso.serve},gsadrivs=#{gongso.gsadrivs},goodsImg=#{gongso.goodsImg},gsquancheng=#{gongso.gsquancheng},city_id=#{gongso.city_id}  where companyId =#{gongso.companyId}
  </update>
+    <update id="addtupian" parameterType="com.jk.bean.CompanyModel">
+         update   t_company  set  yingye=#{gongso.yingye},fuzeren=#{gongso.fuzeren},shuiwu=#{gongso.shuiwu},daolu=#{gongso.daolu} where companyId =#{gongso.companyId}
+ </update>-->
 
 </mapper>

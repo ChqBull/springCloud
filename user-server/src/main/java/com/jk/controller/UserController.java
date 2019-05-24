@@ -1,4 +1,5 @@
 package com.jk.controller;
+import com.jk.bean.CompanyModel;
 import com.jk.bean.UserBean;
 import com.jk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +47,10 @@ public class UserController {
 
 
     //后台登录+记住密码   usertype 1发货方,2物流公司
-    @RequestMapping("comLogin")
+    @RequestMapping("comlogin")
     @ResponseBody
-    public UserBean comLogin(@RequestBody UserBean userBean){
-        return userService.login(userBean);
+    public CompanyModel comLogin(@RequestBody UserBean userBean){
+        return userService.comlogin(userBean);
     }
 
     /*手机登录*/

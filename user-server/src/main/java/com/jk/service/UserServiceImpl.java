@@ -197,6 +197,7 @@ public class UserServiceImpl implements UserService {
         return companyModel;
     }
 
+
     /*手机登录*/
     @Override
     public HashMap<String, Object> phoneLogin(UserBean userBean, String phonecode) {

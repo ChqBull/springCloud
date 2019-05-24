@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.jk.bean.*;
 import com.jk.service.CargoService;
 
+import com.sun.mail.imap.protocol.ID;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
@@ -195,8 +196,8 @@ public class CargoController {
 
     //跳转到页面
     @RequestMapping("tocargoShow")
-    public  String tocarShow(){
-
+    public  String tocarShow(Integer cid,Model model){
+        model.addAttribute("id", cid);
         return "cargoShow";
     }
 

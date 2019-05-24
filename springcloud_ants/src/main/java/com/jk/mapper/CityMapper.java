@@ -35,4 +35,7 @@ public interface CityMapper {
             "and l.statrsquId=a.areaid\n" +
             "and l.endquId=d.areaid")
     List<Order> findOrder();
+
+    @Select("select * from image")
+    List<Image> findImg();
 }

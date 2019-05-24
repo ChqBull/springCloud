@@ -65,7 +65,7 @@
                 <tr>
                     <th>货物名称</th>
                     <th>件数</th>
-                    <th>包装类型</th>
+                 <!--   <th>包装类型</th>-->
                     <th>单件重量</th>
                     <th>单件体积</th>
                 </tr>
@@ -74,7 +74,7 @@
                 <tr>
                     <td><span  th:text="${o.cargoName}"></span></td>
                     <td><span  th:text="${o.cargoCount}"></span></td>
-                    <td><span  th:text="${o.cargoType}"></span></td>
+                   <!-- <td><span  th:text="${o.cargoType}"></span></td>-->
                     <td><span  th:text="${o.cargoWeight}"></span></td>
                     <td><span  th:text="${o.cargoBulk}"></span></td>
 
@@ -88,7 +88,7 @@
     <input type="hidden" th:value="${o.cargoWeight}" id="hidden2">
     <input type="hidden" th:value="${o.cargoBulk}" id="hidden3">
     总重量：<input id="weight" type="text" size="2px" style="border:0"/> 总体积：<input id="bulk" type="text" size="2px" style="border:0"/>
-    总件数：<input  type="text" size="2px" th:value="${o.cargoCount}"style="border:0"/></br>
+    总件数：<input  id="jianshu" type="text" size="2px" th:value="${o.cargoCount}"style="border:0"/></br>
     货物照片：<img  width='50' height='50'  src="${o.img}"/></br>
     发货说明：未填写
 </div>
@@ -184,6 +184,7 @@
                    icon: 1,
                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
                }, function(){
+                   window.parent.location.reload();
                    //do something
                });
            }
@@ -203,15 +204,15 @@
         layer.confirm('无故拒绝订单可能会造成客户流失!', {
             btn: ['确认不受理'] //按钮
         }, function(){
-
-            $.ajax({
+            layer.msg('已经不受理', {icon: 1});
+          /*  $.ajax({
                 //修改订单状态
-                url:"updateddstatus?id="+id+"&status="+2,
+                url:"updateddstatus?id="+id,
                 type:"post",
                 success:function () {
-                    layer.msg('已经不受理', {icon: 1});
+
                 }
-            })
+            })*/
 
         });
 

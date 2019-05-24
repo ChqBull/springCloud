@@ -53,4 +53,9 @@ public class CityServiceImpl implements CityService {
     public List<Order> findOrder() {
         return cityMapper.findOrder();
     }
+
+    @Override
+    public List<Image> findImg() {
+        return cityMapper.findImg();
+    }
 }

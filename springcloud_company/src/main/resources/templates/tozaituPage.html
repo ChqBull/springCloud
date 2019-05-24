@@ -178,14 +178,14 @@
         //alert(id);
         $.ajax({
             //修改订单状态
-            url:"updateddshouqu?id="+id+"&status="+1,
+            url:"updateddshouqu?id="+id+"&status="+2,
             type:"post",
             success:function () {
                 layer.msg('已经成功收货', {
                     icon: 1,
                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
                 }, function(){
-                    //do something
+                    window.parent.location.reload();
                 });
             }
         })
@@ -204,15 +204,15 @@
             layer.confirm('确定此时不收货吗!', {
                 btn: ['确认不受理'] //按钮
             }, function(){
-
-                $.ajax({
+                layer.msg('已经不收货', {icon: 1});
+               /* $.ajax({
                     //修改订单状态
-                    url:"updateddshouqu?id="+id+"&status="+2,
+                    url:"updateddshouqu?id="+id+"&status="+1,
                     type:"post",
                     success:function () {
-                        layer.msg('已经不收货', {icon: 1});
+
                     }
-                })
+                })*/
 
             });
 

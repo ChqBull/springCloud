@@ -94,16 +94,16 @@
         <div class="icons-wuli fr" style="background-image:none;"><script type="text/javascript" src="http://www.lvmae.com/file/script/A47.js"></script></div>
     </div>
 </div>
-<ul class="layui-nav layui-bg-cyan" lay-filter="" style=" padding-left: 60px;">
+<ul class="layui-nav layui-bg-cyan" lay-filter="" style=" padding-left: 50px;">
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="">首页</a></li>
-    <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="/dd">物流专线</a></li>
-    <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="/getzhuanxian">在线发货</a></li>
+    <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="/cc">物流专线</a></li>
+    <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="/tozaixianfahuo">在线发货</a></li>
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="">国际海运</a></li>
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="">物流公司</a></li>
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="/toNewsApi">物流新闻</a></li>
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="">物流招标</a></li>
     <li class="layui-nav-item" style="margin-left: 22px;margin-right: 22px;"><a href="">在线购买</a></li>
-    <li class="layui-nav-item" style="color: red; margin-left: 22px;margin-right: 22px;"><a href="">个人中心</a></li>
+    <li class="layui-nav-item" style="color: red; margin-left: 22px;margin-right: 22px;"><a href="/userTree">个人中心</a></li>
 </ul>
 <div class="substation-box">
     <div class="substation">
@@ -148,8 +148,20 @@
 <div>
     <div class="layui-carousel" id="test1" style="position: absolute;z-index: 0">
         <div carousel-item>
-            <div><img src="img/17-50-04-33-1.jpg" height="360" width="1583"/></div>
-            <div><img src="img/16-29-09-33-38889.jpg" height="360" width="1583"/></div>
+            <div id="img1">
+<!--                <img src="img/temp0.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp1.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp2.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp3.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp4.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp5.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp6.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp7.jpg" height="120" width="447"/>-->
+<!--                <img src="img/temp8.jpg" height="120" width="447"/>-->
+            </div>
+            <div id="img2">
+<!--                <img src="img/16-29-09-33-38889.jpg" height="360" width="1583"/>-->
+            </div>
         </div>
     </div>
 </div>
@@ -182,20 +194,22 @@
 <!--        <option value="0">请选择</option>-->
 <!--    </select>-->
 <!--    <br>-->
-    <span>发货地:</span>
-    <form class="layui-form" action="" lay-filter="example">
+
+
+    <form class="layui-form" action="" lay-filter="example" style="padding-top: 30px;padding-left: 20px;">
+        <span>收货地:</span>
         <div class="layui-form-item">
-            <div class="layui-input-inline">
+            <div class="layui-input-inline"   style="width: 150px;">
                 <select lay-filter="sheng" id="sheng" >
                     <option value="0">请选择</option>
                 </select>
             </div>
-            <div class="layui-input-inline">
+            <div class="layui-input-inline"   style="width: 150px;">
                 <select lay-filter="shi" id="shi">
                     <option value="0">请选择</option>
                 </select>
             </div>
-            <div class="layui-input-inline">
+            <div class="layui-input-inline"   style="width: 150px;">
                 <select lay-filter="xian" id="xian">
                     <option value="0">请选择</option>
                 </select>
@@ -203,27 +217,29 @@
         </div>
     </form>
 
-    <span>收货地:</span>
-    <form class="layui-form" action="" lay-filter="example">
+
+    <form class="layui-form" action="" lay-filter="example" style="padding-top: 10px;padding-left: 20px;">
+        <span>收货地:</span>
         <div class="layui-form-item">
-            <div class="layui-input-inline">
+            <div class="layui-input-inline"  style="width: 150px;">
                 <select lay-filter="sheng1" name="sheng1" id="sheng1">
                     <option value="0">请选择</option>
                 </select>
             </div>
-            <div class="layui-input-inline">
+            <div class="layui-input-inline"  style="width: 150px;">
                 <select lay-filter="shi1" name="shi1" id="shi1">
                     <option value="0">请选择</option>
                 </select>
             </div>
-            <div lay-filter="sheng1" class="layui-input-inline">
+            <div lay-filter="sheng1" class="layui-input-inline"   style="width: 150px;">
                 <select lay-filter="xian1" name="xian1" id="xian1">
                     <option value="0">请选择</option>
                 </select>
             </div>
         </div>
     </form>
-    <button class="layui-btn layui-btn-radius layui-btn-primary" id="btn">立刻查询</button>
+
+    <button class="layui-btn layui-btn-radius layui-btn-primary" id="btn" style="margin-left: 20px;">立刻查询</button>
 </div>
 <div style="width: 100%;height: 100%;margin-top: 25px;margin-left: 75px;">
 <img src="img/15-13-38-83-38891.jpg" height="80" width="1200"/>
@@ -268,7 +284,7 @@
                         <th class="wp12">发货</th>
                     </tr>
                     </thead>
-                    <tbody style="max-height: 332px; margin-top: 0px;" id="tb">
+                    <tbody style="max-height: 352px; margin-top: 0px;" id="tb">
 <!--                    <tr style="">-->
 <!--                        <td class="td-name" width="123px">-->
 <!--                            <p title="">-->
@@ -330,7 +346,7 @@
 <!--        专线发车时刻表-->
 <!--    </div>-->
 </div>
-<select id="ff" style="margin-left: 75px;width: 100px;" onchange="cc()">
+<select id="ff" style="margin-top: 50px;margin-left: 75px;width: 100px;" onchange="cc()">
 </select>
 <input type="hidden" id="ww">
 <div style="width: 1200px;height: 380px; margin-left: 75px;">
@@ -363,54 +379,18 @@
 
 <script type="text/javascript">
 
-    // for(var i=0;i<5;i++){
-    //     $("#tb").append('<tr style="">\n' +
-    //         '                        <td class="td-name" width="123px">\n' +
-    //         '                            <p title="">\n' +
-    //         '                                <a href="" target="_blank">中山到银川物流专线</a>\n' +
-    //         '                            </p></td>\n' +
-    //         '                        <td class="td-banchi" width="247px">\n' +
-    //         '                            <div class="banchi">\n' +
-    //         '                                <div class="banchi-left">\n' +
-    //         '                                    <span class="b-1">12:00</span>\n' +
-    //         '                                    <span class="b-2">中山</span>\n' +
-    //         '                                </div>\n' +
-    //         '                                <div class="banchi-middle">\n' +
-    //         '                                    <span class="banchi-day bold color-1">+1天</span>\n' +
-    //         '                                    <span class="icons-arrow-left"></span>\n' +
-    //         '                                </div>\n' +
-    //         '                                <div class="banchi-right">\n' +
-    //         '                                    <span class="b-1">12:00</span>\n' +
-    //         '                                    <span class="b-2">银川</span>\n' +
-    //         '                                </div>\n' +
-    //         '                            </div>                        </td>\n' +
-    //         '                        <td class="td-name" width="24px"></td>\n' +
-    //         '                        <td class="al price color-2" width="123px">\n' +
-    //         '                            <p style="padding-left: 50px;">面议</p>\n' +
-    //         '                        </td>\n' +
-    //         '                        <td class="td-baozhang" width="124px">\n' +
-    //         '                            <p class="ell"><a href="" target="_blank" >中山速达物流有限公司</a></p>\n' +
-    //         '                            <p>\n' +
-    //         '                       <span>\n' +
-    //         '                            <i class="icon-zheng">证</i>\n' +
-    //         '                       </span>\n' +
-    //         '                            </p>\n' +
-    //         '                        </td>\n' +
-    //         '                        <td class="td-fahuo" width="99px">\n' +
-    //         '                            <a href="http://www.lvmae.com/road/29694-45212/12429886.html" target="_blank" class="b-3">联系发货</a>\n' +
-    //         '                            <div>\n' +
-    //         '                                <a href="javascript:void(0);" class="b-4 mt2" onclick="btnClickContact(this,12429886,\'38882\',2)">\n' +
-    //         '                                    <em class="icons-tel"></em><em title="点击查看联系电话">热线</em>\n' +
-    //         '                                </a>\n' +
-    //         '                            </div>\n' +
-    //         '                            <div class="bubble-box">\n' +
-    //         '                                <div class="arrow-left"></div>\n' +
-    //         '                                <div class="wraps"><span class="tel"></span><span title="关闭" class="tel-box-close"></span></div>\n' +
-    //         '                                <div class="clear"></div>\n' +
-    //         '                            </div>\n' +
-    //         '                        </td>\n' +
-    //         '                    </tr>');
-    // }
+
+
+
+    $.post("city/findImg",function (data) {
+        for (var i=0;i<data.length;i++){
+            if(i<=8){
+                $("#img1").append('<img src="'+data[i].imgsrc+'" height="120" width="447"/>');
+            }else if (i>8&&i<=17){
+                $("#img2").append('<img src="'+data[i].imgsrc+'" height="120" width="447"/>');
+            }
+        }
+    })
 
 
 
@@ -418,7 +398,10 @@
 
     $.post("city/findOrder",function (data) {
         for(var i=0;i<data.length;i++){
-            $("#tt").append('<li class="item" style=""><span class=" color-1">'+data[i].phone+'</span>提交订单成功，'+data[i].startCity+'到'+data[i].endCity+'</li>');
+            var p=data[i].phone.substring(0,7)+"****";
+            var s=data[i].startCity.substring(0,2);
+            var e=data[i].endCity.substring(0,2)+"...";
+            $("#tt").append('<li class="item" style=""><span class=" color-1">'+p+'</span>提交订单成功，<a>'+s+'到'+e+'</a></li>');
         }
         //订单滚动
         if( $("#order_list ul li").length > 1 ) {
@@ -455,7 +438,7 @@
                         '            <div class="item-name"><a href="#" >'+data[i].companyName+'</a></div>\n' +
                         '            <div class="item-des"></div>\n' +
                         '            <div class="item-btn">\n' +
-                        '                <a class="btn b-5" href="#" title="联系发货" target="_blank">联系发货</a>\n' +
+                        '                <a class="btn b-5"  title="联系发货" onclick="ff('+data[i].id+')">联系发货</a>\n' +
                         '            </div>\n' +
                         '        </li>');
 
@@ -478,7 +461,7 @@
                         '            <div class="item-name"><a href="#" >'+data[i].companyName+'</a></div>\n' +
                         '            <div class="item-des"></div>\n' +
                         '            <div class="item-btn">\n' +
-                        '                <a class="btn b-5" href="#" title="联系发货" target="_blank">联系发货</a>\n' +
+                        '                <a class="btn b-5" title="联系发货" onclick="ff('+data[i].id+')">联系发货</a>\n' +
                         '            </div>\n' +
                         '        </li>');
                 }
@@ -487,10 +470,25 @@
     })
 
 
-    function bb(a,b){
-        alert(a);
-        alert(b);
+
+    // function bb(a,b){
+    //     alert(a);
+    //     alert(b);
+    //     location.href="index";
+    // }
+    //=========================================================================================
+    function zz(id1){
+        location.href="dd?shiid="+id1;
     }
+
+    function ss(xid){
+        location.href="getzhuanxian?id="+xid;
+    }
+
+    function ff(fid){
+        location.href="getzhuanxian?id="+fid;
+    }
+    //=========================================================================================
 
     layui.use('carousel', function(){
         var carousel = layui.carousel;
@@ -515,9 +513,9 @@
             for (var i = 0; i < data.length; i++) {
                 var a=data[i].city.substring(0,3);
                 if (i%3!=0){
-                    $("#q1").append("&emsp;<span>"+a+"</span>&emsp;");
+                    $("#q1").append("&emsp;<span class='sp' onclick='zz("+data[i].cityid+")'>"+a+"</span>&emsp;");
                 } else {
-                    $("#q1").append("<br>&emsp;<span>"+a+"</span>&emsp;");
+                    $("#q1").append("<br>&emsp;<span class='sp' onclick='zz("+data[i].cityid+")'>"+a+"</span>&emsp;");
                 }
             }
         })
@@ -527,11 +525,11 @@
                 var scity=data[i].startCity.substring(0,2);
                 var ecity=data[i].endCity.substring(0,2);
                 var stime=data[i].startTime.substring(10,16);
-                var etime=data[i].startTime.substring(10,16);
+                var etime=data[i].endTime.substring(10,16);
                 $("#tb").append('<tr style="">\n' +
                     '                        <td class="td-name" width="123px">\n' +
                     '                            <p title="">\n' +
-                    '                                <a href="" target="_blank">'+scity+'到'+ecity+'物流专线</a>\n' +
+                    '                                <a class="tf"  onclick="ss('+data[i].id+')" >'+scity+'到'+ecity+'物流专线</a>\n' +
                     '                            </p></td>\n' +
                     '                        <td class="td-banchi" width="247px">\n' +
                     '                            <div class="banchi">\n' +
@@ -561,7 +559,7 @@
                     '                            </p>\n' +
                     '                        </td>\n' +
                     '                        <td class="td-fahuo" width="99px">\n' +
-                    '                            <a href="http://www.lvmae.com/road/29694-45212/12429886.html" target="_blank" class="b-3">联系发货</a>\n' +
+                    '                            <a  class="b-3"  onclick="ss('+data[i].id+')">联系发货</a>\n' +
                     '                            <div>\n' +
                     '                                <a href="javascript:void(0);" class="b-4 mt2" onclick="btnClickContact(this,12429886,\'38882\',2)">\n' +
                     '                                    <em class="icons-tel"></em><em title="点击查看联系电话">热线</em>\n' +
@@ -577,31 +575,33 @@
             }
 
             if (data.length>3){
-                if( $("#hyskb1 tbody tr").length > 3 ){
+                if( $("#hyskb1 tbody tr").length > 4 ){
                     $("#hyskb1").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb2 tbody tr").length > 3 ){
+                if( $("#hyskb2 tbody tr").length > 4 ){
                     $("#hyskb2").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb3 tbody tr").length > 3 ){
+                if( $("#hyskb3 tbody tr").length > 4 ){
                     $("#hyskb3").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb4 tbody tr").length > 3 ){
+                if( $("#hyskb4 tbody tr").length > 4 ){
                     $("#hyskb4").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb5 tbody tr").length > 3 ){
+                if( $("#hyskb5 tbody tr").length > 4 ){
                     $("#hyskb5").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb6 tbody tr").length > 3 ){
+                if( $("#hyskb6 tbody tr").length > 4 ){
                     $("#hyskb6").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
-                if( $("#hyskb7 tbody tr").length > 3 ){
+                if( $("#hyskb7 tbody tr").length > 4 ){
                     $("#hyskb7").FontScroll({num:1, time:3000, ul:'tbody', li:'tr'});
                 }
             }
 
         })
     }
+
+
 
     layui.use(['form', 'layedit', 'laydate','element','jquery'], function(){
         var form = layui.form;
@@ -622,8 +622,7 @@
             // alert(shengid1);
             // alert(shiid);
             // alert(shiid1);
-            alert(quid);
-            alert(quid1);
+            location.href="/cc?startquid="+quid+"&endquid="+quid1;
 
         });
 
@@ -773,7 +772,18 @@
 </script>
 <style type="text/css">
     .hyskb{table-layout:fixed;}
-    .hyskb tbody{width:740px;height:277px;overflow-y:hidden;display:block;}
+    .hyskb tbody{width:740px;height:372px;overflow-y:hidden;display:block;}
     .hyskb tbody tr{height:83px;}
-    </style>
+
+    .sp:hover{
+        color: #84C225;
+        cursor: pointer;
+    }
+    .b-3:hover{
+         cursor: pointer;
+     }
+    .tf:hover{
+        cursor: pointer;
+    }
+</style>
 </html>

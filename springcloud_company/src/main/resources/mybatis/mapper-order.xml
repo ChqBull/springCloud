@@ -5,7 +5,7 @@
 
 <mapper namespace="com.jk.mapper.OrderMapper">
     <select id="getOrder" resultType="OrderBean">
-         select * from lineTable where 1=1
+         select * from lineTable where companyId = #{b.companyId}
        <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
             and ddid = #{b.chaxunreal}
         </if>
@@ -31,16 +31,16 @@
             and xiadanDate  &lt; #{b.endDate}
         </if>
         <if test="b.diqu=='1'.toString() and b.diqu!=null">
-            and faid =#{b.aid}
+            and statrsquId =#{b.aid}
         </if>
         <if test="b.diqu=='2'.toString() and b.diqu!=null">
-            and said =#{b.aid}
+            and endquId =#{b.aid}
         </if>
 
     </select>
 
     <select id="getOrderByCondition" resultType="OrderBean">
-        select * from lineTable  where 1=1
+        select * from lineTable  where  status = 5  and companyId = #{b.companyId}
         <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
           and ddid = #{b.chaxunreal}
         </if>
@@ -66,19 +66,19 @@
             and xiadanDate  &lt; #{b.endDate}
         </if>
         <if test="b.diqu=='1'.toString() and b.diqu!=null">
-            and faid =#{b.aid}
+            and statrsquId =#{b.aid}
         </if>
         <if test="b.diqu=='2'.toString() and b.diqu!=null">
-            and said =#{b.aid}
+            and endquId =#{b.aid}
         </if>
           limit #{page},#{limit}
     </select>
 
     <select id="getMoney" resultType="Long">
-        select sum(paycount) from lineTable
+        select sum(paycount) from lineTable where companyId = #{companyId}
     </select>
     <select id="getOrdercount" resultType="OrderBean">
-        select * from lineTable
+        select * from lineTable  where companyId = #{companyId}
     </select>
 
     <select id="getOrderById" resultType="OrderBean">
@@ -91,23 +91,152 @@
     </select>
 
 <update id="updateddstatus">
-     update lineTable set status1 =#{status} , shoulishijina= sysdate()  where id= #{id}
+     update lineTable set status =#{status} , shoulishijian= CURDATE()  where id= #{id}
 
 </update>
 
     <update id="updateddshouqu">
-     update lineTable set status2 =#{status} , shouhuoshijian= sysdate()  where id= #{id}
+     update lineTable set status =#{status} , shouhuoshijian= CURDATE()  where id= #{id}
 
 </update>
     <update id="updatejiesuan">
-/*     update lineTable set status3 =#{status} , jiesuanshijian= shouhuoshijina   where id= #{id}*/
-        <if test="#{status==1}">
-            update lineTable set status3 =#{status}, jiesuanshijian = sysdate() where id=#{id};
+        <if test="status==3">
+            update lineTable set status =#{status}, jiesuanshijian = CURDATE() where id= #{id}
         </if>
-        <if test="#{status==2}">
-update lineTable set status3 =#{status}, jiesuanshijian = date_add(shouhuoshijina,interval 2 day) where id=#{id};
+        <if test="status==4">
+update lineTable set status =#{status}, jiesuanshijian = date_add(shouhuoshijian,interval 2 day) where id=#{id}
         </if>
 
 </update>
+   <!--   &lt;!&ndash; 获取我的订单的条件查询&ndash;&gt;
+    <select id="queryMyOrder" resultType="OrderBean">
+         select * from linetable l,t_company t where l.companyId = t.companyId
+        <if test="b.chaxunshu != null and b.chaxunshu == 1">
+            and l.ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu != null and b.chaxunshu == 2">
+            and t.companyPhone = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu != null and b.chaxunshu == 3">
+            and t.companyName like '%${b.chaxunreal}%'
+        </if>
+        <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+     limit #{page},#{limit}
+    </select>-->
+
+  <!--  根据区id获取城市-->
+
+   <!-- <select id="queryCityByquId" resultType="String">
+select c.city from areas a,cities c  where a.cityid= c.cityid
+ and a.areaid = #{statrsquId}
+    </select>-->
+
+    <!--<select id="findZhaoBiao" resultType="ZhaoBiaoBean">
+        select * from zhaobiao where 1=1
+        <if test="b.zbtype != null and b.zbtype>0">
+         and zbtype = #{b.zbtype}
+        </if>
+        <if test="b.title != null ">
+            and title like '%${b.title}%'
+        </if>
+       limit #{start},#{pageSize}
+    </select>
+-->
+   <!-- <insert id="addZhaobiao">
+  insert into zhaobiao(zbtype,title,hangye,startDate,
+   endDate,zhuangtai,dianji,luruDate,zhaiyao)values
+     (#{b.zbtype},#{b.title},#{b.hangye},#{b.startDate},
+    #{b.endDate},#{b.zhuangtai},#{b.dianji},CURDATE(),#{b.zhaiyao})
+    </insert>
+
+    <update id="updateZhaobiao">
+   update zhaobiao set zbtype = #{b.zbtype},
+    title = #{b.title},hangye = #{b.hangye},
+    startDate = #{b.startDate},endDate = #{b.endDate},
+    zhaiyao = #{b.zhaiyao} where zid = #{b.zid}
+
+    </update>-->
+    <!--在途的条件查询-->
+
+    <select id="getOrderByConditionzaidu" resultType="OrderBean">
+        select * from lineTable  where status = 1 and companyId = #{b.companyId}
+        <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
+            and ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='2'.toString() and b.chaxunshu!=null">
+            and consigner =  #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='3'.toString() and b.chaxunshu!=null">
+            and phone= #{b.chaxunreal}
+        </if>
+
+        <if test="b.zhifuWay != '0'.toString() and b.zhifuWay != null">
+            and zhifuWay like '%${b.zhifuWay}%'
+        </if>
+
+        <if test="b.quhuoWay != '0'.toString() and b.quhuoWay !=null">
+            and quhuoWay like '%${b.quhuoWay}%'
+        </if>
+
+        <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+        <if test="b.diqu=='1'.toString() and b.diqu!=null">
+            and statrsquId =#{b.aid}
+        </if>
+        <if test="b.diqu=='2'.toString() and b.diqu!=null">
+            and endquId =#{b.aid}
+        </if>
+
+        limit #{page},#{limit}
+    </select>
+<!--运费的条件查询-->
+
+    <select id="getOrderByConditionyunsuan" resultType="OrderBean">
+        select * from lineTable  where status = 2 and companyId = #{b.companyId}
+        <if test="b.chaxunshu=='1'.toString() and b.chaxunshu!=null">
+            and ddid = #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='2'.toString() and b.chaxunshu!=null">
+            and consigner =  #{b.chaxunreal}
+        </if>
+        <if test="b.chaxunshu=='3'.toString() and b.chaxunshu!=null">
+            and phone= #{b.chaxunreal}
+        </if>
+
+        <if test="b.zhifuWay != '0'.toString() and b.zhifuWay != null">
+            and zhifuWay like '%${b.zhifuWay}%'
+        </if>
+
+        <if test="b.quhuoWay != '0'.toString() and b.quhuoWay !=null">
+            and quhuoWay like '%${b.quhuoWay}%'
+        </if>
+
+        <if test="b.startDate != null and b.startDate != ''" >
+            and xiadanDate &gt; #{b.startDate}
+        </if>
+        <if test="b.endDate != null and b.endDate != ''">
+            and xiadanDate  &lt; #{b.endDate}
+        </if>
+        <if test="b.diqu=='1'.toString() and b.diqu!=null">
+            and statrsquId =#{b.aid}
+        </if>
+        <if test="b.diqu=='2'.toString() and b.diqu!=null">
+            and endquId =#{b.aid}
+        </if>
+
+        limit #{page},#{limit}
+    </select>
+
+
+
 
 </mapper>

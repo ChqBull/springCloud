@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,7 +11,7 @@
 
 <body>
 <form class="layui-form" id="lineForm" action="" >
-    <input type="hidden" name="id" th:value="${order?.id}">
+    <input type="hidden" name="id" th:value="${order?.xlId}">
     <table >
         <tr>
             <td align="right">
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <div class="layui-input-inline" style="width: 100px">
-                <select name="startplace"   lay-filter="xian" id="xian">
+                <select name="endquId"   lay-filter="xian" id="xian">
                     <option value="" selected>区</option>
                 </select>
             </div>
@@ -85,7 +85,7 @@
                 <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
                     <div class="layui-inline">
                         <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="transtime" th:value="${order?.transtime}" autocomplete="off" class="layui-input" >
+                            <input type="text" name="yunshuShiChang" th:value="${order?.yunshuShiChang}" autocomplete="off" class="layui-input" >
                         </div>
                         <label class="layui-form-label" style="width:50px ">小时</label>
                     </div>
@@ -99,7 +99,7 @@
             <td>
                 <div class="layui-form-item" style="margin-top: 15px;margin-left: 13px">
                     <div class="layui-input-inline">
-                        <input type="text"  name="basicPrice"   th:value="${order?.basicPrice}" autocomplete="off" class="layui-input">
+                        <input type="text"  name="zuiDiYiPiao"   th:value="${order?.zuiDiYiPiao}" autocomplete="off" class="layui-input">
                     </div>
                     <label class="layui-form-label" style="width:50px ">元</label>
                 </div>
@@ -256,8 +256,8 @@
 
                     <label class="layui-form-label" style="width: 125px">是否支持上门提货</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="tiGoods" id="tiGoods1" value="1" title="是">
-                        <input type="radio" name="tiGoods" id="tiGoods2" value="0" title="否" >
+                        <input type="radio" name="shangMenTiHuo" id="tiGoods1" value="1" title="是">
+                        <input type="radio" name="shangMenTiHuo" id="tiGoods2" value="0" title="否" >
                     </div>
             </td>
         </tr>
@@ -266,8 +266,8 @@
             <td colspan="3">
                 <label class="layui-form-label" style="width: 125px">是否支持送货上门</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="shGoods" id="shGoods1" value="1" title="是">
-                    <input type="radio" name="shGoods" id="shGoods2" value="0" title="否" >
+                    <input type="radio" name="songHuoSHangMen" id="shGoods1" value="1" title="是">
+                    <input type="radio" name="songHuoSHangMen" id="shGoods2" value="0" title="否" >
                 </div>
             </td>
         </tr>
@@ -297,6 +297,10 @@
 
 </body>
 <script>
+
+
+
+
         layui.use('form',function () {
             var form = layui.form,
                 $ = layui.jquery;
@@ -308,18 +312,24 @@
             var $ = layui.jquery, form = layui.form;
             $.ajax({
                 type: "post",
-                url: "queryOne",
+                url: "/queryTwo",
                 data: {id:id},
                 success: function (data) {
-                    $("#shGoods1").attr("checked", data.shGoods == 1 ? true : false);
-                    $("#shGoods2").attr("checked", data.shGoods == 0 ? true : false);
+                    $("#shGoods1").attr("checked", data.songHuoSHangMen == 1 ? true : false);
+                    $("#shGoods2").attr("checked", data.songHuoSHangMen == 0 ? true : false);
 
-                    $("#tiGoods1").attr("checked", data.tiGoods == 1 ? true : false);
-                    $("#tiGoods2").attr("checked", data.tiGoods == 0 ? true : false);
+                    $("#tiGoods1").attr("checked", data.shangMenTiHuo == 1 ? true : false);
+                    $("#tiGoods2").attr("checked", data.shangMenTiHuo == 0 ? true : false);
 
                     form.render(); //更新全部
                 }
             })
+
+
+
+
+
+
             form.on('submit(lineForm)', function(data){
                 var form = $("#lineForm").serialize();
                 $.ajax({
@@ -332,6 +342,9 @@
                 })
 
             });
+
+
+
         $.post(
             "findProvinces",
             function (obj) {
@@ -469,5 +482,10 @@
             var id = $("input[name='id']").val();
             location.href="deleteData?id="+id;
         }
+
+
+
+
+
 </script>
 </html>

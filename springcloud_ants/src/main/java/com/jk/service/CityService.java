@@ -21,4 +21,5 @@ public interface CityService {
 
     List<Order> findOrder();
 
+    List<Image> findImg();
 }

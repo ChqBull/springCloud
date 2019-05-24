@@ -103,4 +103,6 @@ public class OrderBean implements Serializable {
 
                 private Integer endquId;
 
+                 private String status;
+
 }

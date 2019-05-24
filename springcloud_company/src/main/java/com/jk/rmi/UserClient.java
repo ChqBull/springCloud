@@ -5,7 +5,6 @@ import com.jk.bean.UserBean;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 
@@ -16,6 +15,6 @@ public interface UserClient {
    @RequestMapping("login")
    UserBean login(@RequestBody UserBean userBean);
 
-   @RequestMapping("comLogin")
+   @RequestMapping("comlogin")
    CompanyModel comlogin(@RequestBody UserBean userBean);
 }

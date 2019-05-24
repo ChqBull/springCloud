@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.bean.CompanyModel;
 import com.jk.bean.OrderBean;
 import com.jk.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -15,9 +18,12 @@ public class toPageController {
      @Autowired
      private OrderService service;
     @RequestMapping("orderPage")
-    public String  page(Model model){
-        List<OrderBean> list1 = service.getOrdercount();
-        Long money = service.getMoney();
+    public String  page(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        List<OrderBean> list1 = service.getOrdercount(companyId);
+        Long money = service.getMoney(companyId);
         model.addAttribute("money",money);
         model.addAttribute("count",list1.size());
 
@@ -38,9 +44,12 @@ public class toPageController {
     }
 //跳的第二个页面
     @RequestMapping("yunshuzaitu")
-    public String  yunshuzaitu(Model model){
-        List<OrderBean> list1 = service.getOrdercount();
-        Long money = service.getMoney();
+    public String  yunshuzaitu(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        List<OrderBean> list1 = service.getOrdercount(companyId);
+        Long money = service.getMoney(companyId);
         model.addAttribute("money",money);
         model.addAttribute("count",list1.size());
 
@@ -50,21 +59,19 @@ public class toPageController {
     @RequestMapping("tozaituPage")
     public String tozaituPage(Integer id,Model model){
         OrderBean  order = service.getOrderById(id);
-         if(order.getShoulishijian().length()>0 &&order.getShouhuoshijian().length()>0){
-             model.addAttribute("o",order);
-         }else if(order.getShoulishijian().length()>0){
-            if(order.getShouhuoshijian().length()>0){
+        if(order.getShoulishijian().length()>0){
+            if(order.getShouhuoshijian()!=null){
                 model.addAttribute("o",order);
             }else{
-             order.setShouhuoshijian("尚未选择收货");
-             model.addAttribute("o",order);
+                order.setShouhuoshijian("尚未选择收货");
+                model.addAttribute("o",order);
             }
-         }else {
+        }else {
 
-             order.setShoulishijian("尚未选择受理服务");
-             order.setShouhuoshijian("尚未选择收货");
-             model.addAttribute("o",order);
-         }
+            order.setShoulishijian("尚未选择受理服务");
+            order.setShouhuoshijian("尚未选择收货");
+            model.addAttribute("o",order);
+        }
 
 
         return "tozaituPage";
@@ -72,9 +79,12 @@ public class toPageController {
 
     //跳的第三个页面
     @RequestMapping("yunsuanPage")
-    public String  yunsuanPage(Model model){
-        List<OrderBean> list1 = service.getOrdercount();
-        Long money = service.getMoney();
+    public String  yunsuanPage(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        CompanyModel companyModel = (CompanyModel) session.getAttribute(session.getId());
+        Integer companyId = companyModel.getCompanyId();
+        List<OrderBean> list1 = service.getOrdercount(companyId);
+        Long money = service.getMoney(companyId);
         model.addAttribute("money",money);
         model.addAttribute("count",list1.size());
 

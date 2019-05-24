@@ -29,4 +29,29 @@
         select c.city from areas a,cities c  where a.cityid= c.cityid
          and a.areaid = #{statrsquId}
     </select>
+    <select id="findZhaoBiao" resultType="ZhaoBiaoBean">
+        select * from zhaobiao where 1=1
+        <if test="b.zbtype != null and b.zbtype>0">
+            and zbtype = #{b.zbtype}
+        </if>
+        <if test="b.title != null ">
+            and title like '%${b.title}%'
+        </if>
+        limit #{start},#{pageSize}
+    </select>
+
+    <insert id="addZhaobiao">
+  insert into zhaobiao(zbtype,title,hangye,startDate,
+   endDate,zhuangtai,dianji,luruDate,zhaiyao)values
+     (#{b.zbtype},#{b.title},#{b.hangye},#{b.startDate},
+    #{b.endDate},#{b.zhuangtai},#{b.dianji},CURDATE(),#{b.zhaiyao})
+    </insert>
+
+    <update id="updateZhaobiao">
+   update zhaobiao set zbtype = #{b.zbtype},
+    title = #{b.title},hangye = #{b.hangye},
+    startDate = #{b.startDate},endDate = #{b.endDate},
+    zhaiyao = #{b.zhaiyao} where zid = #{b.zid}
+
+    </update>
 </mapper>
