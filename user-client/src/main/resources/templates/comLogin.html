@@ -13,6 +13,8 @@
 	<script src="/js/easyui1.5/jquery.easyui.min.js"></script>
 	<!-- 导入easyui 语言包   locale:方言    必须在最下面-->
 	<script src="/js/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+
+
 	<link rel="stylesheet" href="/layui/css/layui.css" >
 	<link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.lvmae.com/favicon.ico" />
@@ -83,7 +85,6 @@
 		var from = $("#loginForm").serialize();
 		var phoneNumber = $("#phoneNumber").val();
 		var password = $("#password").val();
-		alert(phoneNumber+password)
 		$.ajax({
 			url:"/comLogin",
 			data:{
@@ -92,11 +93,10 @@
 			},
 			type:"post",
 			success:function(data){
-				 alert(data.code);
 				if(data.code == 1){
 					alert(data.msg)
 				}else{
-					location.href="/main";
+					location.href="/treeMain";
 				}
 			}
 		})

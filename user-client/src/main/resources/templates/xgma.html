@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户个人中心</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <script src="/layui/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+    <script src="/layui/jquery-1.8.0.js"></script>
+</head>
+<body class="layui-layout-body">
+
+        <h2><font color="red"><b>修改密码</b></font></h2>
+
+
+<div class="layui-row layui-col-space10" backgroud>
+    <div class="layui-col-md4">
+
+    </div>
+    <div class="layui-col-md3 ">
+        <center style="margin-top: 17%">
+            <form class="layui-form" action="" id="loginForm">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新登录密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password1"  id="password1" lay-size="10"  autocomplete="off" class="layui-input"  />
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">重复新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password2" id="password2" lay-size="15"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" id="password" lay-size="15"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </form>
+            <input   type="button" onclick="btn()" class="layui-btn  layui-btn-danger" value="保存修改"/>
+        </center>
+    </div>
+    <div class="layui-col-md3">
+
+    </div>
+</div>
+
+<script src="../src/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    function btn() {
+        var password1=$("#password1").val();
+        var password2=$("#password2").val();
+        var password=$("#password").val();
+        if(password1.length<6){
+            alert("密码不得少于6位数");
+            return false;
+        }
+        if(password1 != password2){
+            alert("两次密码不一致");
+            return false;
+        }
+
+        $.ajax({
+            url:"/updatePassword",
+            type:'post',
+            data:{
+                password:password,
+                password1:password1
+            },
+            dataType:"json",
+            success:function (data) {
+                if(data.code==0){
+                    alert("修改成功");
+                    location.href="/loginList";
+                }else{
+                    alert("修改失败");
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

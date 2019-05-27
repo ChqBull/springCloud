@@ -78,25 +78,15 @@
                 <span class="messegeNum">1</span>
             </a>
         </li>
-        <!--<li class="chat">
-        <a href="javascript:;">
-            对话<span class="fa fa-comments-o"></span>
-            </a>
-        </li>-->
         <li class="user">
                     <span class="userPhoto">
                         <label>图片边框</label>
                         <img alt="会员图像" src="http://www.lvmae.com/api/avatar/show.php?username=15964418138&amp;size=small" />
                         </span>
-            <span class="userName">你好：<br />15964418138</span>
+            <span class="userName" id="nameID">你好：<br /></span>
             <span class="fa fa-caret-down"></span>
             <dl class="am-dropdown-content">
                 <dt><i class="fa fa-angle-up"></i></dt>
-                <dd>
-                    <a href="http://www.lvmae.com/member/avatar.php">
-                        <span class="fa fa-user-secret"></span> 头像
-                    </a>
-                </dd>
                 <dd>
                     <a href="edit.php?action=edit">
                         <span class="fa fa-cog"></span> 设置
@@ -124,7 +114,7 @@
             <li><a href="http://www.lvmae.com/member/bid.php"><i class="fa fa-pencil-square-o"></i>招标管理</a></li>
             <li><a href="http://www.lvmae.com/member/message.php"><i class="fa fa-file-text"></i>我的消息</a></li>
             <li><a href="http://www.lvmae.com/member/collection.php"><i class="fa fa-send"></i>常用线路</a></li>
-            <li><a href="http://www.lvmae.com/member/edit.php?action=password"><i class="fa fa-cog"></i>修改密码</a></li>
+            <li><a href="/xgma"><i class="fa fa-cog"></i>修改密码</a></li>
             <li><a href="http://www.lvmae.com/member/address.php"><i class="fa fa-map-marker"></i>地址管理</a></li>
         </ul>
     </div>
@@ -169,25 +159,15 @@
                                     <a href="trade.php?action=order&status=1" class="l">待处理</a> |
                                     <a href="trade.php?action=order&status=2" class="l">处理中</a> |
                                     <a href="trade.php?action=order&status=3" class="l">已完成</a> |
-                                    <!--<a href="trade.php" class="l">收到的订单(卖)</a> |
-                                    <a href="trade.php?action=order" class="l">发出的订单(买)</a>
-                                     | <a href="http://www.lvmae.com/mall/cart.php" class="l">购物车(<script type="text/javascript">document.write(substr_count(get_cookie('cart'), ','));</script>)</a>-->
                                 </li>
                             </ul>
                         </div>
                         <div class="i_quick">
                             <div>
                                 <ul>
-                                    <!--<li><a href="my.php" class="b"><img src="http://www.lvmae.com/member/image/btn_my.gif" width="32" height="32" alt=""/><br/><span class="f_red">发布信息</span></a></li>-->
                                     <li><a href="edit.php?action=edit" class="b"><img src="http://www.lvmae.com/member/image/btn_edit.gif" width="32" height="32" alt=""/><br/>完善资料</a></li>
                                     <li><a href="message.php" class="b"><img src="http://www.lvmae.com/member/image/btn_message.gif" width="32" height="32" alt=""/><br/>站内信</a></li>
-                                    <!--<li><a href="style.php" class="b"><img src="http://www.lvmae.com/member/image/btn_style.gif" width="32" height="32" alt=""/><br/>风格模板</a></li>-->
-                                    <!--<li><a href="http://www.lvmae.com/index.php?homepage=15964418138" target="_blank" class="b"><img src="http://www.lvmae.com/member/image/btn_home.gif" width="32" height="32" alt=""/><br/><span class="f_red">我的商铺</span></a></li>-->
-                                    <!--<li><a href="record.php" class="b"><img src="http://www.lvmae.com/member/image/btn_record.gif" width="32" height="32" alt=""/><br/>资金记录</a></li>-->
                                     <li><a href="trade.php?action=order" class="b"><img src="http://www.lvmae.com/member/image/btn_trade.gif" width="32" height="32" alt=""/><br/>我的订单</a></li>
-                                    <!--<li><a href="alert.php" class="b"><img src="http://www.lvmae.com/member/image/btn_alert.gif" width="32" height="32" alt=""/><br/>贸易提醒</a></li>
-                                    <li><a href="friend.php" class="b"><img src="http://www.lvmae.com/member/image/btn_friend.gif" width="32" height="32" alt=""/><br/>我的商友</a></li>-->
-                                    <!--<li><a href="favorite.php" class="b"><img src="http://www.lvmae.com/member/image/btn_favorite.gif" width="32" height="32" alt=""/><br/>商机收藏</a></li>-->
                                 </ul>
                             </div>
                             <div style="clear:both;"></div>
@@ -229,7 +209,6 @@
                             </div>
                         </div>
                         <div class="i_head">
-                            <!--<span class="f_r"><a href="edit.php">[修改]</a></span>-->
                             <strong>我的资料</strong>
                         </div>
                         <div class="i_body">
@@ -237,23 +216,26 @@
                                 <table cellpadding="6" cellspacing="0" width="100%">
                                     <tr>
                                         <td class="i_user_l">会员名</td>
-                                        <td>15964418138</td>
+                                       <!-- <td>15964418138</td>-->
+                                        <td><span id="nameID1"></span></td>
                                     </tr>
                                     <tr>
                                         <td class="i_user_l">会员组</td>
-                                        <td>个人会员</td>
+                                        <td><span id="group"></span></td>
                                     </tr>
                                     <tr>
                                         <td class="i_user_l">会员ID</td>
-                                        <td>41309</td>
+                                        <td><span id="phoneMember"></span></td>
                                     </tr>
                                     <tr>
                                         <td class="i_user_l">登录时间</td>
-                                        <td>2019-05-21 11:38</td>
+                                        <!--<td>2019-05-21 11:38</td>-->
+                                        <td><span id="lastTime"></span></td>
                                     </tr>
                                     <tr>
                                         <td class="i_user_l">注册时间</td>
-                                        <td>2019-05-15 20:12</td>
+                                        <!--<td>2019-05-15 20:12</td>-->
+                                        <td><span id="createTime"></span></td>
                                     </tr>
                                     <tr>
                                         <td class="i_user_l" style="width:90px;">升级为承运商</td>
@@ -299,6 +281,28 @@
     </div>
     <!--申请为VIP弹出层 end-->
     <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url:'/sessionPhoneNumber',
+                type:'post',
+                success:function (data) {
+                    $("#nameID").html(data.username);//顶端展示
+                    $("#nameID1").html(data.username);//会员名
+                    $("#createTime").html(data.createTime);//注册时间
+                    $("#group").html(data.group);//会员组
+                    $("#phoneMember").html(data.phoneMember)//会员id
+                    $("#lastTime").html(data.lastTime)//登录时间
+                }
+            })
+        })
+
+
+
+
+
+
+
+
         $(document).ready(function(){
             $('button[name="applyvip"]').click(function(){
                 $.post("http://www.lvmae.com/member/index.php",{'requestType':'ajax'},function(result){

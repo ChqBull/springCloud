@@ -1,5 +1,4 @@
 package com.jk.controller;
-
 import com.jk.ConstantConf;
 import com.jk.pojo.UserBean;
 import com.jk.rmi.UserClient;
@@ -9,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 @Controller
@@ -43,7 +43,7 @@ public class UserController {
     @RequestMapping("reg")
     @ResponseBody
     public HashMap<String, Object> saveUser(UserBean userBean,String phonecode) {
-        System.out.println(userBean.getTypes());
+        /*System.out.println(userBean.getTypes());*/
         return userClient.saveUser(userBean,phonecode);
     }
 
@@ -79,7 +79,8 @@ public class UserController {
             return hashMap;
         }
         HttpSession session = request.getSession();
-        session.setAttribute(session.getId(),user1);
+        session.setAttribute(session.getId(),user1);//存入session
+       /* session.getId();*/
         hashMap.put("type", user1.getUsertype());
         //TODO redis
         hashMap.put("code", 0);
@@ -131,12 +132,53 @@ public class UserController {
         return hashMap;
     }
 
-
-
     /*手机登录*/
     @RequestMapping("phoneLogin")
     @ResponseBody
     public  HashMap<String,Object> phoneLogin(UserBean userBean, String phonecode){
         return userClient.phoneLogin(userBean,phonecode);
+    }
+
+    /*登录完前台获取前台一系列基本信息*/
+    @RequestMapping("sessionPhoneNumber")
+    @ResponseBody
+    public HashMap<String,Object> sessionPhoneNumber(HttpServletRequest request){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        UserBean  user = (UserBean)session.getAttribute(session.getId());
+        String phoneNumber = user.getPhoneNumber();//获取手机号
+        Integer usertype = user.getUsertype();//用户类型  1发货方  2物流公司
+        String a="";
+        if(usertype==1){
+            a="发货方";
+        }else{
+            a="物流公司";
+        }
+        String createTime = user.getCreateTime();//注册时间
+        user.setPhoneMember((int) (Math.random() * 89999 + 10000));//自动加入随机数
+        Integer phoneMember = user.getPhoneMember();//会员ID
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String format = simpleDateFormat.format(new Date());
+        user.setLastTime(format);//登录时间
+        String lastTime = user.getLastTime();//登录时间
+        String companyName = user.getCompanyName();//公司名称,用于蚂蚁树展示
+
+        hashMap.put("username",phoneNumber);
+        hashMap.put("createTime",createTime);
+        hashMap.put("group",a);
+        hashMap.put("phoneMember",phoneMember);
+        hashMap.put("lastTime",lastTime);
+        hashMap.put("companyName",companyName);
+        return hashMap;
+    }
+
+    /*蚂蚁前台登录后,修改密码*/
+    @RequestMapping("updatePassword")
+    @ResponseBody
+    public HashMap<String,Object> updatePassword(String password,String password1,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserBean user = (UserBean) session.getAttribute(session.getId());
+        String phoneNumber = user.getPhoneNumber();
+        return userService.updatePas(phoneNumber,password,password1);
     }
 }

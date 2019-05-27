@@ -36,5 +36,6 @@ public static final  String splitC = "sdfghj";//密码和用户之间的分割
     //cookie 保存的常量
     public static final  String COOKIEUUID = "COOKIEJIAUUID";
 
-
+    public static final String TREE_NAV_LIST = "tree";//缓存树
+    public static final String SHOOP_G  = "gouwuche";
 }

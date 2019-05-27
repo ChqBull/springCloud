@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>会员登录_</title>
@@ -27,6 +27,15 @@
     <script type="text/javascript" src="http://www.lvmae.com/file/script/common.js"></script>
     <script type="text/javascript" src="http://www.lvmae.com/file/script/admin.js"></script>
     <script type="text/javascript" src="http://www.lvmae.com/file/script/member.js"></script>
+
+
+
+    <link rel="stylesheet" href="/layui/css/layui.css" >
+    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css">
+    <script src="/layui/layui.all.js" charset="UTF-8"></script>
+    <script src="/layui/jquery-1.8.0.js"></script>
+
+
 </head>
 <body style="background:''">
 <script>
@@ -109,7 +118,6 @@
         var phoneNumber = $("#phoneNumberId").val();
         var password = $("#passwordId").val();
         var remPwd = $("#remPwdId").val();
-
         $.ajax({
             url:'/login',
             type:"post",
@@ -121,7 +129,7 @@
             success:function(data) {
                 if (data.code == 0) {
                     alert(data.msg);
-                    location.href = "/main"
+                   location.href = "/main";
                 } else {
                     alert(data.msg);
                 }

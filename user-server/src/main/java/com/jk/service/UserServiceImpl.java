@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
         Jedis redis = jedisPool.getResource();
         HashMap<String, Object> hash = new HashMap<>();
         Date date = new Date();
-
         //在mongodb根据手机号条查手机号是否在mongodb中
         List<PhoneCount> phoneNumber1 = mongoTemplate.find(new Query().addCriteria(Criteria.where("phoneNumber").is(phoneNumber)), PhoneCount.class);
         if(phoneNumber1.size()>0){
@@ -58,7 +57,6 @@ public class UserServiceImpl implements UserService {
             hash.put("msg", "该手机号在黑名单,请联系管理员");
             return hash;
         }
-
         //判断是否今天三次上限
         SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
         String format = si.format(date);
@@ -140,7 +138,7 @@ public class UserServiceImpl implements UserService {
             }
             //判断用户选择的类型  1发货方 2物流
             Integer usertype = userBean.getUsertype();
-            userBean.setCreateTime(new Date());
+            userBean.setCreateTime(new Date()+"");
             userBean.setMoney(0.00);
            /* String md516 = Md5Util.getMd516(userBean.getPassword());//密码加密
             userBean.setPassword(md516);*/

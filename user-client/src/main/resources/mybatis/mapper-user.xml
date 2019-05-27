@@ -8,4 +8,11 @@
     <select id="findPhoeNumberByUserType" parameterType="string" resultType="com.jk.pojo.UserBean">
       select tu.usertype from t_user tu where tu.phoneNumber = #{phoneNumber}
     </select>
+    <!--根据,密码手机号,判断用户输入的是否正确-->
+<select id="findUserByPassword" resultType="com.jk.pojo.UserBean">
+  SELECT * from t_user  where password = #{u.password} and phoneNumber = #{u.phoneNumber}
+</select>
+    <update id="updatePassword" parameterType="com.jk.pojo.UserBean">
+    UPDATE t_user tu set tu.password=#{password} where tu.phoneNumber = #{phoneNumber}
+    </update>
 </mapper>

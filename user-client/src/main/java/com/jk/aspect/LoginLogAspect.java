@@ -33,6 +33,7 @@ private MongoTemplate mongoTemplate;
     public void logPoinCut() {
 
     }
+
     //切面 配置通知
     @AfterReturning("logPoinCut()")
     public void saveSysLog(JoinPoint joinPoint) {
@@ -76,4 +77,8 @@ private MongoTemplate mongoTemplate;
         logLogin.setIp(IpUtils.getIpAddr(request));
         mongoTemplate.insert(logLogin);
     }
+
+
+
+
 }
